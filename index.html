@@ -8,230 +8,442 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=VT323&family=Chewy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <div class="header-left">
-            <h1>Bhavithra Suruliyandi Selvakumar</h1>
-        </div>
-        <div class="header-center">
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Bhavithra SS</div>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="hello-world">Hello world!</h2>
-        <div class="about-content">
-            <img src="images/my-photo.jpg" alt="My Photo" class="profile-photo">
-            <p>Hey! I’m Bhavithra, a data-driven problem solver with a passion for AI, machine learning, and full-stack development. I specialize in predictive analytics, NLP, and system design, creating smart solutions from complex data. Outside of coding, I enjoy chasing sunsets and diving into sci-fi and tech trends.</p>
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Hi, I'm <span class="gradient-text">Bhavithra</span></h1>
+                    <p class="hero-subtitle">AI & ML Researcher | Data Engineer | Cloud Specialist</p>
+                    <p class="hero-description">Versatile IT and AI professional with expertise in cloud infrastructure, data engineering, and AI/ML research. Experienced in LLM development, ETL pipelines, AWS/GCP, with a proven record of delivering scalable, data-driven solutions.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                        <a href="https://github.com/bhaviss" target="_blank" class="btn btn-secondary">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">3.92</span>
+                            <span class="stat-label">Master's GPA</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">4+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">12+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-wrapper">
+                        <img src="images/my-photo.jpg" alt="Bhavithra" class="profile-photo">
+                        <div class="image-backdrop"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-   <!-- Skills Section -->
-<section id="skills">
-    <h2 class="skills-title">Skills</h2>
-
-    <div class="skills-container">
-        <!-- Programming Languages -->
-        <div class="skills-box">
-            <h3>Programming Languages</h3>
-            <ul>
-                <li><i class="fas fa-code"></i> Python</li>
-                <li><i class="fas fa-database"></i> SQL (MySQL)</li>
-                <li><i class="fas fa-laptop-code"></i> JavaScript</li>
-                <li><i class="fas fa-chart-line"></i> R</li>
-            </ul>
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p class="about-text">I'm a passionate technologist with a Master's in Information Technology from Concordia University of Edmonton (GPA: 3.92/4.0). Currently working as a Research Assistant in AI & ML, I specialize in developing cutting-edge solutions using LLMs, multimodal systems, and cloud technologies.</p>
+                <p class="about-text">My expertise spans across AI/ML research, cloud infrastructure (AWS/GCP), data engineering, and full-stack development. I've successfully delivered projects that improve operational efficiency, reduce processing time, and create scalable solutions for real-world problems.</p>
+                <p class="about-text">Outside of coding, I enjoy chasing sunsets and diving into sci-fi and tech trends.</p>
+            </div>
         </div>
+    </section>
 
-        <!-- Libraries & Frameworks -->
-        <div class="skills-box">
-            <h3>Libraries & Frameworks</h3>
-            <ul>
-                <li><i class="fas fa-code"></i> NumPy, Pandas</li>
-                <li><i class="fas fa-cogs"></i> TensorFlow, Scikit-learn, Transformers, JAX, Autoencoders</li>
-                <li><i class="fab fa-react"></i> React</li>
-                <li><i class="fab fa-flask"></i> Flask</li>
-            </ul>
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Jan 2026 – Present</span>
+                        <h3>Research Assistant – AI & ML</h3>
+                        <h4>Concordia University of Edmonton, Edmonton, AB</h4>
+                        <ul>
+                            <li>Conducting AI/ML research with LLMs and multimodal systems, utilizing Python, TensorFlow, PyTorch, and cloud services to process large datasets and validate ML models</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Jul 2025 – Dec 2025</span>
+                        <h3>Sessional Instructor (Part-Time)</h3>
+                        <h4>Concordia University of Edmonton, Edmonton, AB</h4>
+                        <ul>
+                            <li>Taught Python programming and cloud computing fundamentals, mentoring 50+ students in IT operations, automation, and DevOps practices</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Oct 2025 – Jan 2026</span>
+                        <h3>IT & Cloud Operations Intern</h3>
+                        <h4>BinaryLogic, Edmonton, AB</h4>
+                        <ul>
+                            <li>Managed Microsoft 365 administration, IT troubleshooting, and system maintenance, improving IT response efficiency by 30%</li>
+                            <li>Maintained security compliance, managed assets, and developed Power BI reports and WordPress website projects, decreasing reporting time by 25%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Jul 2022 – Jul 2024</span>
+                        <h3>Junior Data Analyst</h3>
+                        <h4>Besant Technologies, Chennai, India</h4>
+                        <ul>
+                            <li>Enhanced cloud analytics solutions using AWS Redshift and GCP BigQuery; streamlined ETL pipelines processing over 1 million records, reducing data latency by 40%</li>
+                            <li>Optimized dashboards and reports using Power BI and Tableau, increasing stakeholder reporting efficiency by 50%</li>
+                            <li>Automated data workflows with Apache Airflow and Apache NiFi, reducing manual effort by 65%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Computer Vision -->
-        <div class="skills-box">
-            <h3>Computer Vision</h3>
-            <ul>
-                <li><i class="fas fa-camera-retro"></i> OpenCV, Pillow (PIL), scikit-image, dlib, ImageAI</li>
-                <li><i class="fas fa-brain"></i> Feature Extraction (SIFT, SURF, ORB)</li>
-                <li><i class="fas fa-eye"></i> Optical Character Recognition (OCR), Image Enhancement</li>
-                <li><i class="fas fa-cogs"></i> Augmentation, Video Processing</li>
-                <li><i class="fas fa-microchip"></i> YOLO, SSD, U-Net, Mask R-CNN, GANs</li>
-            </ul>
-        </div>
-
-        <!-- Machine Learning -->
-        <div class="skills-box">
-            <h3>Machine Learning</h3>
-            <ul>
-                <li><i class="fas fa-brain"></i> Machine Learning</li>
-                <li><i class="fas fa-robot"></i> NLP</li>
-            </ul>
-        </div>
-
-        <!-- AI & Deep Learning -->
-        <div class="skills-box">
-            <h3>AI & Deep Learning</h3>
-            <ul>
-                <li><i class="fas fa-microchip"></i> AI</li>
-                <li><i class="fas fa-brain"></i> Deep Learning</li>
-            </ul>
-        </div>
-
-        <!-- Big Data & Distributed Systems -->
-        <div class="skills-box">
-            <h3>Big Data & Distributed Systems</h3>
-            <ul>
-                <li><i class="fab fa-hadoop"></i> Hadoop</li>
-                <li><i class="fab fa-spark"></i> Spark</li>
-                <li><i class="fas fa-cogs"></i> Airflow</li>
-            </ul>
-        </div>
-
-        <!-- Data Engineering & Analytics -->
-        <div class="skills-box">
-            <h3>Data Engineering & Analytics</h3>
-            <ul>
-                <li><i class="fas fa-tasks"></i> Data Integration</li>
-                <li><i class="fas fa-tasks"></i> Data Manipulation</li>
-                <li><i class="fas fa-tasks"></i> Data Transformation</li>
-                <li><i class="fas fa-database"></i> Data Modeling</li>
-                <li><i class="fas fa-cogs"></i> Data Pipelines, ETL, Feature Engineering</li>
-            </ul>
-        </div>
-
-        <!-- Databases & SQL -->
-        <div class="skills-box">
-            <h3>Databases & SQL</h3>
-            <ul>
-                <li><i class="fas fa-database"></i> DBMS</li>
-                <li><i class="fas fa-database"></i> SQL</li>
-                <li><i class="fas fa-database"></i> MySQL</li>
-            </ul>
-        </div>
-
-        <!-- Development & DevOps -->
-        <div class="skills-box">
-            <h3>Development & DevOps</h3>
-            <ul>
-                <li><i class="fas fa-git"></i> Git</li>
-                <li><i class="fas fa-plug"></i> REST APIs</li>
-                <li><i class="fas fa-cogs"></i> CI/CD Pipelines</li>
-            </ul>
-        </div>
-
-        <!-- Data Visualization -->
-        <div class="skills-box">
-            <h3>Data Visualization</h3>
-            <ul>
-                <li><i class="fas fa-chart-bar"></i> Power BI</li>
-                <li><i class="fas fa-tachometer-alt"></i> Tableau</li>
-                <li><i class="fas fa-table"></i> Advanced Excel for Data Analytics</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-
+    </section>
 
     <!-- Projects Section -->
     <section id="projects">
-        <h2>Projects</h2>
-        <div class="project-container">
-            <div class="project-box">
-                <h3>CO2 Prediction Forecasting</h3>
-                <p>Developed a predictive model to forecast CO2 emissions based on historical data and various environmental factors using regression techniques.</p>
-                <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Forecasting%20Emissions" target="_blank">View on GitHub</a>
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- SpaceVisionAI -->
+                <div class="project-card featured">
+                    <div class="project-header">
+                        <i class="fas fa-satellite project-icon"></i>
+                        <span class="project-badge">Master's Thesis</span>
+                    </div>
+                    <h3>SpaceVisionAI: Multimodal Deep Learning for Space Debris Detection</h3>
+                    <p class="project-tech">Python | TensorFlow | SORT | Computer Vision</p>
+                    <p>Engineered a multimodal deep learning system for satellite debris detection. Achieved 62.4% detection accuracy, outperforming traditional ML approaches by 12%. Applied real-time object tracking using the SORT algorithm for multi-frame consistency.</p>
+                    <div class="project-metrics">
+                        <span><i class="fas fa-chart-line"></i> 62.4% Accuracy</span>
+                        <span><i class="fas fa-arrow-up"></i> 12% Improvement</span>
+                    </div>
+                </div>
+
+                <!-- Geo QR Attendance -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-qrcode project-icon"></i>
+                    </div>
+                    <h3>Geo QR Attendance System</h3>
+                    <p class="project-tech">Flask | React | MySQL | JWT | Geolocation</p>
+                    <p>Architected a full-stack geo-location attendance system serving 500+ users. Applied secure JWT authentication and role-based access control. Decreased attendance reporting time by 75% through automated dashboards.</p>
+                    <div class="project-metrics">
+                        <span><i class="fas fa-users"></i> 500+ Users</span>
+                        <span><i class="fas fa-clock"></i> 75% Time Reduction</span>
+                    </div>
+                    <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Geo%20QR%20Attendance" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+
+                <!-- Snow Detection -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-snowflake project-icon"></i>
+                    </div>
+                    <h3>Snow Detection System</h3>
+                    <p class="project-tech">YOLOv8 | OpenCV | Flask | Computer Vision</p>
+                    <p>Built a real-time computer vision system achieving 91% accuracy for snow detection. Optimized YOLOv8 deployment to process video streams at 50+ FPS. Mechanized inspection pipeline, lowering manual effort by 65%.</p>
+                    <div class="project-metrics">
+                        <span><i class="fas fa-bullseye"></i> 91% Accuracy</span>
+                        <span><i class="fas fa-tachometer-alt"></i> 50+ FPS</span>
+                    </div>
+                    <a href="https://github.com/bhaviss" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+
+                <!-- CO2 Prediction -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-chart-area project-icon"></i>
+                    </div>
+                    <h3>CO2 Prediction Forecasting</h3>
+                    <p class="project-tech">Python | Machine Learning | Regression</p>
+                    <p>Developed a predictive model to forecast CO2 emissions based on historical data and various environmental factors using advanced regression techniques.</p>
+                    <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Forecasting%20Emissions" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+
+                <!-- NLP Chatbot -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-comments project-icon"></i>
+                    </div>
+                    <h3>NLP Chatbot</h3>
+                    <p class="project-tech">Python | NLTK | NLP</p>
+                    <p>Developed an NLP-based chatbot for answering user queries and providing personalized responses using NLTK, with capabilities for age guessing, jokes, and quizzes.</p>
+                    <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/NLP%20Chatbot" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+
+                <!-- University Management System -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-university project-icon"></i>
+                    </div>
+                    <h3>University Management System</h3>
+                    <p class="project-tech">MySQL | PHP | Database Design</p>
+                    <p>Created a comprehensive database management system for a university, handling student records, course management, and faculty details with a PHP web interface.</p>
+                    <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/UniversityDB%20project" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+
+                <!-- OTT Dashboard -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-tv project-icon"></i>
+                    </div>
+                    <h3>OTT Platform Dashboard</h3>
+                    <p class="project-tech">Power BI | Data Visualization</p>
+                    <p>Built a dynamic Power BI dashboard for an OTT platform, providing detailed insights and visualizations for user behavior, content trends, and revenue metrics.</p>
+                    <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Powerbi" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+
+                <!-- Air Delay Prediction -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-plane project-icon"></i>
+                    </div>
+                    <h3>Air Delay Prediction</h3>
+                    <p class="project-tech">Python | Machine Learning | Regression</p>
+                    <p>Implemented a regression model to predict airline delays based on historical data such as weather conditions, airport traffic, and flight schedules.</p>
+                    <a href="https://github.com/bhaviss/Projects_bhavi/blob/master/ML/Regression_Airlines_Delay.ipynb" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+
+                <!-- Exoplanet Classification -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-globe project-icon"></i>
+                    </div>
+                    <h3>Exoplanet Classification</h3>
+                    <p class="project-tech">Python | Machine Learning | Classification</p>
+                    <p>Built a classification model to predict exoplanet characteristics using machine learning algorithms, analyzing astronomical features to classify exoplanets.</p>
+                    <a href="https://github.com/bhaviss/Projects_bhavi/blob/master/ML/Classification_Exoplanet%20.ipynb" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> Cloud Platforms</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS S3</span>
+                        <span class="skill-tag">AWS Redshift</span>
+                        <span class="skill-tag">AWS IAM</span>
+                        <span class="skill-tag">Google Cloud Platform</span>
+                        <span class="skill-tag">BigQuery</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> Cloud & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">CI/CD Pipelines</span>
+                        <span class="skill-tag">Linux Administration</span>
+                        <span class="skill-tag">Cloud Security</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Data Engineering</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Apache Airflow</span>
+                        <span class="skill-tag">Apache NiFi</span>
+                        <span class="skill-tag">ETL Pipelines</span>
+                        <span class="skill-tag">Big Data Processing</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">LLMs</span>
+                        <span class="skill-tag">NLP</span>
+                        <span class="skill-tag">Computer Vision</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">YOLO</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-storage"></i> Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Tools & Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">JIRA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3>Master of Information Technology</h3>
+                        <h4>Concordia University of Edmonton, Edmonton, AB</h4>
+                        <p class="education-date">August 2024 – December 2025</p>
+                        <p class="education-gpa">GPA: 3.92/4.0</p>
+                    </div>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3>Bachelor of Engineering – Computer Science</h3>
+                        <h4>Anna University, Chennai, India</h4>
+                        <p class="education-date">July 2017 – October 2021</p>
+                        <p class="education-gpa">CGPA: 8.3/10</p>
+                    </div>
+                </div>
             </div>
 
-            
-            <div class="project-box">
-                <h3>NLP Chatbot</h3>
-                <p>Developed an NLP-based chatbot for answering user queries and providing personalized responses using NLTK, with capabilities for age guessing, jokes, and quizzes.</p>
-                <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/NLP%20Chatbot" target="_blank">View on GitHub</a>
-            </div>
-
-            <div class="project-box">
-                <h3>University Management System (DBMS)</h3>
-                <p>Created a database management system for a university, handling student records, course management, and faculty details using MySQL and PHP for the web interface.</p>
-                <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/UniversityDB%20project" target="_blank">View on GitHub</a>
-            </div>
-
-            <div class="project-box">
-                <h3>OTT Dashboard (Power BI)</h3>
-                <p>Built a dynamic Power BI dashboard for an OTT platform, providing detailed insights and visualizations for user behavior, content trends, and revenue metrics.</p>
-                <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Powerbi" target="_blank">View on GitHub</a>
-            </div>
-
-            <div class="project-box">
-                <h3>Chatbot Using Tkinter</h3>
-                <p>Developed an interactive chatbot using Tkinter with personalized features, error handling, conversation memory, and time-based greetings.</p>
-                <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Chatbot" target="_blank">View on GitHub</a>
-            </div>
-
-            <div class="project-box">
-                <h3>File Transfer Using Socket Programming in Python</h3>
-                <p>Created a file transfer application using Python's socket module where users can upload and download files from a server using a simple client-server architecture.</p>
-                <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Socket%20Programming" target="_blank">View on GitHub</a>
-            </div>
-
-            <div class="project-box">
-                <h3>Geo QR Attendance</h3>
-                <p>Developed an attendance system with QR code-based authentication and geolocation verification to ensure physical presence during attendance marking.</p>
-                <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Geo%20QR%20Attendance" target="_blank">View on GitHub</a>
-            </div>
-
-            <div class="project-box">
-                <h3>Air Delay Prediction (Regression)</h3>
-                <p>Implemented a regression model to predict airline delays based on historical data such as weather, airport, and flight schedules.</p>
-                <a href="https://github.com/bhaviss/Projects_bhavi/blob/master/ML/Regression_Airlines_Delay.ipynb" target="_blank">View on GitHub</a>
-            </div>
-
-            <div class="project-box">
-                <h3>Exoplanet Classification</h3>
-                <p>Built a classification model to predict exoplanet characteristics using machine learning algorithms, analyzing features from datasets to classify exoplanets.</p>
-                <a href="https://github.com/bhaviss/Projects_bhavi/blob/master/ML/Classification_Exoplanet%20.ipynb" target="_blank">View on GitHub</a>
-            </div>
-
-            <div class="project-box">
-                <h3>Test Matches Clustering</h3>
-                <p>Applied clustering algorithms to the test matches dataset, analyzing match data such as runs scored and wickets taken, to group similar matches based on statistical patterns.</p>
-                <a href="https://github.com/bhaviss/Projects_bhavi/blob/master/ML/Clustering_Cricket_Test_Match.ipynb" target="_blank">View on GitHub</a>
+            <div class="certifications">
+                <h3 class="certifications-title">Certifications</h3>
+                <div class="cert-tags">
+                    <span class="cert-tag"><i class="fab fa-aws"></i> AWS Cloud Foundations</span>
+                    <span class="cert-tag"><i class="fab fa-aws"></i> AWS Cloud Security Foundations</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
-        <h2>Contact</h2>
-        <div class="contact-links">
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/bhavithra-ss-4519101a9/">https://www.linkedin.com/in/bhavithra-ss-4519101a9/</a></p>
-            <p>GitHub: <a href="https://github.com/bhaviss/Projects_bhavi/">https://github.com/bhaviss/Projects_bhavi/</a></p>
-            <p>Leave a message: <a href="mailto:bhavithrass@gmail.com">bhavithrass@gmail.com</a></p>
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p class="contact-intro">I'm always open to discussing new opportunities, collaborations, or just chatting about technology. Feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="mailto:bhavithrass@gmail.com" class="contact-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>bhavithrass@gmail.com</span>
+                    </a>
+                    <a href="tel:+18253336070" class="contact-link">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 825-333-6070</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/bhavithra-ss-4519101a9/" target="_blank" class="contact-link">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn Profile</span>
+                    </a>
+                    <a href="https://github.com/bhaviss" target="_blank" class="contact-link">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub Profile</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; Bhavithra Suruliyandi Selvakumar. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2026 Bhavithra Suruliyandi Selvakumar. All rights reserved.</p>
+            <p class="footer-subtitle">Built with <i class="fas fa-heart"></i> and passion for technology</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
