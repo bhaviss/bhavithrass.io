@@ -1870,6 +1870,259 @@ footer i {
     color: var(--accent-color);
 }
 
+/* Project-Specific Themes */
+/* SpaceVisionAI - Space Theme */
+.project-card.featured {
+    background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.1) 0%, 
+        rgba(6, 182, 212, 0.08) 50%,
+        rgba(139, 92, 246, 0.06) 100%
+    );
+}
+
+.project-card.featured::before {
+    background: linear-gradient(
+        90deg, 
+        transparent 0%, 
+        rgba(59, 130, 246, 0.15) 50%, 
+        transparent 100%
+    );
+}
+
+.project-card.featured:hover {
+    background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.15) 0%, 
+        rgba(6, 182, 212, 0.12) 50%,
+        rgba(139, 92, 246, 0.08) 100%
+    );
+    box-shadow: 
+        0 25px 80px rgba(59, 130, 246, 0.3),
+        0 0 120px rgba(59, 130, 246, 0.2),
+        inset 0 1px 0 rgba(59, 130, 246, 0.3);
+}
+
+/* Attendance Project - Green Theme */
+.project-attendance {
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.project-attendance::before {
+    background: linear-gradient(
+        90deg, 
+        transparent 0%, 
+        rgba(16, 185, 129, 0.12) 50%, 
+        transparent 100%
+    );
+}
+
+.project-attendance:hover {
+    background: linear-gradient(135deg, 
+        rgba(16, 185, 129, 0.08) 0%, 
+        rgba(5, 150, 105, 0.05) 50%,
+        rgba(4, 120, 87, 0.03) 100%
+    );
+    border-color: rgba(16, 185, 129, 0.6);
+    box-shadow: 
+        0 20px 60px rgba(16, 185, 129, 0.25),
+        0 0 80px rgba(16, 185, 129, 0.15),
+        inset 0 1px 0 rgba(16, 185, 129, 0.2);
+}
+
+.project-attendance .project-icon {
+    color: #10b981;
+    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
+}
+
+.project-attendance:hover .project-icon {
+    color: #34d399;
+    filter: drop-shadow(0 0 20px rgba(52, 211, 153, 0.8));
+}
+
+.project-attendance .project-badge {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.project-attendance .project-tech {
+    color: #10b981;
+}
+
+.project-attendance:hover .project-tech {
+    color: #34d399;
+}
+
+.project-attendance .project-link {
+    background: linear-gradient(135deg, 
+        rgba(16, 185, 129, 0.1) 0%, 
+        rgba(5, 150, 105, 0.08) 100%
+    );
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.project-attendance .project-link::before {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.project-attendance .project-link:hover {
+    border-color: #10b981;
+}
+
+/* Snow Detection - Winter/Cyan Theme */
+.project-snow {
+    border-color: rgba(6, 182, 212, 0.3);
+}
+
+.project-snow::before {
+    background: linear-gradient(
+        90deg, 
+        transparent 0%, 
+        rgba(6, 182, 212, 0.12) 50%, 
+        transparent 100%
+    );
+}
+
+.project-snow:hover {
+    background: linear-gradient(135deg, 
+        rgba(6, 182, 212, 0.08) 0%, 
+        rgba(14, 165, 233, 0.05) 50%,
+        rgba(2, 132, 199, 0.03) 100%
+    );
+    border-color: rgba(6, 182, 212, 0.6);
+    box-shadow: 
+        0 20px 60px rgba(6, 182, 212, 0.25),
+        0 0 80px rgba(6, 182, 212, 0.15),
+        inset 0 1px 0 rgba(6, 182, 212, 0.2);
+}
+
+.project-snow .project-icon {
+    color: #06b6d4;
+    filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4));
+    animation: snowflakeRotate 3s linear infinite;
+}
+
+@keyframes snowflakeRotate {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+}
+
+.project-snow:hover .project-icon {
+    color: #22d3ee;
+    filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.8));
+    animation: snowflakeRotate 1s linear infinite;
+}
+
+.project-snow .project-badge {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+}
+
+.project-snow .project-tech {
+    color: #06b6d4;
+}
+
+.project-snow:hover .project-tech {
+    color: #22d3ee;
+}
+
+.project-snow .project-link {
+    background: linear-gradient(135deg, 
+        rgba(6, 182, 212, 0.1) 0%, 
+        rgba(8, 145, 178, 0.08) 100%
+    );
+    border-color: rgba(6, 182, 212, 0.3);
+}
+
+.project-snow .project-link::before {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+}
+
+.project-snow .project-link:hover {
+    border-color: #06b6d4;
+}
+
+/* Chatbot - Purple Theme */
+.project-chatbot {
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.project-chatbot::before {
+    background: linear-gradient(
+        90deg, 
+        transparent 0%, 
+        rgba(139, 92, 246, 0.12) 50%, 
+        transparent 100%
+    );
+}
+
+.project-chatbot:hover {
+    background: linear-gradient(135deg, 
+        rgba(139, 92, 246, 0.08) 0%, 
+        rgba(124, 58, 237, 0.05) 50%,
+        rgba(109, 40, 217, 0.03) 100%
+    );
+    border-color: rgba(139, 92, 246, 0.6);
+    box-shadow: 
+        0 20px 60px rgba(139, 92, 246, 0.25),
+        0 0 80px rgba(139, 92, 246, 0.15),
+        inset 0 1px 0 rgba(139, 92, 246, 0.2);
+}
+
+.project-chatbot .project-icon {
+    color: #8b5cf6;
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.4));
+    animation: chatbotPulse 2s ease-in-out infinite;
+}
+
+@keyframes chatbotPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.project-chatbot:hover .project-icon {
+    color: #a78bfa;
+    filter: drop-shadow(0 0 20px rgba(167, 139, 250, 0.8));
+    animation: chatbotPulse 1s ease-in-out infinite;
+}
+
+.project-chatbot .project-badge {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.project-chatbot .project-tech {
+    color: #8b5cf6;
+}
+
+.project-chatbot:hover .project-tech {
+    color: #a78bfa;
+}
+
+.project-chatbot .project-link {
+    background: linear-gradient(135deg, 
+        rgba(139, 92, 246, 0.1) 0%, 
+        rgba(124, 58, 237, 0.08) 100%
+    );
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.project-chatbot .project-link::before {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.project-chatbot .project-link:hover {
+    border-color: #8b5cf6;
+}
+
+/* Project Metrics Themed Colors */
+.project-attendance .project-metrics i {
+    color: #10b981;
+}
+
+.project-snow .project-metrics i {
+    color: #06b6d4;
+}
+
+.project-chatbot .project-metrics i {
+    color: #8b5cf6;
+}
+
 /* Enhanced Section Transitions */
 section {
     opacity: 0;
