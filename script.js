@@ -673,8 +673,8 @@ modalImg.addEventListener('mouseleave', function() {
     this.style.transform = 'scale(1)';
 });
 
-// Video playback function for mobile compatibility
-function playSpaceVideo() {
+// Video playback function for mobile compatibility - Make it global
+window.playSpaceVideo = function() {
     const video = document.getElementById('spaceVideo');
     const playButton = document.querySelector('.video-play-button');
     
@@ -687,7 +687,8 @@ function playSpaceVideo() {
                 // Show native controls
                 video.setAttribute('controls', 'controls');
             }).catch(error => {
-                console.log('Video playback error:', error);
+                console.error('Video playback error:', error);
+                alert('Unable to play video. Please try refreshing the page.');
             });
         } else {
             video.pause();
@@ -695,8 +696,10 @@ function playSpaceVideo() {
                 playButton.style.display = 'flex';
             }
         }
+    } else {
+        console.error('Video element not found');
     }
-}
+};
 
 // Handle video play button visibility
 document.addEventListener('DOMContentLoaded', function() {
@@ -704,6 +707,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const playButton = document.querySelector('.video-play-button');
     
     if (video && playButton) {
+        // Add click handler as backup
+        playButton.addEventListener('click', function() {
+            window.playSpaceVideo();
+        });
+        
         // Hide play button when video starts playing
         video.addEventListener('play', () => {
             playButton.style.display = 'none';
@@ -718,6 +726,13 @@ document.addEventListener('DOMContentLoaded', function() {
         video.addEventListener('ended', () => {
             playButton.style.display = 'flex';
             video.removeAttribute('controls');
+        });
+        
+        // Allow clicking video itself to play
+        video.addEventListener('click', function() {
+            if (video.paused) {
+                window.playSpaceVideo();
+            }
         });
     }
 });

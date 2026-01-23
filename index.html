@@ -157,11 +157,11 @@
                 <div class="project-card featured">
                     <!-- Project Media -->
                     <div class="project-media">
-                        <video id="spaceVideo" playsinline webkit-playsinline poster="images/projects/space-debris-thumb.jpg" data-caption="Real-time Space Debris Detection and Tracking">
+                        <video id="spaceVideo" playsinline webkit-playsinline preload="metadata" poster="images/projects/space-debris-thumb.jpg" data-caption="Real-time Space Debris Detection and Tracking">
                             <source src="images/projects/space-debris-tracking.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <div class="video-play-button" onclick="playSpaceVideo()">
+                        <div class="video-play-button" id="spaceVideoPlayBtn" title="Play Video">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
