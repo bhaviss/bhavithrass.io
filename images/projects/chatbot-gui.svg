@@ -1,0 +1,89 @@
+<svg width="1200" height="675" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="chatBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0a1e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="userMsg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="botMsg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#374151;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1f2937;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#chatBg)"/>
+  
+  <!-- Tkinter Window -->
+  <rect x="100" y="40" width="1000" height="595" rx="15" fill="#0d1117" stroke="#3b82f6" stroke-width="2"/>
+  
+  <!-- Window Title Bar -->
+  <rect x="100" y="40" width="1000" height="45" rx="15" fill="#1a1f2e"/>
+  <circle cx="125" cy="62" r="6" fill="#ef4444"/>
+  <circle cx="145" cy="62" r="6" fill="#f59e0b"/>
+  <circle cx="165" cy="62" r="6" fill="#10b981"/>
+  <text x="600" y="70" font-family="Arial, sans-serif" font-size="16" fill="#e6edf3" text-anchor="middle" font-weight="bold">Interactive Chatbot ></text>
+  
+  <!-- Chat Display Area -->
+  <rect x="120" y="105" width="960" height="430" rx="10" fill="#000000" opacity="0.4"/>
+  
+  <!-- Greeting Message -->
+  <text x="140" y="140" font-family="Arial, sans-serif" font-size="14" fill="#8b949e">12:30 PM</text>
+  <rect x="140" y="150" width="400" height="50" rx="15" fill="url(#botMsg)"/>
+  <text x="160" y="177" font-family="Arial, sans-serif" font-size="15" fill="#e6edf3">Good afternoon! Welcome to ChatBot. What's your name?</text>
+  
+  <!-- User Response -->
+  <text x="1040" y="235" font-family="Arial, sans-serif" font-size="14" fill="#8b949e" text-anchor="end">12:31 PM</text>
+  <rect x="740" y="245" width="320" height="40" rx="15" fill="url(#userMsg)"/>
+  <text x="900" y="272" font-family="Arial, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle">Bhavithra</text>
+  
+  <!-- Bot Emotion Detection -->
+  <text x="140" y="320" font-family="Arial, sans-serif" font-size="14" fill="#8b949e">12:31 PM</text>
+  <rect x="140" y="330" width="520" height="70" rx="15" fill="url(#botMsg)"/>
+  <text x="160" y="357" font-family="Arial, sans-serif" font-size="15" fill="#e6edf3">Hi Bhavithra! =
+ How are you feeling today?</text>
+  <text x="160" y="383" font-family="Arial, sans-serif" font-size="14" fill="#8b949e">Feel free to share your mood (happy/sad/excited/tired)</text>
+  
+  <!-- User Mood Response -->
+  <text x="1040" y="435" font-family="Arial, sans-serif" font-size="14" fill="#8b949e" text-anchor="end">12:32 PM</text>
+  <rect x="800" y="445" width="260" height="40" rx="15" fill="url(#userMsg)"/>
+  <text x="930" y="472" font-family="Arial, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle">I'm feeling good! =
+</text>
+  
+  <!-- Bot Response with Features -->
+  <text x="140" y="520" font-family="Arial, sans-serif" font-size="14" fill="#8b949e">12:32 PM</text>
+  <rect x="140" y="530" width="600" height="90" rx="15" fill="url(#botMsg)"/>
+  <text x="160" y="557" font-family="Arial, sans-serif" font-size="15" fill="#e6edf3">That's wonderful, Bhavithra! <‰</text>
+  <text x="160" y="582" font-family="Arial, sans-serif" font-size="14" fill="#8b949e">Would you like to:</text>
+  <text x="180" y="605" font-family="Arial, sans-serif" font-size="14" fill="#06b6d4">" Hear a joke  " Play a quiz  " Guess your age</text>
+  
+  <!-- Emoji Indicators -->
+  <circle cx="200" cy="365" r="12" fill="#10b981" opacity="0.2"/>
+  <text x="200" y="370" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">=
+</text>
+  
+  <!-- Input Area -->
+  <rect x="120" y="555" width="860" height="60" rx="10" fill="#1a1f2e" stroke="#3b82f6" stroke-width="1"/>
+  <text x="145" y="590" font-family="Arial, sans-serif" font-size="15" fill="#6e7681">Type your message...</text>
+  
+  <!-- Send Button -->
+  <rect x="1000" y="555" width="80" height="60" rx="10" fill="url(#userMsg)"/>
+  <text x="1040" y="592" font-family="Arial, sans-serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold">Send</text>
+  
+  <!-- Feature Badges -->
+  <rect x="140" y="105" width="150" height="25" rx="12" fill="#8b5cf6" opacity="0.3"/>
+  <text x="215" y="122" font-family="Arial, sans-serif" font-size="12" fill="#8b5cf6" text-anchor="middle" font-weight="bold">>à Smart AI</text>
+  
+  <rect x="300" y="105" width="150" height="25" rx="12" fill="#10b981" opacity="0.3"/>
+  <text x="375" y="122" font-family="Arial, sans-serif" font-size="12" fill="#10b981" text-anchor="middle" font-weight="bold"><® Interactive</text>
+  
+  <rect x="460" y="105" width="150" height="25" rx="12" fill="#f59e0b" opacity="0.3"/>
+  <text x="535" y="122" font-family="Arial, sans-serif" font-size="12" fill="#f59e0b" text-anchor="middle" font-weight="bold">=
+ Mood Detection</text>
+  
+  <!-- Tech Stack -->
+  <text x="600" y="655" font-family="monospace" font-size="12" fill="#3b82f6" opacity="0.6" text-anchor="middle">Python " Tkinter " NLTK " Pattern Matching</text>
+</svg>

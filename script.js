@@ -158,57 +158,110 @@ document.querySelectorAll('section').forEach(section => {
     sectionObserver.observe(section);
 });
 
-// Enhanced Interactive Project Cards with Animation Delays
+// Enhanced Interactive Project Cards with Smooth Micro-Interactions
 const projectCards = document.querySelectorAll('.project-card');
 projectCards.forEach((card, index) => {
     // Stagger animation delays
     card.style.animationDelay = `${index * 0.1}s`;
     
-    // Add subtle ripple effect on click
+    // Add beautiful ripple effect on click
     card.addEventListener('click', function(e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-        
-        ripple.style.cssText = `
-            position: absolute;
-            width: ${size}px;
-            height: ${size}px;
-            left: ${x}px;
-            top: ${y}px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: scale(0);
-            animation: ripple 0.8s ease-out;
-            pointer-events: none;
-            z-index: 1;
-        `;
-        
-        this.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 800);
-        
-        // Enhanced particle effect
-        createEnhancedParticles(e.clientX, e.clientY);
+        // Only trigger if not clicking on a link
+        if (e.target.tagName !== 'A' && !e.target.closest('a')) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(6, 182, 212, 0.2) 50%, transparent 70%);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 1s ease-out;
+                pointer-events: none;
+                z-index: 1;
+            `;
+            
+            this.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 1000);
+            
+            // Enhanced particle burst
+            createEnhancedParticles(e.clientX, e.clientY);
+        }
     });
     
-    // 3D tilt effect on mouse move
+    // Smooth 3D tilt effect with momentum
+    let currentRotateX = 0;
+    let currentRotateY = 0;
+    
     card.addEventListener('mousemove', function(e) {
         const rect = this.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
+        const targetRotateX = (y - centerY) / 25;
+        const targetRotateY = (centerX - x) / 25;
         
-        this.style.transform = `translateY(-12px) scale(1.02) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        // Smooth interpolation for fluid movement
+        currentRotateX += (targetRotateX - currentRotateX) * 0.1;
+        currentRotateY += (targetRotateY - currentRotateY) * 0.1;
+        
+        this.style.transform = `translateY(-12px) scale(1.02) perspective(1000px) rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)`;
+        
+        // Spotlight effect
+        const spotX = (x / rect.width) * 100;
+        const spotY = (y / rect.height) * 100;
+        this.style.background = `
+            linear-gradient(135deg, 
+                rgba(59, 130, 246, 0.08) 0%, 
+                rgba(6, 182, 212, 0.05) 50%,
+                rgba(139, 92, 246, 0.03) 100%
+            ),
+            radial-gradient(circle at ${spotX}% ${spotY}%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)
+        `;
     });
     
     card.addEventListener('mouseleave', function() {
         this.style.transform = '';
+        this.style.background = '';
+        currentRotateX = 0;
+        currentRotateY = 0;
     });
+    
+    // Magnetic effect for project links
+    const projectLink = card.querySelector('.project-link');
+    if (projectLink) {
+        card.addEventListener('mousemove', function(e) {
+            const rect = projectLink.getBoundingClientRect();
+            const linkCenterX = rect.left + rect.width / 2;
+            const linkCenterY = rect.top + rect.height / 2;
+            const distance = Math.sqrt(
+                Math.pow(e.clientX - linkCenterX, 2) + 
+                Math.pow(e.clientY - linkCenterY, 2)
+            );
+            
+            // Magnetic attraction within 150px
+            if (distance < 150) {
+                const strength = (150 - distance) / 150;
+                const moveX = (e.clientX - linkCenterX) * strength * 0.2;
+                const moveY = (e.clientY - linkCenterY) * strength * 0.2;
+                projectLink.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            } else {
+                projectLink.style.transform = '';
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            projectLink.style.transform = '';
+        });
+    }
 });
 
 // Enhanced particle effect function
@@ -404,6 +457,51 @@ images.forEach(img => {
     }
 });
 
+// Enhanced Creative Section Interactions
+const creativeCard = document.querySelector('.creative-card');
+if (creativeCard) {
+    // Smooth mouse tracking for creative card
+    creativeCard.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        // Subtle 3D tilt
+        const rotateX = (y - centerY) / 30;
+        const rotateY = (centerX - x) / 30;
+        
+        this.style.transform = `translateY(-12px) scale(1.02) perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    
+    creativeCard.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+    });
+    
+    // Animate creative samples on hover
+    const creativeSamples = document.querySelectorAll('.creative-samples a');
+    creativeSamples.forEach((sample, index) => {
+        sample.style.animationDelay = `${0.9 + index * 0.1}s`;
+        
+        sample.addEventListener('mouseenter', function() {
+            creativeSamples.forEach((other, i) => {
+                if (other !== this) {
+                    other.style.transform = 'scale(0.95)';
+                    other.style.opacity = '0.6';
+                }
+            });
+        });
+        
+        sample.addEventListener('mouseleave', function() {
+            creativeSamples.forEach(other => {
+                other.style.transform = '';
+                other.style.opacity = '';
+            });
+        });
+    });
+}
+
 // Add loading animation
 window.addEventListener('load', () => {
     document.body.style.opacity = '1';
@@ -429,26 +527,48 @@ function createFloatingParticles() {
     }
 }
 
-// Enhanced interactive hover effect for timeline items with mouse tracking
+// Enhanced interactive hover effect for timeline items with smooth micro-interactions
 document.querySelectorAll('.timeline-item').forEach((item, index) => {
     item.style.animationDelay = `${index * 0.15}s`;
     
     const content = item.querySelector('.timeline-content');
     
-    // Mouse tracking effect for gradient
+    // Advanced mouse tracking effect for gradient
     content.addEventListener('mousemove', function(e) {
         const rect = this.getBoundingClientRect();
         const x = ((e.clientX - rect.left) / rect.width) * 100;
         const y = ((e.clientY - rect.top) / rect.height) * 100;
         this.style.setProperty('--mouse-x', `${x}%`);
         this.style.setProperty('--mouse-y', `${y}%`);
+        
+        // Smooth parallax effect on list items
+        const listItems = this.querySelectorAll('li');
+        listItems.forEach((li, i) => {
+            const depth = (i + 1) * 0.5;
+            const moveX = (x - 50) / 50 * depth;
+            const moveY = (y - 50) / 50 * depth;
+            li.style.transform = `translateX(${5 + moveX}px) translateY(${moveY}px)`;
+        });
+    });
+    
+    content.addEventListener('mouseleave', function() {
+        const listItems = this.querySelectorAll('li');
+        listItems.forEach(li => {
+            li.style.transform = '';
+        });
     });
     
     item.addEventListener('mouseenter', function() {
         const dot = this.querySelector('.timeline-dot');
-        dot.style.transform = 'scale(1.4)';
-        dot.style.boxShadow = '0 0 0 8px rgba(59, 130, 246, 0.3), 0 0 30px rgba(59, 130, 246, 0.8)';
+        dot.style.transform = 'scale(1.5)';
+        dot.style.boxShadow = '0 0 0 12px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 1)';
         dot.style.background = 'radial-gradient(circle, white 0%, var(--primary-color) 100%)';
+        
+        // Smooth scale animation
+        gsap.to(content, { 
+            duration: 0.4, 
+            ease: "power2.out" 
+        });
     });
     
     item.addEventListener('mouseleave', function() {
