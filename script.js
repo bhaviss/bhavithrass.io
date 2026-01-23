@@ -1,12 +1,17 @@
-// Smooth scroll behavior
+// Enhanced Smooth scroll behavior with offset for header
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const headerOffset = 80;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
             });
         }
     });
@@ -141,20 +146,20 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Smooth section reveal on scroll
+// Enhanced Smooth Section Transitions on Scroll
 const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('section-visible');
         }
     });
 }, { 
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    threshold: 0.15,
+    rootMargin: '0px 0px -80px 0px'
 });
 
-document.querySelectorAll('section').forEach(section => {
+// Observe all sections except hero (already visible)
+document.querySelectorAll('section:not(#hero)').forEach(section => {
     sectionObserver.observe(section);
 });
 
@@ -162,104 +167,26 @@ document.querySelectorAll('section').forEach(section => {
 const projectCards = document.querySelectorAll('.project-card');
 projectCards.forEach((card, index) => {
     // Stagger animation delays
-    card.style.animationDelay = `${index * 0.1}s`;
+    card.style.animationDelay = `${index * 0.15}s`;
     
-    // Add beautiful ripple effect on click
-    card.addEventListener('click', function(e) {
-        // Only trigger if not clicking on a link
-        if (e.target.tagName !== 'A' && !e.target.closest('a')) {
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(6, 182, 212, 0.2) 50%, transparent 70%);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 1s ease-out;
-                pointer-events: none;
-                z-index: 1;
-            `;
-            
-            this.appendChild(ripple);
-            setTimeout(() => ripple.remove(), 1000);
-            
-            // Enhanced particle burst
-            createEnhancedParticles(e.clientX, e.clientY);
-        }
-    });
-    
-    // Smooth 3D tilt effect with momentum
-    let currentRotateX = 0;
-    let currentRotateY = 0;
-    
-    card.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const targetRotateX = (y - centerY) / 25;
-        const targetRotateY = (centerX - x) / 25;
-        
-        // Smooth interpolation for fluid movement
-        currentRotateX += (targetRotateX - currentRotateX) * 0.1;
-        currentRotateY += (targetRotateY - currentRotateY) * 0.1;
-        
-        this.style.transform = `translateY(-12px) scale(1.02) perspective(1000px) rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)`;
-        
-        // Spotlight effect
-        const spotX = (x / rect.width) * 100;
-        const spotY = (y / rect.height) * 100;
-        this.style.background = `
-            linear-gradient(135deg, 
-                rgba(59, 130, 246, 0.08) 0%, 
-                rgba(6, 182, 212, 0.05) 50%,
-                rgba(139, 92, 246, 0.03) 100%
-            ),
-            radial-gradient(circle at ${spotX}% ${spotY}%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)
-        `;
+    // Subtle hover effect only (removed 3D tilt for new layout)
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px)';
     });
     
     card.addEventListener('mouseleave', function() {
         this.style.transform = '';
-        this.style.background = '';
-        currentRotateX = 0;
-        currentRotateY = 0;
     });
     
-    // Magnetic effect for project links
+    // Keep magnetic effect for project links
     const projectLink = card.querySelector('.project-link');
     if (projectLink) {
-        card.addEventListener('mousemove', function(e) {
-            const rect = projectLink.getBoundingClientRect();
-            const linkCenterX = rect.left + rect.width / 2;
-            const linkCenterY = rect.top + rect.height / 2;
-            const distance = Math.sqrt(
-                Math.pow(e.clientX - linkCenterX, 2) + 
-                Math.pow(e.clientY - linkCenterY, 2)
-            );
-            
-            // Magnetic attraction within 150px
-            if (distance < 150) {
-                const strength = (150 - distance) / 150;
-                const moveX = (e.clientX - linkCenterX) * strength * 0.2;
-                const moveY = (e.clientY - linkCenterY) * strength * 0.2;
-                projectLink.style.transform = `translate(${moveX}px, ${moveY}px)`;
-            } else {
-                projectLink.style.transform = '';
-            }
+        projectLink.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.05)';
         });
         
-        card.addEventListener('mouseleave', function() {
-            projectLink.style.transform = '';
+        projectLink.addEventListener('mouseleave', function() {
+            this.style.transform = '';
         });
     }
 });
@@ -506,6 +433,17 @@ if (creativeCard) {
 window.addEventListener('load', () => {
     document.body.style.opacity = '1';
     createFloatingParticles();
+    
+    // Trigger initial section visibility check
+    setTimeout(() => {
+        const sections = document.querySelectorAll('section:not(#hero)');
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                section.classList.add('section-visible');
+            }
+        });
+    }, 100);
 });
 
 document.body.style.opacity = '0';
@@ -734,8 +672,57 @@ modalImg.addEventListener('mouseleave', function() {
     this.style.transform = 'scale(1)';
 });
 
-// Create play button overlay for videos (optional enhancement)
-document.querySelectorAll('.project-media video').forEach(video => {
+// Video playback function for mobile compatibility
+function playSpaceVideo() {
+    const video = document.getElementById('spaceVideo');
+    const playButton = document.querySelector('.video-play-button');
+    
+    if (video) {
+        if (video.paused) {
+            video.play().then(() => {
+                if (playButton) {
+                    playButton.style.display = 'none';
+                }
+                // Show native controls
+                video.setAttribute('controls', 'controls');
+            }).catch(error => {
+                console.log('Video playback error:', error);
+            });
+        } else {
+            video.pause();
+            if (playButton) {
+                playButton.style.display = 'flex';
+            }
+        }
+    }
+}
+
+// Handle video play button visibility
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('spaceVideo');
+    const playButton = document.querySelector('.video-play-button');
+    
+    if (video && playButton) {
+        // Hide play button when video starts playing
+        video.addEventListener('play', () => {
+            playButton.style.display = 'none';
+        });
+        
+        // Show play button when video is paused
+        video.addEventListener('pause', () => {
+            playButton.style.display = 'flex';
+        });
+        
+        // Show play button when video ends
+        video.addEventListener('ended', () => {
+            playButton.style.display = 'flex';
+            video.removeAttribute('controls');
+        });
+    }
+});
+
+// Create play button overlay for other videos (optional enhancement)
+document.querySelectorAll('.project-media video:not(#spaceVideo)').forEach(video => {
     const overlay = document.createElement('div');
     overlay.className = 'video-overlay';
     overlay.innerHTML = '<div class="play-button"><i class="fas fa-play"></i></div>';

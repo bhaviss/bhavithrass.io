@@ -19,7 +19,7 @@
   <!-- Header -->
   <text x="90" y="100" font-family="Arial, sans-serif" font-size="28" fill="#e6edf3" font-weight="bold">Geo QR Attendance System</text>
   <rect x="950" y="70" width="150" height="40" rx="20" fill="#10b981" opacity="0.3"/>
-  <text x="970" y="97" font-family="Arial, sans-serif" font-size="16" fill="#10b981" font-weight="bold">Ï LIVE</text>
+  <text x="970" y="97" font-family="Arial, sans-serif" font-size="16" fill="#10b981" font-weight="bold">ï¿½ LIVE</text>
   
   <!-- QR Code Area -->
   <rect x="90" y="140" width="350" height="450" rx="15" fill="url(#cardGrad)" stroke="#3b82f6" stroke-width="1"/>
@@ -45,7 +45,7 @@
     <rect x="360" y="350" width="30" height="30" fill="#000"/>
   </g>
   
-  <text x="265" y="490" font-family="Arial, sans-serif" font-size="14" fill="#8b949e" text-anchor="middle">=Í Location Verified</text>
+  <text x="265" y="490" font-family="Arial, sans-serif" font-size="14" fill="#8b949e" text-anchor="middle">=ï¿½ Location Verified</text>
   <circle cx="265" cy="530" r="30" fill="#10b981" opacity="0.2"/>
   <text x="265" y="540" font-family="Arial, sans-serif" font-size="32" text-anchor="middle"></text>
   
