@@ -124,18 +124,46 @@ if (heroTitle) {
     setTimeout(typeWriter, 500);
 }
 
-// Parallax effect for hero section
+// Enhanced parallax effect for hero section with smooth easing
+let ticking = false;
 window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroSection = document.getElementById('hero');
-    if (heroSection) {
-        heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.getElementById('hero');
+            if (heroSection) {
+                heroSection.style.transform = `translateY(${scrolled * 0.3}px)`;
+                heroSection.style.opacity = 1 - (scrolled / 1000);
+            }
+            ticking = false;
+        });
+        ticking = true;
     }
 });
 
-// Interactive Project Cards with Subtle Click Effect
+// Smooth section reveal on scroll
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, { 
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+});
+
+document.querySelectorAll('section').forEach(section => {
+    sectionObserver.observe(section);
+});
+
+// Enhanced Interactive Project Cards with Animation Delays
 const projectCards = document.querySelectorAll('.project-card');
-projectCards.forEach(card => {
+projectCards.forEach((card, index) => {
+    // Stagger animation delays
+    card.style.animationDelay = `${index * 0.1}s`;
+    
     // Add subtle ripple effect on click
     card.addEventListener('click', function(e) {
         const ripple = document.createElement('span');
@@ -150,54 +178,84 @@ projectCards.forEach(card => {
             height: ${size}px;
             left: ${x}px;
             top: ${y}px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
             border-radius: 50%;
             transform: scale(0);
-            animation: ripple 0.7s ease-out;
+            animation: ripple 0.8s ease-out;
             pointer-events: none;
             z-index: 1;
         `;
         
         this.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 700);
+        setTimeout(() => ripple.remove(), 800);
         
-        // Subtle particle effect
-        createParticles(e.clientX, e.clientY);
+        // Enhanced particle effect
+        createEnhancedParticles(e.clientX, e.clientY);
+    });
+    
+    // 3D tilt effect on mouse move
+    card.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        
+        this.style.transform = `translateY(-12px) scale(1.02) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = '';
     });
 });
 
-// Subtle particle effect function
-function createParticles(x, y) {
-    for (let i = 0; i < 3; i++) {
+// Enhanced particle effect function
+function createEnhancedParticles(x, y) {
+    const particleCount = 8;
+    for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
+        const size = Math.random() * 4 + 2;
+        const colors = [
+            'rgba(59, 130, 246, 0.9)',
+            'rgba(6, 182, 212, 0.9)',
+            'rgba(139, 92, 246, 0.9)'
+        ];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
         particle.style.cssText = `
             position: fixed;
-            width: 3px;
-            height: 3px;
-            background: rgba(59, 130, 246, 0.8);
+            width: ${size}px;
+            height: ${size}px;
+            background: ${color};
             border-radius: 50%;
             left: ${x}px;
             top: ${y}px;
             pointer-events: none;
             z-index: 9999;
-            box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 10px ${color};
         `;
         document.body.appendChild(particle);
         
-        const angle = (Math.PI * 2 * i) / 3;
-        const velocity = 1.5;
+        const angle = (Math.PI * 2 * i) / particleCount;
+        const velocity = 2 + Math.random() * 2;
         const vx = Math.cos(angle) * velocity;
         const vy = Math.sin(angle) * velocity;
         
         let posX = 0;
         let posY = 0;
+        let frame = 0;
+        const maxFrames = 60;
+        
         const animate = () => {
+            frame++;
             posX += vx;
-            posY += vy;
-            particle.style.transform = `translate(${posX}px, ${posY}px)`;
-            particle.style.opacity = 1 - Math.abs(posX) / 40;
+            posY += vy - frame * 0.05; // gravity effect
+            particle.style.transform = `translate(${posX}px, ${posY}px) rotate(${frame * 10}deg)`;
+            particle.style.opacity = 1 - (frame / maxFrames);
             
-            if (Math.abs(posX) < 40) {
+            if (frame < maxFrames) {
                 requestAnimationFrame(animate);
             } else {
                 particle.remove();
@@ -205,6 +263,11 @@ function createParticles(x, y) {
         };
         animate();
     }
+}
+
+// Legacy function for backwards compatibility
+function createParticles(x, y) {
+    createEnhancedParticles(x, y);
 }
 
 // Add ripple animation to CSS dynamically
@@ -366,37 +429,72 @@ function createFloatingParticles() {
     }
 }
 
-// Interactive hover effect for timeline items
+// Enhanced interactive hover effect for timeline items with mouse tracking
 document.querySelectorAll('.timeline-item').forEach((item, index) => {
-    item.style.animationDelay = `${index * 0.1}s`;
+    item.style.animationDelay = `${index * 0.15}s`;
+    
+    const content = item.querySelector('.timeline-content');
+    
+    // Mouse tracking effect for gradient
+    content.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        this.style.setProperty('--mouse-x', `${x}%`);
+        this.style.setProperty('--mouse-y', `${y}%`);
+    });
     
     item.addEventListener('mouseenter', function() {
-        this.querySelector('.timeline-dot').style.transform = 'scale(1.3)';
-        this.querySelector('.timeline-dot').style.boxShadow = '0 0 15px rgba(59, 130, 246, 0.6)';
+        const dot = this.querySelector('.timeline-dot');
+        dot.style.transform = 'scale(1.4)';
+        dot.style.boxShadow = '0 0 0 8px rgba(59, 130, 246, 0.3), 0 0 30px rgba(59, 130, 246, 0.8)';
+        dot.style.background = 'radial-gradient(circle, white 0%, var(--primary-color) 100%)';
     });
     
     item.addEventListener('mouseleave', function() {
-        this.querySelector('.timeline-dot').style.transform = 'scale(1)';
-        this.querySelector('.timeline-dot').style.boxShadow = 'none';
+        const dot = this.querySelector('.timeline-dot');
+        dot.style.transform = 'scale(1)';
+        dot.style.boxShadow = '0 0 0 4px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.4)';
+        dot.style.background = 'radial-gradient(circle, white 0%, var(--primary-color) 100%)';
     });
 });
 
-// Skill category animation on scroll
+// Enhanced skill category animation on scroll with stagger
 const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }, index * 100);
+            entry.target.classList.add('skill-visible');
         }
     });
-}, { threshold: 0.1 });
+}, { threshold: 0.2 });
 
-document.querySelectorAll('.skill-category').forEach(skill => {
-    skill.style.opacity = '0';
-    skill.style.transform = 'translateY(30px)';
+document.querySelectorAll('.skill-category').forEach((skill, index) => {
+    skill.style.animationDelay = `${index * 0.1}s`;
     skillObserver.observe(skill);
+    
+    // Add hover tracking effect
+    skill.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const deltaX = (x - centerX) / centerX;
+        const deltaY = (y - centerY) / centerY;
+        
+        this.style.transform = `
+            translateY(-8px) 
+            scale(1.02) 
+            perspective(1000px) 
+            rotateY(${deltaX * 5}deg) 
+            rotateX(${-deltaY * 5}deg)
+        `;
+    });
+    
+    skill.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+    });
 });
 
 // Add glitch effect to hero title on hover

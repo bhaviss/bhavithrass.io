@@ -26,6 +26,7 @@
                         <li><a href="#projects">Projects</a></li>
                         <li><a href="#skills">Skills</a></li>
                         <li><a href="#education">Education</a></li>
+                        <li><a href="#creative">Creative</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
@@ -161,20 +162,27 @@
                     
                     <!-- Project Media Gallery -->
                     <div class="project-media">
-                        <!-- Add your project image here -->
-                        <div class="media-placeholder" data-media-type="image">
-                            <i class="fas fa-image"></i>
-                            <span>Add Project Screenshot</span>
-                            <!-- Replace with: <img src="images/projects/space-debris.jpg" alt="SpaceVisionAI"> -->
-                        </div>
+                        <video controls poster="images/projects/space-debris-thumb.jpg" data-caption="Real-time Space Debris Detection and Tracking">
+                            <source src="images/projects/space-debris-tracking.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                     
                     <h3>SpaceVisionAI: Multimodal Deep Learning for Space Debris Detection</h3>
-                    <p class="project-tech">Python | TensorFlow | SORT | Computer Vision</p>
-                    <p>Engineered a multimodal deep learning system for satellite debris detection. Achieved 62.4% detection accuracy, outperforming traditional ML approaches by 12%. Applied real-time object tracking using the SORT algorithm for multi-frame consistency.</p>
+                    <p class="project-tech">Python | TensorFlow | PyTorch | SORT | Computer Vision | Deep Learning</p>
+                    <p>Engineered a cutting-edge multimodal deep learning system for real-time satellite debris detection and tracking. Achieved 62.4% detection accuracy, outperforming traditional ML approaches by 12%. Applied SORT (Simple Online and Realtime Tracking) algorithm for multi-frame consistency and trajectory prediction.</p>
                     <div class="project-metrics">
                         <span><i class="fas fa-chart-line"></i> 62.4% Accuracy</span>
                         <span><i class="fas fa-arrow-up"></i> 12% Improvement</span>
+                        <span><i class="fas fa-rocket"></i> Real-time Tracking</span>
+                    </div>
+                    <div class="project-details">
+                        <ul>
+                            <li>Developed multimodal architecture combining visual and sensor data for improved detection</li>
+                            <li>Implemented SORT tracking algorithm for consistent debris identification across frames</li>
+                            <li>Optimized model inference for real-time processing of satellite imagery</li>
+                            <li>Conducted extensive benchmarking against traditional machine learning approaches</li>
+                        </ul>
                     </div>
                     <a href="https://github.com/bhaviss/Space-debris" target="_blank" class="project-link">
                         <i class="fab fa-github"></i> View Code
@@ -185,26 +193,30 @@
                 <div class="project-card">
                     <div class="project-header">
                         <i class="fas fa-qrcode project-icon"></i>
+                        <span class="project-badge">Full Stack</span>
                     </div>
                     
                     <!-- Project Video/Image Gallery -->
                     <div class="project-media">
-                        <div class="media-placeholder" data-media-type="video">
-                            <i class="fas fa-video"></i>
-                            <span>Add Project Demo Video</span>
-                            <!-- Replace with: 
-                            <video controls poster="images/projects/geo-qr-thumb.jpg">
-                                <source src="images/projects/geo-qr-demo.mp4" type="video/mp4">
-                            </video> -->
-                        </div>
+                        <img src="images/projects/placeholder.svg" alt="Geo QR Attendance System - Full Stack Application" />
                     </div>
                     
-                    <h3>Geo QR Attendance System</h3>
-                    <p class="project-tech">Flask | React | MySQL | JWT | Geolocation</p>
-                    <p>Architected a full-stack geo-location attendance system serving 500+ users. Applied secure JWT authentication and role-based access control. Decreased attendance reporting time by 75% through automated dashboards.</p>
+                    <h3>Geo QR Attendance Tracking System</h3>
+                    <p class="project-tech">Flask | React | Node.js | MySQL | JWT | Geolocation API | REST API</p>
+                    <p>Architected a comprehensive full-stack geo-location based attendance management system serving 500+ users. Implemented secure JWT authentication, role-based access control (RBAC), and real-time geofencing validation. Decreased attendance reporting time by 75% through automated dashboards and analytics.</p>
                     <div class="project-metrics">
                         <span><i class="fas fa-users"></i> 500+ Users</span>
                         <span><i class="fas fa-clock"></i> 75% Time Reduction</span>
+                        <span><i class="fas fa-shield-alt"></i> Secure Authentication</span>
+                    </div>
+                    <div class="project-details">
+                        <ul>
+                            <li>Developed QR code generation and scanning system with geolocation verification</li>
+                            <li>Built responsive React frontend with real-time attendance updates</li>
+                            <li>Implemented Flask/Node.js backend with MySQL database for data persistence</li>
+                            <li>Created automated reporting dashboard with data visualization and export features</li>
+                            <li>Deployed role-based access control for admin, instructor, and student roles</li>
+                        </ul>
                     </div>
                     <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Geo%20QR%20Attendance" target="_blank" class="project-link">
                         <i class="fab fa-github"></i> View Code
@@ -215,23 +227,29 @@
                 <div class="project-card">
                     <div class="project-header">
                         <i class="fas fa-snowflake project-icon"></i>
+                        <span class="project-badge">IT597 Project</span>
                     </div>
                     
                     <!-- Project Media -->
-                    <div class="project-media">
-                        <div class="media-placeholder" data-media-type="image">
-                            <i class="fas fa-camera"></i>
-                            <span>Add Detection Screenshot</span>
-                            <!-- Replace with: <img src="images/projects/snow-detection.jpg" alt="Snow Detection"> -->
-                        </div>
+                    <div class="project-media gallery">
+                        <img src="images/projects/snow-detection-1.jpg" alt="Snow Detection System - YOLOv8 Detection Results" />
+                        <img src="images/projects/snow-detection-2.jpg" alt="Snow Detection System - Real-time Processing" />
                     </div>
                     
-                    <h3>Snow Detection System</h3>
-                    <p class="project-tech">YOLOv8 | OpenCV | Flask | Computer Vision</p>
-                    <p>Built a real-time computer vision system achieving 91% accuracy for snow detection. Optimized YOLOv8 deployment to process video streams at 50+ FPS. Mechanized inspection pipeline, lowering manual effort by 65%.</p>
+                    <h3>SnowSense: Real-Time Snow Detection System</h3>
+                    <p class="project-tech">YOLOv8 | OpenCV | Flask | Computer Vision | Deep Learning</p>
+                    <p>Built an intelligent real-time computer vision system using YOLOv8 achieving 91% accuracy for automated snow detection. Optimized model deployment with Flask web application to process video streams at 50+ FPS. Mechanized inspection pipeline, reducing manual monitoring effort by 65%.</p>
                     <div class="project-metrics">
                         <span><i class="fas fa-bullseye"></i> 91% Accuracy</span>
                         <span><i class="fas fa-tachometer-alt"></i> 50+ FPS</span>
+                        <span><i class="fas fa-robot"></i> 65% Automation</span>
+                    </div>
+                    <div class="project-details">
+                        <ul>
+                            <li>Trained YOLOv8 model on custom snow dataset with data augmentation techniques</li>
+                            <li>Developed responsive Flask web interface for real-time detection and monitoring</li>
+                            <li>Implemented efficient video processing pipeline with frame optimization</li>
+                        </ul>
                     </div>
                     <a href="https://github.com/bhaviss" target="_blank" class="project-link">
                         <i class="fab fa-github"></i> View Code
@@ -256,10 +274,26 @@
                     <div class="project-header">
                         <i class="fas fa-comments project-icon"></i>
                     </div>
-                    <h3>NLP Chatbot</h3>
-                    <p class="project-tech">Python | NLTK | NLP</p>
-                    <p>Developed an NLP-based chatbot for answering user queries and providing personalized responses using NLTK, with capabilities for age guessing, jokes, and quizzes.</p>
-                    <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/NLP%20Chatbot" target="_blank" class="project-link">
+                    <div class="project-media">
+                        <img src="images/projects/placeholder.svg" alt="Interactive Chatbot with Tkinter GUI" />
+                    </div>
+                    <h3>Interactive Chatbot with Tkinter GUI</h3>
+                    <p class="project-tech">Python | Tkinter | NLP | NLTK | Pattern Matching</p>
+                    <p>Developed an intelligent interactive chatbot with a graphical user interface using Tkinter. Features include sentiment analysis, personalized responses, age prediction algorithm, trivia quiz game, and time-based greetings for enhanced user engagement.</p>
+                    <div class="project-metrics">
+                        <span><i class="fas fa-brain"></i> Smart Responses</span>
+                        <span><i class="fas fa-gamepad"></i> Interactive Games</span>
+                    </div>
+                    <div class="project-details">
+                        <ul>
+                            <li>Built intuitive Tkinter GUI with real-time chat display and user input</li>
+                            <li>Implemented emotion detection and personalized responses based on user mood</li>
+                            <li>Created age prediction algorithm using mathematical remainders (Chinese Remainder Theorem)</li>
+                            <li>Integrated trivia quiz system with multiple questions and answer validation</li>
+                            <li>Added dynamic time-based greetings and conversational context awareness</li>
+                        </ul>
+                    </div>
+                    <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Chatbot" target="_blank" class="project-link">
                         <i class="fab fa-github"></i> View Code
                     </a>
                 </div>
@@ -441,8 +475,47 @@
             <div class="certifications">
                 <h3 class="certifications-title">Certifications</h3>
                 <div class="cert-tags">
-                    <span class="cert-tag"><i class="fab fa-aws"></i> AWS Cloud Foundations</span>
-                    <span class="cert-tag"><i class="fab fa-aws"></i> AWS Cloud Security Foundations</span>
+                    <a href="https://www.credly.com/go/rIaxo8XL" target="_blank" rel="noopener noreferrer" class="cert-tag" title="View on Credly">
+                        <i class="fab fa-aws"></i> AWS Academy Cloud Security Foundations
+                    </a>
+                    <span class="cert-tag" title="Completed August 2025">
+                        <i class="fab fa-aws"></i> AWS Foundations: Machine Learning Basics
+                    </span>
+                    <span class="cert-tag" title="AWS Certified">
+                        <i class="fab fa-aws"></i> AWS Cloud Foundations
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creative Work Section (Optional) -->
+    <section id="creative" class="creative-section">
+        <div class="container">
+            <h2 class="section-title">Creative & Content Work</h2>
+            <div class="creative-intro">
+                <p>Beyond technology, I also create engaging content and manage social media for local businesses, blending creativity with data-driven strategies.</p>
+            </div>
+            <div class="creative-card">
+                <div class="creative-header">
+                    <h3><i class="fab fa-instagram"></i> Social Media Coordinator</h3>
+                    <span class="creative-tag">Freelance</span>
+                </div>
+                <div class="creative-content">
+                    <p><strong>RAS Indian Mart & Eatery</strong></p>
+                    <p>Creating engaging content for Instagram, Facebook, and TikTok. Designing promotional flyers, reels, and social media campaigns that drive customer engagement.</p>
+                    <div class="creative-links">
+                        <a href="https://www.instagram.com/ras_indianmart_eatery/" target="_blank" class="creative-link">
+                            <i class="fab fa-instagram"></i> Instagram Profile
+                        </a>
+                        <div class="creative-samples">
+                            <span>Recent Work:</span>
+                            <a href="https://www.instagram.com/p/DTaoYzvj66l/" target="_blank">Post 1</a>
+                            <a href="https://www.instagram.com/p/DR3i1hDkTDd/" target="_blank">Post 2</a>
+                            <a href="https://www.instagram.com/p/DRDI25hku5n/" target="_blank">Post 3</a>
+                            <a href="https://www.instagram.com/p/DQGJb-hkfgU/" target="_blank">Post 4</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
