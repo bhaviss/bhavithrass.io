@@ -2509,6 +2509,22 @@ body {
     border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
+/* Style video controls */
+.project-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-media video::-webkit-media-controls-panel {
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.9));
+}
+
+.project-media video::-webkit-media-controls-play-button {
+    background-color: rgba(59, 130, 246, 0.9);
+    border-radius: 50%;
+}
+
 .project-media img,
 .project-media video {
     width: 100%;
@@ -2666,63 +2682,7 @@ body {
     border-radius: 8px;
 }
 
-/* Play Button Overlay for Videos */
-.video-play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90px;
-    height: 90px;
-    background: rgba(59, 130, 246, 0.95);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 2.5rem;
-    box-shadow: 0 0 40px rgba(59, 130, 246, 0.9), 0 0 80px rgba(59, 130, 246, 0.5);
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 100;
-    animation: pulseButton 2s ease-in-out infinite;
-    border: 4px solid rgba(255, 255, 255, 0.9);
-    pointer-events: auto;
-    user-select: none;
-}
-
-.video-play-button:hover {
-    transform: translate(-50%, -50%) scale(1.15);
-    background: rgba(59, 130, 246, 1);
-    box-shadow: 0 0 60px rgba(59, 130, 246, 1), 0 0 100px rgba(59, 130, 246, 0.7);
-    border-color: white;
-}
-
-.video-play-button:active {
-    transform: translate(-50%, -50%) scale(1.05);
-}
-
-.video-play-button i {
-    margin-left: 6px;
-    pointer-events: none;
-}
-
-@keyframes pulseButton {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        box-shadow: 0 0 40px rgba(59, 130, 246, 0.9), 0 0 80px rgba(59, 130, 246, 0.5);
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.08);
-        box-shadow: 0 0 60px rgba(59, 130, 246, 1), 0 0 100px rgba(59, 130, 246, 0.7);
-    }
-}
-
-/* Make video container clickable */
-.project-media {
-    cursor: pointer;
-    position: relative;
-}
+/* Video overlay styles removed - using native controls */
 
 .video-overlay {
     position: absolute;

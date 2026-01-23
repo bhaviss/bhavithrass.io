@@ -673,114 +673,29 @@ modalImg.addEventListener('mouseleave', function() {
     this.style.transform = 'scale(1)';
 });
 
-// Enhanced video playback with multiple fallback methods
-(function() {
-    // Wait for DOM to be fully loaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initVideoPlayer);
-    } else {
-        initVideoPlayer();
-    }
+// Simple video player with native controls
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('spaceVideo');
     
-    function initVideoPlayer() {
-        const video = document.getElementById('spaceVideo');
-        const playButton = document.getElementById('spaceVideoPlayBtn');
-        const container = document.getElementById('spaceVideoContainer');
+    if (video) {
+        console.log('Video element found and ready');
         
-        console.log('Initializing video player...', { video, playButton, container });
+        // Ensure controls are visible
+        video.setAttribute('controls', 'controls');
         
-        if (!video || !playButton) {
-            console.error('Video or play button not found!');
-            return;
-        }
-        
-        // Function to play video
-        function playVideo() {
-            console.log('Play button clicked!');
-            
-            if (video.paused) {
-                console.log('Attempting to play video...');
-                
-                // Show controls first
-                video.setAttribute('controls', 'controls');
-                
-                // Try to play
-                const playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        console.log('Video playing successfully!');
-                        playButton.style.display = 'none';
-                    }).catch(error => {
-                        console.error('Error playing video:', error);
-                        // Try one more time with user interaction
-                        video.play().catch(err => {
-                            alert('Cannot play video automatically. Please click the video directly to play.');
-                            console.error('Second play attempt failed:', err);
-                        });
-                    });
-                }
-            } else {
-                video.pause();
-                playButton.style.display = 'flex';
-            }
-        }
-        
-        // Add multiple event listeners for reliability
-        playButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            playVideo();
-        });
-        
-        playButton.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            playVideo();
-        }, { passive: false });
-        
-        // Allow clicking container or video
-        container.addEventListener('click', function(e) {
-            if (e.target === video || e.target === container) {
-                playVideo();
-            }
-        });
-        
-        // Video event listeners
-        video.addEventListener('play', function() {
-            console.log('Video started playing');
-            playButton.style.display = 'none';
-        });
-        
-        video.addEventListener('pause', function() {
-            console.log('Video paused');
-            if (!video.ended) {
-                playButton.style.display = 'flex';
-            }
-        });
-        
-        video.addEventListener('ended', function() {
-            console.log('Video ended');
-            playButton.style.display = 'flex';
-            video.removeAttribute('controls');
-        });
-        
+        // Add error handling
         video.addEventListener('error', function(e) {
-            console.error('Video error:', e);
-            alert('Error loading video. Please check your internet connection.');
+            console.error('Video loading error:', e);
         });
         
-        // Make play button more visible on hover
-        playButton.addEventListener('mouseenter', function() {
-            this.style.transform = 'translate(-50%, -50%) scale(1.1)';
+        // Log when video plays
+        video.addEventListener('play', function() {
+            console.log('Video is now playing');
         });
-        
-        playButton.addEventListener('mouseleave', function() {
-            this.style.transform = 'translate(-50%, -50%) scale(1)';
-        });
-        
-        console.log('Video player initialized successfully!');
+    } else {
+        console.error('Video element not found');
     }
-})();
+});
 
 // Create play button overlay for other videos (optional enhancement)
 document.querySelectorAll('.project-media video:not(#spaceVideo)').forEach(video => {
