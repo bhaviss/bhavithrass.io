@@ -158,6 +158,17 @@
                         <i class="fas fa-satellite project-icon"></i>
                         <span class="project-badge">Master's Thesis</span>
                     </div>
+                    
+                    <!-- Project Media Gallery -->
+                    <div class="project-media">
+                        <!-- Add your project image here -->
+                        <div class="media-placeholder" data-media-type="image">
+                            <i class="fas fa-image"></i>
+                            <span>Add Project Screenshot</span>
+                            <!-- Replace with: <img src="images/projects/space-debris.jpg" alt="SpaceVisionAI"> -->
+                        </div>
+                    </div>
+                    
                     <h3>SpaceVisionAI: Multimodal Deep Learning for Space Debris Detection</h3>
                     <p class="project-tech">Python | TensorFlow | SORT | Computer Vision</p>
                     <p>Engineered a multimodal deep learning system for satellite debris detection. Achieved 62.4% detection accuracy, outperforming traditional ML approaches by 12%. Applied real-time object tracking using the SORT algorithm for multi-frame consistency.</p>
@@ -175,6 +186,19 @@
                     <div class="project-header">
                         <i class="fas fa-qrcode project-icon"></i>
                     </div>
+                    
+                    <!-- Project Video/Image Gallery -->
+                    <div class="project-media">
+                        <div class="media-placeholder" data-media-type="video">
+                            <i class="fas fa-video"></i>
+                            <span>Add Project Demo Video</span>
+                            <!-- Replace with: 
+                            <video controls poster="images/projects/geo-qr-thumb.jpg">
+                                <source src="images/projects/geo-qr-demo.mp4" type="video/mp4">
+                            </video> -->
+                        </div>
+                    </div>
+                    
                     <h3>Geo QR Attendance System</h3>
                     <p class="project-tech">Flask | React | MySQL | JWT | Geolocation</p>
                     <p>Architected a full-stack geo-location attendance system serving 500+ users. Applied secure JWT authentication and role-based access control. Decreased attendance reporting time by 75% through automated dashboards.</p>
@@ -192,6 +216,16 @@
                     <div class="project-header">
                         <i class="fas fa-snowflake project-icon"></i>
                     </div>
+                    
+                    <!-- Project Media -->
+                    <div class="project-media">
+                        <div class="media-placeholder" data-media-type="image">
+                            <i class="fas fa-camera"></i>
+                            <span>Add Detection Screenshot</span>
+                            <!-- Replace with: <img src="images/projects/snow-detection.jpg" alt="Snow Detection"> -->
+                        </div>
+                    </div>
+                    
                     <h3>Snow Detection System</h3>
                     <p class="project-tech">YOLOv8 | OpenCV | Flask | Computer Vision</p>
                     <p>Built a real-time computer vision system achieving 91% accuracy for snow detection. Optimized YOLOv8 deployment to process video streams at 50+ FPS. Mechanized inspection pipeline, lowering manual effort by 65%.</p>
@@ -449,6 +483,18 @@
             <p class="footer-subtitle">Built with <i class="fas fa-heart"></i> and passion for technology</p>
         </div>
     </footer>
+
+    <!-- Lightbox Modal for Images/Videos -->
+    <div id="mediaModal" class="media-modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-content-wrapper">
+            <img class="modal-content" id="modalImage">
+            <video class="modal-content" id="modalVideo" controls>
+                <source id="modalVideoSource" type="video/mp4">
+            </video>
+        </div>
+        <div class="modal-caption"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>

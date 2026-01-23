@@ -133,10 +133,10 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Interactive Project Cards with Click-to-Expand
+// Interactive Project Cards with Subtle Click Effect
 const projectCards = document.querySelectorAll('.project-card');
 projectCards.forEach(card => {
-    // Add ripple effect on click
+    // Add subtle ripple effect on click
     card.addEventListener('click', function(e) {
         const ripple = document.createElement('span');
         const rect = this.getBoundingClientRect();
@@ -150,42 +150,42 @@ projectCards.forEach(card => {
             height: ${size}px;
             left: ${x}px;
             top: ${y}px;
-            background: radial-gradient(circle, rgba(0, 255, 136, 0.3) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
             border-radius: 50%;
             transform: scale(0);
-            animation: ripple 0.6s ease-out;
+            animation: ripple 0.7s ease-out;
             pointer-events: none;
             z-index: 1;
         `;
         
         this.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 600);
+        setTimeout(() => ripple.remove(), 700);
         
-        // Add particle effect
+        // Subtle particle effect
         createParticles(e.clientX, e.clientY);
     });
 });
 
-// Particle effect function
+// Subtle particle effect function
 function createParticles(x, y) {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 3; i++) {
         const particle = document.createElement('div');
         particle.style.cssText = `
             position: fixed;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-color);
+            width: 3px;
+            height: 3px;
+            background: rgba(59, 130, 246, 0.8);
             border-radius: 50%;
             left: ${x}px;
             top: ${y}px;
             pointer-events: none;
             z-index: 9999;
-            box-shadow: 0 0 10px var(--primary-color);
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
         `;
         document.body.appendChild(particle);
         
-        const angle = (Math.PI * 2 * i) / 5;
-        const velocity = 2;
+        const angle = (Math.PI * 2 * i) / 3;
+        const velocity = 1.5;
         const vx = Math.cos(angle) * velocity;
         const vy = Math.sin(angle) * velocity;
         
@@ -195,9 +195,9 @@ function createParticles(x, y) {
             posX += vx;
             posY += vy;
             particle.style.transform = `translate(${posX}px, ${posY}px)`;
-            particle.style.opacity = 1 - Math.abs(posX) / 50;
+            particle.style.opacity = 1 - Math.abs(posX) / 40;
             
-            if (Math.abs(posX) < 50) {
+            if (Math.abs(posX) < 40) {
                 requestAnimationFrame(animate);
             } else {
                 particle.remove();
@@ -243,21 +243,21 @@ scrollTopBtn.style.cssText = `
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 55px;
-    height: 55px;
-    background: linear-gradient(135deg, #00ff88 0%, #00d9ff 100%);
-    color: #000;
-    border: 2px solid var(--primary-color);
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+    color: #fff;
+    border: 1px solid rgba(59, 130, 246, 0.5);
     border-radius: 50%;
     cursor: pointer;
     display: none;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
+    font-size: 1.2rem;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
     transition: all 0.3s ease;
     z-index: 999;
-    font-weight: bold;
+    font-weight: 600;
 `;
 
 document.body.appendChild(scrollTopBtn);
@@ -278,19 +278,24 @@ scrollTopBtn.addEventListener('click', () => {
 });
 
 scrollTopBtn.addEventListener('mouseenter', function() {
-    this.style.transform = 'scale(1.15) rotate(360deg)';
-    this.style.boxShadow = '0 0 50px rgba(0, 255, 136, 1)';
+    this.style.transform = 'scale(1.1) rotate(360deg)';
+    this.style.boxShadow = '0 10px 30px rgba(59, 130, 246, 0.5)';
 });
 
 scrollTopBtn.addEventListener('mouseleave', function() {
     this.style.transform = 'scale(1) rotate(0deg)';
-    this.style.boxShadow = '0 0 30px rgba(0, 255, 136, 0.6)';
+    this.style.boxShadow = '0 8px 20px rgba(59, 130, 246, 0.3)';
 });
 
-// Animated cursor trail effect
+// Subtle animated cursor trail effect
 let cursorTrail = [];
+let lastTrailTime = 0;
 document.addEventListener('mousemove', (e) => {
-    if (cursorTrail.length > 10) {
+    const now = Date.now();
+    if (now - lastTrailTime < 50) return; // Throttle to reduce particles
+    lastTrailTime = now;
+    
+    if (cursorTrail.length > 8) {
         const old = cursorTrail.shift();
         old.remove();
     }
@@ -298,17 +303,17 @@ document.addEventListener('mousemove', (e) => {
     const trail = document.createElement('div');
     trail.style.cssText = `
         position: fixed;
-        width: 5px;
-        height: 5px;
-        background: var(--primary-color);
+        width: 3px;
+        height: 3px;
+        background: rgba(59, 130, 246, 0.6);
         border-radius: 50%;
         left: ${e.clientX}px;
         top: ${e.clientY}px;
         pointer-events: none;
         z-index: 9998;
-        opacity: 0.5;
-        box-shadow: 0 0 10px var(--primary-color);
-        animation: fadeOut 0.5s ease-out forwards;
+        opacity: 0.4;
+        box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
+        animation: fadeOut 0.6s ease-out forwards;
     `;
     
     document.body.appendChild(trail);
@@ -366,8 +371,8 @@ document.querySelectorAll('.timeline-item').forEach((item, index) => {
     item.style.animationDelay = `${index * 0.1}s`;
     
     item.addEventListener('mouseenter', function() {
-        this.querySelector('.timeline-dot').style.transform = 'scale(1.5)';
-        this.querySelector('.timeline-dot').style.boxShadow = '0 0 20px var(--primary-color)';
+        this.querySelector('.timeline-dot').style.transform = 'scale(1.3)';
+        this.querySelector('.timeline-dot').style.boxShadow = '0 0 15px rgba(59, 130, 246, 0.6)';
     });
     
     item.addEventListener('mouseleave', function() {
@@ -432,3 +437,97 @@ pulseStyle.textContent = `
     }
 `;
 document.head.appendChild(pulseStyle);
+
+// Lightbox Modal for Images and Videos
+const modal = document.getElementById('mediaModal');
+const modalImg = document.getElementById('modalImage');
+const modalVideo = document.getElementById('modalVideo');
+const modalVideoSource = document.getElementById('modalVideoSource');
+const modalClose = document.querySelector('.modal-close');
+const modalCaption = document.querySelector('.modal-caption');
+
+// Open lightbox when clicking on project images or videos
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle images
+    document.querySelectorAll('.project-media img').forEach(img => {
+        if (!img.closest('.media-placeholder')) {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', function() {
+                modal.classList.add('active');
+                modalImg.src = this.src;
+                modalImg.style.display = 'block';
+                modalVideo.style.display = 'none';
+                modalCaption.innerHTML = this.alt || '';
+                document.body.style.overflow = 'hidden';
+            });
+        }
+    });
+
+    // Handle videos - open in modal on click (not when playing controls)
+    document.querySelectorAll('.project-media video').forEach(video => {
+        const wrapper = video.closest('.project-media');
+        wrapper.style.cursor = 'pointer';
+        
+        wrapper.addEventListener('click', function(e) {
+            // Only open modal if clicking on video, not controls
+            if (e.target === video || e.target === wrapper) {
+                modal.classList.add('active');
+                modalVideo.style.display = 'block';
+                modalImg.style.display = 'none';
+                modalVideoSource.src = video.querySelector('source').src;
+                modalVideo.load();
+                modalVideo.play();
+                modalCaption.innerHTML = video.getAttribute('data-caption') || '';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+});
+
+// Close modal
+modalClose.addEventListener('click', closeModal);
+
+modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+        closeModal();
+    }
+});
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+    }
+});
+
+function closeModal() {
+    modal.classList.remove('active');
+    modalVideo.pause();
+    modalVideo.currentTime = 0;
+    document.body.style.overflow = 'auto';
+}
+
+// Add zoom effect to modal content on hover
+modalImg.addEventListener('mouseenter', function() {
+    this.style.transform = 'scale(1.02)';
+});
+
+modalImg.addEventListener('mouseleave', function() {
+    this.style.transform = 'scale(1)';
+});
+
+// Create play button overlay for videos (optional enhancement)
+document.querySelectorAll('.project-media video').forEach(video => {
+    const overlay = document.createElement('div');
+    overlay.className = 'video-overlay';
+    overlay.innerHTML = '<div class="play-button"><i class="fas fa-play"></i></div>';
+    video.parentElement.appendChild(overlay);
+    
+    video.addEventListener('play', () => {
+        overlay.style.opacity = '0';
+    });
+    
+    video.addEventListener('pause', () => {
+        overlay.style.opacity = '1';
+    });
+});
