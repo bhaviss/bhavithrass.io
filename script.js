@@ -158,8 +158,9 @@ const sectionObserver = new IntersectionObserver((entries) => {
     rootMargin: '0px 0px -80px 0px'
 });
 
-// Observe all sections except hero (already visible)
+// Add animation class and observe all sections except hero
 document.querySelectorAll('section:not(#hero)').forEach(section => {
+    section.classList.add('animate-on-scroll');
     sectionObserver.observe(section);
 });
 
@@ -434,9 +435,9 @@ window.addEventListener('load', () => {
     document.body.style.opacity = '1';
     createFloatingParticles();
     
-    // Trigger initial section visibility check
+    // Trigger initial section visibility check for sections in viewport
     setTimeout(() => {
-        const sections = document.querySelectorAll('section:not(#hero)');
+        const sections = document.querySelectorAll('section.animate-on-scroll');
         sections.forEach(section => {
             const rect = section.getBoundingClientRect();
             if (rect.top < window.innerHeight && rect.bottom > 0) {
