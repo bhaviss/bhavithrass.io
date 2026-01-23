@@ -133,17 +133,91 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Add hover effect to project cards
+// Interactive Project Cards with Click-to-Expand
 const projectCards = document.querySelectorAll('.project-card');
 projectCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px) scale(1.02)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
+    // Add ripple effect on click
+    card.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+            z-index: 1;
+        `;
+        
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+        
+        // Add particle effect
+        createParticles(e.clientX, e.clientY);
     });
 });
+
+// Particle effect function
+function createParticles(x, y) {
+    for (let i = 0; i < 5; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            left: ${x}px;
+            top: ${y}px;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px var(--primary-color);
+        `;
+        document.body.appendChild(particle);
+        
+        const angle = (Math.PI * 2 * i) / 5;
+        const velocity = 2;
+        const vx = Math.cos(angle) * velocity;
+        const vy = Math.sin(angle) * velocity;
+        
+        let posX = 0;
+        let posY = 0;
+        const animate = () => {
+            posX += vx;
+            posY += vy;
+            particle.style.transform = `translate(${posX}px, ${posY}px)`;
+            particle.style.opacity = 1 - Math.abs(posX) / 50;
+            
+            if (Math.abs(posX) < 50) {
+                requestAnimationFrame(animate);
+            } else {
+                particle.remove();
+            }
+        };
+        animate();
+    }
+}
+
+// Add ripple animation to CSS dynamically
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
 
 // Copy email to clipboard
 const emailLink = document.querySelector('a[href^="mailto:"]');
@@ -161,7 +235,7 @@ if (emailLink) {
     });
 }
 
-// Add scroll-to-top button
+// Enhanced scroll-to-top button
 const scrollTopBtn = document.createElement('button');
 scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
 scrollTopBtn.className = 'scroll-top-btn';
@@ -169,20 +243,21 @@ scrollTopBtn.style.cssText = `
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #00ff88 0%, #00d9ff 100%);
+    color: #000;
+    border: 2px solid var(--primary-color);
     border-radius: 50%;
     cursor: pointer;
     display: none;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 1.3rem;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
     transition: all 0.3s ease;
     z-index: 999;
+    font-weight: bold;
 `;
 
 document.body.appendChild(scrollTopBtn);
@@ -203,12 +278,53 @@ scrollTopBtn.addEventListener('click', () => {
 });
 
 scrollTopBtn.addEventListener('mouseenter', function() {
-    this.style.transform = 'scale(1.1)';
+    this.style.transform = 'scale(1.15) rotate(360deg)';
+    this.style.boxShadow = '0 0 50px rgba(0, 255, 136, 1)';
 });
 
 scrollTopBtn.addEventListener('mouseleave', function() {
-    this.style.transform = 'scale(1)';
+    this.style.transform = 'scale(1) rotate(0deg)';
+    this.style.boxShadow = '0 0 30px rgba(0, 255, 136, 0.6)';
 });
+
+// Animated cursor trail effect
+let cursorTrail = [];
+document.addEventListener('mousemove', (e) => {
+    if (cursorTrail.length > 10) {
+        const old = cursorTrail.shift();
+        old.remove();
+    }
+    
+    const trail = document.createElement('div');
+    trail.style.cssText = `
+        position: fixed;
+        width: 5px;
+        height: 5px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        left: ${e.clientX}px;
+        top: ${e.clientY}px;
+        pointer-events: none;
+        z-index: 9998;
+        opacity: 0.5;
+        box-shadow: 0 0 10px var(--primary-color);
+        animation: fadeOut 0.5s ease-out forwards;
+    `;
+    
+    document.body.appendChild(trail);
+    cursorTrail.push(trail);
+});
+
+const fadeOutStyle = document.createElement('style');
+fadeOutStyle.textContent = `
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+            transform: scale(0);
+        }
+    }
+`;
+document.head.appendChild(fadeOutStyle);
 
 // Preload images
 const images = document.querySelectorAll('img');
@@ -223,7 +339,96 @@ images.forEach(img => {
 // Add loading animation
 window.addEventListener('load', () => {
     document.body.style.opacity = '1';
+    createFloatingParticles();
 });
 
 document.body.style.opacity = '0';
 document.body.style.transition = 'opacity 0.5s ease';
+
+// Create floating background particles
+function createFloatingParticles() {
+    const particleContainer = document.createElement('div');
+    particleContainer.className = 'floating-particles';
+    document.body.appendChild(particleContainer);
+    
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+        particleContainer.appendChild(particle);
+    }
+}
+
+// Interactive hover effect for timeline items
+document.querySelectorAll('.timeline-item').forEach((item, index) => {
+    item.style.animationDelay = `${index * 0.1}s`;
+    
+    item.addEventListener('mouseenter', function() {
+        this.querySelector('.timeline-dot').style.transform = 'scale(1.5)';
+        this.querySelector('.timeline-dot').style.boxShadow = '0 0 20px var(--primary-color)';
+    });
+    
+    item.addEventListener('mouseleave', function() {
+        this.querySelector('.timeline-dot').style.transform = 'scale(1)';
+        this.querySelector('.timeline-dot').style.boxShadow = 'none';
+    });
+});
+
+// Skill category animation on scroll
+const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }, index * 100);
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.skill-category').forEach(skill => {
+    skill.style.opacity = '0';
+    skill.style.transform = 'translateY(30px)';
+    skillObserver.observe(skill);
+});
+
+// Add glitch effect to hero title on hover
+const heroTitle = document.querySelector('.hero-title');
+if (heroTitle) {
+    heroTitle.addEventListener('mouseenter', function() {
+        this.style.animation = 'glitch 0.3s ease';
+    });
+}
+
+const glitchStyle = document.createElement('style');
+glitchStyle.textContent = `
+    @keyframes glitch {
+        0%, 100% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(-2px, -2px); }
+        60% { transform: translate(2px, 2px); }
+        80% { transform: translate(2px, -2px); }
+    }
+`;
+document.head.appendChild(glitchStyle);
+
+// Project card click sound effect (visual feedback)
+document.querySelectorAll('.project-card, .education-card, .skill-category').forEach(card => {
+    card.addEventListener('click', function() {
+        this.style.animation = 'pulse 0.3s ease';
+        setTimeout(() => {
+            this.style.animation = '';
+        }, 300);
+    });
+});
+
+const pulseStyle = document.createElement('style');
+pulseStyle.textContent = `
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+`;
+document.head.appendChild(pulseStyle);
