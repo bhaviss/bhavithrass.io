@@ -43,6 +43,17 @@ html {
     scroll-padding-top: 80px;
 }
 
+/* Gentle scroll-snap to sections (only when reduced motion off) */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-snap-type: y proximity;
+    }
+    section[id] {
+        scroll-snap-align: start;
+        scroll-snap-stop: normal;
+    }
+}
+
 /* Scroll progress bar - innovative top indicator */
 .scroll-progress {
     position: fixed;
@@ -59,6 +70,53 @@ html {
 section[id] {
     opacity: 1;
     transform: none;
+}
+
+/* Smooth scroll-triggered reveal – tweaked distance, duration, stagger + scale */
+@media (prefers-reduced-motion: no-preference) {
+    .reveal-section .section-title,
+    .reveal-section .experience-intro,
+    .reveal-section .about-lead,
+    .reveal-section .creative-intro p,
+    .reveal-section .contact-intro {
+        transform: translateY(0);
+        transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    section:not(#hero) .section-title,
+    section .experience-intro,
+    section .about-lead,
+    section .creative-intro p,
+    section .contact-intro {
+        transform: translateY(20px);
+        transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-item {
+        transform: translateY(28px) scale(0.98);
+        transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-section .reveal-item {
+        transform: translateY(0) scale(1);
+    }
+
+    section .exp-card,
+    section .skill-category,
+    section .project-card,
+    section .education-card,
+    section .creative-card {
+        transform: translateY(28px) scale(0.98);
+        transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-section .exp-card,
+    .reveal-section .skill-category,
+    .reveal-section .project-card,
+    .reveal-section .education-card,
+    .reveal-section .creative-card {
+        transform: translateY(0) scale(1);
+    }
 }
 
 body {
@@ -232,6 +290,7 @@ nav.active ul {
 
 .hero-text {
     animation: fadeInUp 1s ease;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .code-intro {
@@ -507,6 +566,7 @@ nav.active ul {
 }
 
 .exp-card__content {
+    position: relative;
     max-width: 420px;
     background: var(--card-bg);
     padding: 1.75rem;
@@ -552,6 +612,51 @@ nav.active ul {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+}
+
+.exp-card__icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(196, 92, 38, 0.1);
+    color: var(--primary-color);
+    border-radius: 10px;
+    font-size: 1.1rem;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.exp-card--left .exp-card__icon {
+    right: auto;
+    left: 1rem;
+}
+
+.exp-card__content:hover .exp-card__icon {
+    transform: scale(1.08);
+    background: rgba(196, 92, 38, 0.15);
+}
+
+.exp-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 0.85rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.exp-card--left .exp-card__tags {
+    justify-content: flex-end;
+}
+
+.exp-card__tags::before {
+    content: '';
+    display: none;
 }
 
 .exp-card__role {

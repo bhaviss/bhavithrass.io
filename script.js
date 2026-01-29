@@ -18,30 +18,41 @@ if (scrollProgress && !prefersReducedMotion) {
     scrollProgress.style.display = 'none';
 }
 
-// Section scroll reveal - innovative staggered entrance
-const sectionObserver = new IntersectionObserver((entries) => {
+// Smooth scroll-triggered reveal: add reveal-section and stagger children
+const revealSelector = '.exp-card, .skill-category, .project-card, .education-card, .creative-card';
+const staggerStep = 100; // ms between each child – more noticeable cascade
+
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.style.transitionDelay = prefersReducedMotion ? '0ms' : '0ms';
-            entry.target.classList.add('is-visible');
-        }
+        if (!entry.isIntersecting || prefersReducedMotion) return;
+        const section = entry.target;
+        section.classList.add('reveal-section');
+        section.querySelectorAll(revealSelector).forEach((el, i) => {
+            el.style.transitionDelay = (i * staggerStep) + 'ms';
+        });
     });
-}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll('section[id]:not(#hero)').forEach(section => {
-    sectionObserver.observe(section);
+    revealObserver.observe(section);
 });
 
-// Subtle hero parallax (only when reduced motion is off)
+// Subtle hero parallax + scale on scroll (only when reduced motion is off)
 if (!prefersReducedMotion) {
     let ticking = false;
     window.addEventListener('scroll', () => {
         if (!ticking) {
             requestAnimationFrame(() => {
                 const scrolled = window.pageYOffset;
+                const hero = document.getElementById('hero');
                 const heroImage = document.querySelector('.hero-image .image-wrapper');
-                if (heroImage && scrolled < window.innerHeight) {
-                    heroImage.style.transform = 'translateY(' + scrolled * 0.15 + 'px)';
+                const heroText = document.querySelector('.hero-text');
+                if (scrolled < window.innerHeight) {
+                    const progress = Math.min(scrolled / window.innerHeight, 1);
+                    if (heroImage) heroImage.style.transform = 'translateY(' + scrolled * 0.15 + 'px)';
+                    if (heroText) heroText.style.transform = 'scale(' + (1 - progress * 0.04) + ')';
+                } else {
+                    if (heroText) heroText.style.transform = 'scale(0.96)';
                 }
                 ticking = false;
             });
