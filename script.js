@@ -1,3 +1,6 @@
+// Respect reduced motion preference
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Enhanced Smooth scroll behavior with offset for header
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -289,17 +292,17 @@ scrollTopBtn.style.cssText = `
     right: 30px;
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+    background: #2563eb;
     color: #fff;
-    border: 1px solid rgba(59, 130, 246, 0.5);
+    border: 1px solid rgba(37, 99, 235, 0.3);
     border-radius: 50%;
     cursor: pointer;
     display: none;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     z-index: 999;
     font-weight: 600;
 `;
@@ -322,58 +325,33 @@ scrollTopBtn.addEventListener('click', () => {
 });
 
 scrollTopBtn.addEventListener('mouseenter', function() {
-    this.style.transform = 'scale(1.1) rotate(360deg)';
-    this.style.boxShadow = '0 10px 30px rgba(59, 130, 246, 0.5)';
+    this.style.transform = 'scale(1.05)';
 });
-
 scrollTopBtn.addEventListener('mouseleave', function() {
-    this.style.transform = 'scale(1) rotate(0deg)';
-    this.style.boxShadow = '0 8px 20px rgba(59, 130, 246, 0.3)';
+    this.style.transform = 'scale(1)';
 });
 
-// Subtle animated cursor trail effect
-let cursorTrail = [];
-let lastTrailTime = 0;
-document.addEventListener('mousemove', (e) => {
-    const now = Date.now();
-    if (now - lastTrailTime < 50) return; // Throttle to reduce particles
-    lastTrailTime = now;
-    
-    if (cursorTrail.length > 8) {
-        const old = cursorTrail.shift();
-        old.remove();
-    }
-    
-    const trail = document.createElement('div');
-    trail.style.cssText = `
-        position: fixed;
-        width: 3px;
-        height: 3px;
-        background: rgba(59, 130, 246, 0.6);
-        border-radius: 50%;
-        left: ${e.clientX}px;
-        top: ${e.clientY}px;
-        pointer-events: none;
-        z-index: 9998;
-        opacity: 0.4;
-        box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
-        animation: fadeOut 0.6s ease-out forwards;
-    `;
-    
-    document.body.appendChild(trail);
-    cursorTrail.push(trail);
-});
-
-const fadeOutStyle = document.createElement('style');
-fadeOutStyle.textContent = `
-    @keyframes fadeOut {
-        to {
-            opacity: 0;
-            transform: scale(0);
+// Subtle cursor trail (skip if reduced motion)
+if (!prefersReducedMotion) {
+    let cursorTrail = [];
+    let lastTrailTime = 0;
+    document.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastTrailTime < 50) return;
+        lastTrailTime = now;
+        if (cursorTrail.length > 8) {
+            const old = cursorTrail.shift();
+            old.remove();
         }
-    }
-`;
-document.head.appendChild(fadeOutStyle);
+        const trail = document.createElement('div');
+        trail.style.cssText = `position:fixed;width:3px;height:3px;background:rgba(37,99,235,0.4);border-radius:50%;left:${e.clientX}px;top:${e.clientY}px;pointer-events:none;z-index:9998;opacity:0.4;animation:fadeOut 0.6s ease-out forwards;`;
+        document.body.appendChild(trail);
+        cursorTrail.push(trail);
+    });
+    const fadeOutStyle = document.createElement('style');
+    fadeOutStyle.textContent = '@keyframes fadeOut{to{opacity:0;transform:scale(0)}}';
+    document.head.appendChild(fadeOutStyle);
+}
 
 // Preload images
 const images = document.querySelectorAll('img');
@@ -433,7 +411,7 @@ if (creativeCard) {
 // Add loading animation
 window.addEventListener('load', () => {
     document.body.style.opacity = '1';
-    createFloatingParticles();
+    if (!prefersReducedMotion) createFloatingParticles();
     
     // Trigger initial section visibility check for sections in viewport
     setTimeout(() => {
@@ -501,13 +479,7 @@ document.querySelectorAll('.timeline-item').forEach((item, index) => {
         const dot = this.querySelector('.timeline-dot');
         dot.style.transform = 'scale(1.5)';
         dot.style.boxShadow = '0 0 0 12px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 1)';
-        dot.style.background = 'radial-gradient(circle, white 0%, var(--primary-color) 100%)';
-        
-        // Smooth scale animation
-        gsap.to(content, { 
-            duration: 0.4, 
-            ease: "power2.out" 
-        });
+        dot.style.background = 'var(--primary-color)';
     });
     
     item.addEventListener('mouseleave', function() {
