@@ -1,6 +1,73 @@
 // Respect reduced motion preference
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Scroll progress bar (hidden when reduced motion)
+const scrollProgress = document.getElementById('scrollProgress');
+if (scrollProgress && !prefersReducedMotion) {
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        scrollProgress.style.width = progress + '%';
+    });
+} else if (scrollProgress) {
+    scrollProgress.style.display = 'none';
+}
+
+// Section scroll reveal - innovative staggered entrance
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.style.transitionDelay = prefersReducedMotion ? '0ms' : '0ms';
+            entry.target.classList.add('is-visible');
+        }
+    });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('section[id]:not(#hero)').forEach(section => {
+    sectionObserver.observe(section);
+});
+
+// Subtle hero parallax (only when reduced motion is off)
+if (!prefersReducedMotion) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const scrolled = window.pageYOffset;
+                const heroImage = document.querySelector('.hero-image .image-wrapper');
+                if (heroImage && scrolled < window.innerHeight) {
+                    heroImage.style.transform = 'translateY(' + scrolled * 0.15 + 'px)';
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
+
+// Staggered card/category reveal when section first enters view (once per section)
+const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting || prefersReducedMotion || entry.target.dataset.revealed) return;
+        entry.target.dataset.revealed = 'true';
+        const cards = entry.target.querySelectorAll('.project-card, .skill-category, .education-card, .timeline-item');
+        cards.forEach((card, idx) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(28px)';
+            card.style.transition = 'opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1) ' + (idx * 70) + 'ms, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) ' + (idx * 70) + 'ms';
+            requestAnimationFrame(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('section[id]').forEach(section => {
+    cardObserver.observe(section);
+});
+
 // Enhanced Smooth scroll behavior with offset for header
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -64,31 +131,7 @@ if (mobileMenuBtn) {
     });
 }
 
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe all animated elements
-document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.project-card, .skill-category, .education-card, .timeline-item');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-});
+// Card/category animations are handled by cardObserver (staggered per section) above
 
 // Add active state to navigation based on scroll position
 const sections = document.querySelectorAll('section[id]');

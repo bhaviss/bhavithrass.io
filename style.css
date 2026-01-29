@@ -43,12 +43,44 @@ html {
     scroll-padding-top: 80px;
 }
 
+/* Scroll progress bar - innovative top indicator */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--gradient-1);
+    z-index: 10001;
+    transition: width 0.12s ease-out;
+}
+
+/* Section scroll reveal - innovative staggered entrance */
+section[id] {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+section[id].is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+#hero {
+    opacity: 1;
+    transform: none;
+}
+
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    line-height: 1.6;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
     color: var(--text-primary);
     background-color: var(--page-bg);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -57,19 +89,23 @@ body {
     padding: 0 2rem;
 }
 
-/* Typography */
+/* Typography - Outfit for headings, DM Sans for body */
 h1, h2, h3, h4, h5, h6 {
-    line-height: 1.2;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.25;
     font-weight: 600;
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 600;
     text-align: center;
     margin-bottom: 3rem;
     color: var(--text-primary);
     position: relative;
     padding-bottom: 1rem;
+    letter-spacing: -0.03em;
 }
 
 .section-title::after {
@@ -110,6 +146,7 @@ header.scrolled {
 }
 
 .logo {
+    font-family: 'Outfit', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
@@ -126,8 +163,12 @@ nav a {
     color: var(--text-secondary);
     font-weight: 500;
     font-size: 0.95rem;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition: color 0.25s ease;
     position: relative;
+}
+
+nav a::after {
+    transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 nav a::after {
@@ -220,9 +261,12 @@ nav.active ul {
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 3.25rem;
+    font-weight: 700;
     margin-bottom: 1rem;
     color: var(--text-primary);
+    letter-spacing: -0.03em;
 }
 
 .gradient-text {
@@ -254,7 +298,7 @@ nav.active ul {
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, background 0.3s ease;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -311,6 +355,10 @@ nav.active ul {
     animation: fadeInRight 1s ease;
 }
 
+.hero-image .image-wrapper {
+    transition: transform 0.1s ease-out;
+}
+
 .image-wrapper {
     position: relative;
     display: inline-block;
@@ -353,16 +401,26 @@ nav.active ul {
 }
 
 .about-content {
-    max-width: 800px;
+    max-width: 640px;
     margin: 0 auto;
+    text-align: left;
+}
+
+.about-lead {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.45;
+    margin-bottom: 1.5rem;
 }
 
 .about-text {
-    font-size: 1.1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     line-height: 1.8;
-    text-align: center;
 }
 
 /* Experience Section */
@@ -436,7 +494,7 @@ nav.active ul {
     border-radius: 12px;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: box-shadow 0.35s ease, border-color 0.35s ease;
     position: relative;
     overflow: hidden;
 }
@@ -572,13 +630,13 @@ nav.active ul {
     overflow: hidden;
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--border-color);
-    transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    transition: box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .project-card:hover {
     box-shadow: var(--shadow-md);
     border-color: var(--primary-color);
-    transform: translateY(-4px);
+    transform: translateY(-6px);
 }
 
 .project-media {
@@ -777,10 +835,13 @@ nav.active ul {
     margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--border-color);
+    text-align: left;
 }
 
 .about-personal h3 {
-    font-size: 1.1rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 0.75rem;
 }
@@ -792,6 +853,7 @@ nav.active ul {
 }
 
 .about-personal .personal-tag {
+    font-family: 'DM Sans', sans-serif;
     padding: 0.35rem 0.75rem;
     background: rgba(37, 99, 235, 0.08);
     color: var(--primary-color);
@@ -822,9 +884,14 @@ nav.active ul {
     transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
+.skill-category {
+    transition: box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, transform 0.25s ease;
+}
+
 .skill-category:hover {
     box-shadow: var(--shadow-md);
     border-color: var(--primary-color);
+    transform: translateY(-4px);
 }
 
 .skill-category h3 {
@@ -883,7 +950,11 @@ nav.active ul {
     border-radius: 12px;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.education-card:hover {
+    transform: translateY(-4px);
 }
 
 .education-card:hover {
@@ -1224,10 +1295,11 @@ nav.active ul {
     text-decoration: none;
     color: var(--text-primary);
     box-shadow: var(--shadow-sm);
-    transition: box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    transition: box-shadow 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .contact-link:hover {
+    transform: translateY(-3px);
     box-shadow: var(--shadow-md);
     border-color: var(--primary-color);
     color: var(--primary-color);
