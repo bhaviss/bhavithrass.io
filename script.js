@@ -1,3 +1,7 @@
+// Ensure page and all sections are visible (no blank content)
+document.documentElement.style.opacity = '1';
+document.body.style.opacity = '1';
+
 // Respect reduced motion preference
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -46,27 +50,7 @@ if (!prefersReducedMotion) {
     });
 }
 
-// Staggered card/category reveal when section first enters view (once per section)
-const cardObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (!entry.isIntersecting || prefersReducedMotion || entry.target.dataset.revealed) return;
-        entry.target.dataset.revealed = 'true';
-        const cards = entry.target.querySelectorAll('.project-card, .skill-category, .education-card, .timeline-item');
-        cards.forEach((card, idx) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(28px)';
-            card.style.transition = 'opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1) ' + (idx * 70) + 'ms, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) ' + (idx * 70) + 'ms';
-            requestAnimationFrame(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            });
-        });
-    });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('section[id]').forEach(section => {
-    cardObserver.observe(section);
-});
+// No card/section hiding - all content stays visible (no blank sections)
 
 // Enhanced Smooth scroll behavior with offset for header
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -175,16 +159,15 @@ if (heroTitle) {
     setTimeout(typeWriter, 500);
 }
 
-// Enhanced parallax effect for hero section with smooth easing
+// Subtle hero parallax only (no opacity fade - keeps content visible)
 let ticking = false;
 window.addEventListener('scroll', () => {
     if (!ticking) {
         window.requestAnimationFrame(() => {
             const scrolled = window.pageYOffset;
-            const heroSection = document.getElementById('hero');
-            if (heroSection) {
-                heroSection.style.transform = `translateY(${scrolled * 0.3}px)`;
-                heroSection.style.opacity = 1 - (scrolled / 1000);
+            const heroImage = document.querySelector('#hero .hero-image .image-wrapper');
+            if (heroImage && scrolled < window.innerHeight) {
+                heroImage.style.transform = `translateY(${scrolled * 0.15}px)`;
             }
             ticking = false;
         });
@@ -192,23 +175,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Enhanced Smooth Section Transitions on Scroll
-const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('section-visible');
-        }
-    });
-}, { 
-    threshold: 0.15,
-    rootMargin: '0px 0px -80px 0px'
-});
-
-// Add animation class and observe all sections except hero
-document.querySelectorAll('section:not(#hero)').forEach(section => {
-    section.classList.add('animate-on-scroll');
-    sectionObserver.observe(section);
-});
+// Sections stay visible (no blur/fade)
 
 // Enhanced Interactive Project Cards with Smooth Micro-Interactions
 const projectCards = document.querySelectorAll('.project-card');
@@ -245,9 +212,9 @@ function createEnhancedParticles(x, y) {
         const particle = document.createElement('div');
         const size = Math.random() * 4 + 2;
         const colors = [
-            'rgba(59, 130, 246, 0.9)',
-            'rgba(6, 182, 212, 0.9)',
-            'rgba(139, 92, 246, 0.9)'
+            'rgba(196, 92, 38, 0.9)',
+            'rgba(180, 83, 30, 0.9)',
+            'rgba(160, 70, 22, 0.9)'
         ];
         const color = colors[Math.floor(Math.random() * colors.length)];
         
@@ -335,9 +302,9 @@ scrollTopBtn.style.cssText = `
     right: 30px;
     width: 50px;
     height: 50px;
-    background: #2563eb;
+    background: #c45c26;
     color: #fff;
-    border: 1px solid rgba(37, 99, 235, 0.3);
+    border: 1px solid rgba(196, 92, 38, 0.4);
     border-radius: 50%;
     cursor: pointer;
     display: none;
@@ -387,7 +354,7 @@ if (!prefersReducedMotion) {
             old.remove();
         }
         const trail = document.createElement('div');
-        trail.style.cssText = `position:fixed;width:3px;height:3px;background:rgba(37,99,235,0.4);border-radius:50%;left:${e.clientX}px;top:${e.clientY}px;pointer-events:none;z-index:9998;opacity:0.4;animation:fadeOut 0.6s ease-out forwards;`;
+        trail.style.cssText = `position:fixed;width:3px;height:3px;background:rgba(196,92,38,0.35);border-radius:50%;left:${e.clientX}px;top:${e.clientY}px;pointer-events:none;z-index:9998;opacity:0.35;animation:fadeOut 0.6s ease-out forwards;`;
         document.body.appendChild(trail);
         cursorTrail.push(trail);
     });
@@ -451,25 +418,11 @@ if (creativeCard) {
     });
 }
 
-// Add loading animation
+// Page load
 window.addEventListener('load', () => {
     document.body.style.opacity = '1';
     if (!prefersReducedMotion) createFloatingParticles();
-    
-    // Trigger initial section visibility check for sections in viewport
-    setTimeout(() => {
-        const sections = document.querySelectorAll('section.animate-on-scroll');
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                section.classList.add('section-visible');
-            }
-        });
-    }, 100);
 });
-
-document.body.style.opacity = '0';
-document.body.style.transition = 'opacity 0.5s ease';
 
 // Create floating background particles
 function createFloatingParticles() {
@@ -521,14 +474,14 @@ document.querySelectorAll('.timeline-item').forEach((item, index) => {
     item.addEventListener('mouseenter', function() {
         const dot = this.querySelector('.timeline-dot');
         dot.style.transform = 'scale(1.5)';
-        dot.style.boxShadow = '0 0 0 12px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 1)';
+        dot.style.boxShadow = '0 0 0 12px rgba(196, 92, 38, 0.3), 0 0 40px rgba(196, 92, 38, 0.5)';
         dot.style.background = 'var(--primary-color)';
     });
     
     item.addEventListener('mouseleave', function() {
         const dot = this.querySelector('.timeline-dot');
         dot.style.transform = 'scale(1)';
-        dot.style.boxShadow = '0 0 0 4px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.4)';
+        dot.style.boxShadow = '0 0 0 4px rgba(196, 92, 38, 0.2), 0 0 20px rgba(196, 92, 38, 0.3)';
         dot.style.background = 'radial-gradient(circle, white 0%, var(--primary-color) 100%)';
     });
 });
