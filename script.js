@@ -440,49 +440,20 @@ function createFloatingParticles() {
     }
 }
 
-// Enhanced interactive hover effect for timeline items with smooth micro-interactions
-document.querySelectorAll('.timeline-item').forEach((item, index) => {
-    item.style.animationDelay = `${index * 0.15}s`;
-    
-    const content = item.querySelector('.timeline-content');
-    
-    // Advanced mouse tracking effect for gradient
-    content.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        this.style.setProperty('--mouse-x', `${x}%`);
-        this.style.setProperty('--mouse-y', `${y}%`);
-        
-        // Smooth parallax effect on list items
-        const listItems = this.querySelectorAll('li');
-        listItems.forEach((li, i) => {
-            const depth = (i + 1) * 0.5;
-            const moveX = (x - 50) / 50 * depth;
-            const moveY = (y - 50) / 50 * depth;
-            li.style.transform = `translateX(${5 + moveX}px) translateY(${moveY}px)`;
-        });
+// Experience cards: subtle hover on dot and content
+document.querySelectorAll('.exp-card').forEach((card) => {
+    const content = card.querySelector('.exp-card__content');
+    const dot = card.querySelector('.exp-card__dot');
+    if (!content || !dot) return;
+
+    card.addEventListener('mouseenter', function() {
+        dot.style.transform = 'scale(1.25)';
+        dot.style.boxShadow = '0 0 0 6px rgba(196, 92, 38, 0.25)';
     });
-    
-    content.addEventListener('mouseleave', function() {
-        const listItems = this.querySelectorAll('li');
-        listItems.forEach(li => {
-            li.style.transform = '';
-        });
-    });
-    
-    item.addEventListener('mouseenter', function() {
-        const dot = this.querySelector('.timeline-dot');
-        dot.style.transform = 'scale(1.5)';
-        dot.style.boxShadow = '0 0 0 12px rgba(196, 92, 38, 0.3), 0 0 40px rgba(196, 92, 38, 0.5)';
-        dot.style.background = 'var(--primary-color)';
-    });
-    
-    item.addEventListener('mouseleave', function() {
-        const dot = this.querySelector('.timeline-dot');
-        dot.style.transform = 'scale(1)';
-        dot.style.boxShadow = '0 0 0 4px rgba(196, 92, 38, 0.2), 0 0 20px rgba(196, 92, 38, 0.3)';
-        dot.style.background = 'radial-gradient(circle, white 0%, var(--primary-color) 100%)';
+
+    card.addEventListener('mouseleave', function() {
+        dot.style.transform = '';
+        dot.style.boxShadow = '';
     });
 });
 

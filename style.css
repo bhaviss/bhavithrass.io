@@ -78,6 +78,10 @@ body {
     padding: 0 2rem;
 }
 
+.container--wide {
+    max-width: 1100px;
+}
+
 /* Typography - Outfit for headings, DM Sans for body */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
@@ -412,187 +416,195 @@ nav.active ul {
     line-height: 1.8;
 }
 
-/* Experience Section */
+/* Experience Section - Zigzag layout with central spine */
 #experience {
     padding: 6rem 0;
     background: var(--page-bg);
     position: relative;
 }
 
-.timeline {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
+.experience-intro {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: -1.5rem auto 3rem;
+    max-width: 480px;
 }
 
-.timeline::before {
-    content: '';
+.exp-spine {
+    position: relative;
+}
+
+.exp-spine-line {
     position: absolute;
-    left: 20px;
+    left: 50%;
     top: 0;
     bottom: 0;
-    width: 3px;
-    background: var(--border-color);
+    width: 2px;
+    background: linear-gradient(180deg, transparent, var(--primary-color) 10%, var(--primary-color) 90%, transparent);
     border-radius: 2px;
+    transform: translateX(-50%);
+    opacity: 0.4;
 }
 
-.timeline-item {
+.exp-list {
     position: relative;
-    padding-left: 60px;
-    margin-bottom: 3rem;
-    animation: fadeInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) backwards;
-    transform-origin: left;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 }
 
-.timeline-item:nth-child(1) { animation-delay: 0.1s; }
-.timeline-item:nth-child(2) { animation-delay: 0.2s; }
-.timeline-item:nth-child(3) { animation-delay: 0.3s; }
-.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+.exp-card {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: start;
+    max-width: 100%;
+}
 
-.timeline-dot {
-    position: absolute;
-    left: 10px;
-    top: 0;
-    width: 22px;
-    height: 22px;
-    background: var(--primary-color);
-    border: 3px solid var(--card-bg);
-    border-radius: 50%;
-    box-shadow: var(--shadow-sm);
+.exp-card--left .exp-card__content {
+    grid-column: 1;
+    justify-self: end;
+    text-align: right;
+}
+
+.exp-card--left .exp-card__connector {
+    grid-column: 2;
+    justify-self: center;
+}
+
+.exp-card--right .exp-card__content {
+    grid-column: 3;
+    justify-self: start;
+    text-align: left;
+}
+
+.exp-card--right .exp-card__connector {
+    grid-column: 2;
+    justify-self: center;
+}
+
+.exp-card__connector {
+    position: relative;
     z-index: 2;
+    padding: 0 1.25rem;
 }
 
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 
-            0 0 0 4px rgba(196, 92, 38, 0.2),
-            0 0 20px rgba(196, 92, 38, 0.4);
-    }
-    50% {
-        transform: scale(1.1);
-        box-shadow: 
-            0 0 0 8px rgba(196, 92, 38, 0.3),
-            0 0 30px rgba(196, 92, 38, 0.6);
-    }
-}
-
-.timeline-content {
+.exp-card__dot {
+    display: block;
+    width: 16px;
+    height: 16px;
     background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 12px;
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm), 0 0 0 4px rgba(196, 92, 38, 0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.exp-card:hover .exp-card__dot {
+    transform: scale(1.2);
+    box-shadow: var(--shadow-md), 0 0 0 6px rgba(196, 92, 38, 0.2);
+}
+
+.exp-card__content {
+    max-width: 420px;
+    background: var(--card-bg);
+    padding: 1.75rem;
+    border-radius: 14px;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
-    transition: box-shadow 0.35s ease, border-color 0.35s ease;
-    position: relative;
-    overflow: hidden;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
-.timeline-content:hover {
+.exp-card__content:hover {
     box-shadow: var(--shadow-md);
     border-color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
-/* Experience Details Toggle */
-.experience-details {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, margin-top 0.4s ease;
+.exp-card--left .exp-card__content:hover {
+    transform: translateY(-2px) translateX(4px);
 }
 
-.experience-details.expanded {
-    max-height: 300px;
-    margin-top: 1rem;
+.exp-card--right .exp-card__content:hover {
+    transform: translateY(-2px) translateX(-4px);
 }
 
-.experience-toggle {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: transparent;
-    border: 1px solid var(--secondary-color);
-    color: var(--secondary-color);
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.experience-toggle:hover {
-    background: rgba(0, 217, 255, 0.2);
-    box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
-}
-
-.experience-toggle i {
-    transition: transform 0.3s ease;
-}
-
-.experience-toggle.active i {
-    transform: rotate(180deg);
-}
-
-.timeline-date {
+.exp-card__date {
     display: inline-block;
-    padding: 0.4rem 1rem;
+    padding: 0.35rem 0.85rem;
     background: var(--primary-color);
-    color: #ffffff;
+    color: #fff;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
 }
 
-.timeline-content h3 {
-    font-size: 1.5rem;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    transition: color 0.3s ease;
-}
-
-.timeline-content:hover h3 {
+.exp-card__badge {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(196, 92, 38, 0.12);
     color: var(--primary-color);
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
-.timeline-content h4 {
-    font-size: 1.05rem;
+.exp-card__role {
+    font-size: 1.35rem;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+}
+
+.exp-card__company {
+    font-size: 0.95rem;
     color: var(--primary-color);
     font-weight: 500;
-    margin-bottom: 1rem;
-    transition: all 0.3s ease;
+    margin-bottom: 0.85rem;
+    line-height: 1.4;
 }
 
-.timeline-content:hover h4 {
-    color: var(--secondary-color);
-}
-
-.timeline-content ul {
+.exp-card__points {
     list-style: none;
-    padding-left: 0;
+    padding: 0;
+    margin: 0;
 }
 
-.timeline-content li {
-    padding-left: 1.8rem;
-    margin-bottom: 0.75rem;
+.exp-card__points li {
     position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
     color: var(--text-secondary);
-    line-height: 1.7;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0.9;
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
 
-.timeline-content:hover li {
-    opacity: 1;
+.exp-card--right .exp-card__points li {
+    padding-left: 1.25rem;
+    padding-right: 0;
 }
 
-.timeline-content li::before {
+.exp-card--left .exp-card__points li {
+    padding-left: 0;
+    padding-right: 1.25rem;
+}
+
+.exp-card__points li::before {
     content: '▹';
     position: absolute;
     left: 0;
     color: var(--primary-color);
     font-weight: bold;
-    font-size: 1.2rem;
+}
+
+.exp-card--left .exp-card__points li::before {
+    left: auto;
+    right: 0;
 }
 
 /* Projects Section - Alex-style uniform grid (image on top) */
@@ -1781,16 +1793,51 @@ section {
         gap: 1rem;
     }
 
-    .timeline::before {
-        left: 10px;
+    /* Experience: single column on mobile */
+    .exp-spine-line {
+        left: 1.25rem;
+        transform: none;
     }
 
-    .timeline-item {
-        padding-left: 40px;
+    .exp-card {
+        grid-template-columns: auto 1fr;
+        gap: 0 1rem;
+        max-width: 100%;
     }
 
-    .timeline-dot {
-        left: 2px;
+    .exp-card--left .exp-card__content,
+    .exp-card--right .exp-card__content {
+        grid-column: 2;
+        justify-self: stretch;
+        text-align: left;
+        max-width: none;
+    }
+
+    .exp-card--left .exp-card__connector,
+    .exp-card--right .exp-card__connector {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 0.6rem 0 0;
+    }
+
+    .exp-card--left .exp-card__points li,
+    .exp-card--right .exp-card__points li {
+        padding-right: 0;
+        padding-left: 1.25rem;
+    }
+
+    .exp-card--left .exp-card__points li::before {
+        left: 0;
+        right: auto;
+    }
+
+    .exp-card__content:hover {
+        transform: translateY(-2px);
+    }
+
+    .exp-card--left .exp-card__content:hover,
+    .exp-card--right .exp-card__content:hover {
+        transform: translateY(-2px);
     }
 
     .contact-links {
