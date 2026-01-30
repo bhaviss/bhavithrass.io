@@ -19,7 +19,7 @@ if (scrollProgress && !prefersReducedMotion) {
 }
 
 // Smooth scroll-triggered reveal: add reveal-section and stagger children
-const revealSelector = '.exp-card, .skill-category, .project-card, .education-card, .creative-card';
+const revealSelector = '.exp-item, .skill-category, .project-card, .education-card, .creative-card';
 const staggerStep = 100; // ms between each child – more noticeable cascade
 
 const revealObserver = new IntersectionObserver((entries) => {
@@ -451,41 +451,15 @@ function createFloatingParticles() {
     }
 }
 
-// Experience: "Open letter" / "Close" button toggles accordion
-document.querySelectorAll('.exp-letter').forEach((card) => {
-    const dot = card.querySelector('.exp-card__dot');
-    const openBtn = card.querySelector('.exp-letter__btn:not(.exp-letter__btn--close)');
-    const closeBtn = card.querySelector('.exp-letter__btn--close');
-    function openLetter(e) {
-        if (e) e.preventDefault();
-        e.stopPropagation();
-        card.classList.add('is-open');
-        card.setAttribute('aria-expanded', 'true');
-        if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
-    }
-    function closeLetter(e) {
-        if (e) e.preventDefault();
-        e.stopPropagation();
-        card.classList.remove('is-open');
-        card.setAttribute('aria-expanded', 'false');
-        if (openBtn) openBtn.setAttribute('aria-expanded', 'false');
-    }
-    if (openBtn) {
-        openBtn.addEventListener('click', openLetter);
-    }
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeLetter);
-    }
-    if (dot) {
-        card.addEventListener('mouseenter', function() {
-            dot.style.transform = 'scale(1.25)';
-            dot.style.boxShadow = '0 0 0 6px rgba(196, 92, 38, 0.25)';
-        });
-        card.addEventListener('mouseleave', function() {
-            dot.style.transform = '';
-            dot.style.boxShadow = '';
-        });
-    }
+// Experience: "Read more" toggles bullet points
+document.querySelectorAll('.exp-more').forEach((btn) => {
+    btn.addEventListener('click', function() {
+        const item = this.closest('.exp-item');
+        const points = item ? item.querySelector('.exp-points') : null;
+        const isOpen = item && item.classList.toggle('is-open');
+        this.setAttribute('aria-expanded', isOpen);
+        this.textContent = isOpen ? 'Read less' : 'Read more';
+    });
 });
 
 // Project cards: View details toggle

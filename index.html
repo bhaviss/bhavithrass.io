@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bhavithra Suruliyandi Selvakumar - Portfolio</title>
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=7">
     <!-- Devicon (tech logos for skills) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
     <!-- Google Fonts -->
@@ -102,98 +102,55 @@
         </div>
     </section>
 
-    <!-- Experience Section – click "Open letter" to expand -->
+    <!-- Experience Section – simple timeline -->
     <section id="experience">
-        <div class="container container--wide">
+        <div class="container">
             <h2 class="section-title">Professional Experience</h2>
-            <p class="experience-intro">Click <strong>Open letter</strong> on any card to read details.</p>
-            <div class="exp-spine">
-                <div class="exp-spine-line" aria-hidden="true"></div>
-                <div class="exp-list exp-letters">
-                    <article class="exp-letter exp-card exp-card--left" aria-expanded="false" aria-label="Research Assistant">
-                        <div class="exp-card__connector"><span class="exp-card__dot"></span></div>
-                        <div class="exp-letter__wrap">
-                            <div class="exp-card__content exp-letter__face">
-                                <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope" aria-hidden="true"></i></span>
-                                <span class="exp-card__date">Jan 2026 – Present</span>
-                                <span class="exp-card__badge">Current</span>
-                                <h3 class="exp-card__role">Research Assistant – AI & ML</h3>
-                                <p class="exp-card__company">Concordia University of Edmonton, Edmonton, AB</p>
-                                <button type="button" class="exp-letter__btn" aria-expanded="false"><i class="fas fa-envelope-open-text"></i> Open letter</button>
-                            </div>
-                            <div class="exp-letter__body">
-                                <p class="exp-letter__tags-line">Python · ML · PyTorch · Cloud</p>
-                                <ul class="exp-card__points">
-                                    <li>AI/ML research with LLMs and multimodal systems; Python, TensorFlow, PyTorch, cloud</li>
-                                    <li>Large-scale data processing and model validation</li>
-                                </ul>
-                                <button type="button" class="exp-letter__btn exp-letter__btn--close"><i class="fas fa-times"></i> Close</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="exp-letter exp-card exp-card--right" aria-expanded="false" aria-label="Sessional Instructor">
-                        <div class="exp-card__connector"><span class="exp-card__dot"></span></div>
-                        <div class="exp-letter__wrap">
-                            <div class="exp-card__content exp-letter__face">
-                                <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope"></i></span>
-                                <span class="exp-card__date">Jul 2025 – Dec 2025</span>
-                                <h3 class="exp-card__role">Sessional Instructor (Part-Time)</h3>
-                                <p class="exp-card__company">Concordia University of Edmonton, Edmonton, AB</p>
-                                <button type="button" class="exp-letter__btn" aria-expanded="false"><i class="fas fa-envelope-open-text"></i> Open letter</button>
-                            </div>
-                            <div class="exp-letter__body">
-                                <p class="exp-letter__tags-line">Python · Cloud · DevOps · Teaching</p>
-                                <ul class="exp-card__points">
-                                    <li>Taught Python and cloud computing; mentored 50+ students in IT ops, automation, DevOps</li>
-                                </ul>
-                                <button type="button" class="exp-letter__btn exp-letter__btn--close"><i class="fas fa-times"></i> Close</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="exp-letter exp-card exp-card--left" aria-expanded="false" aria-label="IT & Cloud Operations Intern">
-                        <div class="exp-card__connector"><span class="exp-card__dot"></span></div>
-                        <div class="exp-letter__wrap">
-                            <div class="exp-card__content exp-letter__face">
-                                <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope"></i></span>
-                                <span class="exp-card__date">Oct 2025 – Jan 2026</span>
-                                <h3 class="exp-card__role">IT & Cloud Operations Intern</h3>
-                                <p class="exp-card__company">BinaryLogic, Edmonton, AB</p>
-                                <button type="button" class="exp-letter__btn" aria-expanded="false"><i class="fas fa-envelope-open-text"></i> Open letter</button>
-                            </div>
-                            <div class="exp-letter__body">
-                                <p class="exp-letter__tags-line">M365 · Power BI · WordPress · IT Ops</p>
-                                <ul class="exp-card__points">
-                                    <li>Microsoft 365, IT troubleshooting, system maintenance; 30% efficiency improvement</li>
-                                    <li>Power BI reports, WordPress projects; 25% faster reporting</li>
-                                </ul>
-                                <button type="button" class="exp-letter__btn exp-letter__btn--close"><i class="fas fa-times"></i> Close</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="exp-letter exp-card exp-card--right" aria-expanded="false" aria-label="Junior Data Analyst">
-                        <div class="exp-card__connector"><span class="exp-card__dot"></span></div>
-                        <div class="exp-letter__wrap">
-                            <div class="exp-card__content exp-letter__face">
-                                <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope"></i></span>
-                                <span class="exp-card__date">Jul 2022 – Jul 2024</span>
-                                <h3 class="exp-card__role">Junior Data Analyst</h3>
-                                <p class="exp-card__company">Besant Technologies, Chennai, India</p>
-                                <button type="button" class="exp-letter__btn" aria-expanded="false"><i class="fas fa-envelope-open-text"></i> Open letter</button>
-                            </div>
-                            <div class="exp-letter__body">
-                                <p class="exp-letter__tags-line">AWS · GCP · ETL · Tableau · Airflow</p>
-                                <ul class="exp-card__points">
-                                    <li>AWS Redshift, GCP BigQuery; ETL pipelines (1M+ records), 40% lower latency</li>
-                                    <li>Power BI & Tableau dashboards; 50% faster stakeholder reporting</li>
-                                    <li>Apache Airflow & NiFi automation; 65% less manual effort</li>
-                                </ul>
-                                <button type="button" class="exp-letter__btn exp-letter__btn--close"><i class="fas fa-times"></i> Close</button>
-                            </div>
-                        </div>
-                    </article>
+            <div class="exp-timeline">
+                <div class="exp-item">
+                    <span class="exp-date">Jan 2026 – Present</span>
+                    <span class="exp-badge">Current</span>
+                    <h3 class="exp-role">Research Assistant – AI & ML</h3>
+                    <p class="exp-company">Concordia University of Edmonton, Edmonton, AB</p>
+                    <p class="exp-tags">Python · ML · PyTorch · Cloud</p>
+                    <button type="button" class="exp-more" aria-expanded="false">Read more</button>
+                    <ul class="exp-points">
+                        <li>AI/ML research with LLMs and multimodal systems; Python, TensorFlow, PyTorch, cloud</li>
+                        <li>Large-scale data processing and model validation</li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <span class="exp-date">Jul 2025 – Dec 2025</span>
+                    <h3 class="exp-role">Sessional Instructor (Part-Time)</h3>
+                    <p class="exp-company">Concordia University of Edmonton, Edmonton, AB</p>
+                    <p class="exp-tags">Python · Cloud · DevOps · Teaching</p>
+                    <button type="button" class="exp-more" aria-expanded="false">Read more</button>
+                    <ul class="exp-points">
+                        <li>Taught Python and cloud computing; mentored 50+ students in IT ops, automation, DevOps</li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <span class="exp-date">Oct 2025 – Jan 2026</span>
+                    <h3 class="exp-role">IT & Cloud Operations Intern</h3>
+                    <p class="exp-company">BinaryLogic, Edmonton, AB</p>
+                    <p class="exp-tags">M365 · Power BI · WordPress · IT Ops</p>
+                    <button type="button" class="exp-more" aria-expanded="false">Read more</button>
+                    <ul class="exp-points">
+                        <li>Microsoft 365, IT troubleshooting, system maintenance; 30% efficiency improvement</li>
+                        <li>Power BI reports, WordPress projects; 25% faster reporting</li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <span class="exp-date">Jul 2022 – Jul 2024</span>
+                    <h3 class="exp-role">Junior Data Analyst</h3>
+                    <p class="exp-company">Besant Technologies, Chennai, India</p>
+                    <p class="exp-tags">AWS · GCP · ETL · Tableau · Airflow</p>
+                    <button type="button" class="exp-more" aria-expanded="false">Read more</button>
+                    <ul class="exp-points">
+                        <li>AWS Redshift, GCP BigQuery; ETL pipelines (1M+ records), 40% lower latency</li>
+                        <li>Power BI & Tableau dashboards; 50% faster stakeholder reporting</li>
+                        <li>Apache Airflow & NiFi automation; 65% less manual effort</li>
+                    </ul>
                 </div>
             </div>
         </div>

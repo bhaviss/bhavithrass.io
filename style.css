@@ -101,7 +101,7 @@ section[id] {
         transform: translateY(0) scale(1);
     }
 
-    section .exp-card,
+    section .exp-item,
     section .skill-category,
     section .project-card,
     section .education-card,
@@ -475,408 +475,124 @@ nav.active ul {
     line-height: 1.8;
 }
 
-/* Experience Section - Zigzag layout with central spine */
+/* Experience Section – simple timeline */
 #experience {
     padding: 6rem 0;
     background: var(--page-bg);
     position: relative;
 }
 
-.experience-intro {
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    margin: -1.5rem auto 3rem;
-    max-width: 480px;
-}
-
-.exp-spine {
-    position: relative;
-}
-
-.exp-spine-line {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(180deg, transparent, var(--primary-color) 10%, var(--primary-color) 90%, transparent);
-    border-radius: 2px;
-    transform: translateX(-50%);
-    opacity: 0.4;
-}
-
-.exp-list {
-    position: relative;
+.exp-timeline {
+    max-width: 640px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 1.5rem;
 }
 
-.exp-card {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 0;
-    align-items: start;
-    max-width: 100%;
-}
-
-.exp-card--left .exp-letter__wrap {
-    grid-column: 1;
-    justify-self: end;
-    text-align: right;
-    max-width: 420px;
-}
-
-.exp-card--left .exp-card__connector {
-    grid-column: 2;
-    justify-self: center;
-}
-
-.exp-card--right .exp-letter__wrap {
-    grid-column: 3;
-    justify-self: start;
-    text-align: left;
-    max-width: 420px;
-}
-
-.exp-card--right .exp-card__connector {
-    grid-column: 2;
-    justify-self: center;
-}
-
-.exp-card__connector {
-    position: relative;
-    z-index: 2;
-    padding: 0 1.25rem;
-}
-
-.exp-card__dot {
-    display: block;
-    width: 16px;
-    height: 16px;
+.exp-item {
     background: var(--card-bg);
-    border: 3px solid var(--primary-color);
-    border-radius: 50%;
-    box-shadow: var(--shadow-sm), 0 0 0 4px rgba(196, 92, 38, 0.15);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.exp-card:hover .exp-card__dot {
-    transform: scale(1.2);
-    box-shadow: var(--shadow-md), 0 0 0 6px rgba(196, 92, 38, 0.2);
-}
-
-.exp-card__content {
-    position: relative;
-    width: 100%;
-    background: var(--card-bg);
-    padding: 1.75rem;
-    border-radius: 14px 14px 0 0;
     border: 1px solid var(--border-color);
-    border-bottom: none;
+    border-radius: 12px;
+    padding: 1.5rem;
     box-shadow: var(--shadow-sm);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.exp-letter .exp-card__content.exp-letter__face {
-    border-radius: 14px;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.exp-letter.is-open .exp-card__content.exp-letter__face {
-    border-radius: 14px 14px 0 0;
-    border-bottom: none;
-}
-
-.exp-card__content:hover {
+.exp-item:hover {
     box-shadow: var(--shadow-md);
     border-color: var(--primary-color);
-    transform: translateY(-2px);
 }
 
-.exp-card--left .exp-letter__wrap:hover .exp-card__content {
-    transform: translateY(-2px) translateX(4px);
-}
-
-.exp-card--right .exp-letter__wrap:hover .exp-card__content {
-    transform: translateY(-2px) translateX(-4px);
-}
-
-.exp-card__date {
+.exp-date {
     display: inline-block;
-    padding: 0.35rem 0.85rem;
+    padding: 0.35rem 0.75rem;
     background: var(--primary-color);
     color: #fff;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
-    margin-bottom: 0.75rem;
+    margin-right: 0.5rem;
 }
 
-.exp-card__badge {
+.exp-badge {
     display: inline-block;
-    margin-left: 0.5rem;
-    padding: 0.2rem 0.6rem;
-    background: rgba(196, 92, 38, 0.12);
+    padding: 0.2rem 0.5rem;
+    background: rgba(196, 92, 38, 0.15);
     color: var(--primary-color);
     border-radius: 12px;
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
 }
 
-.exp-card__icon {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(196, 92, 38, 0.1);
-    color: var(--primary-color);
-    border-radius: 10px;
-    font-size: 1.1rem;
-    transition: transform 0.25s ease, background 0.25s ease;
-}
-
-.exp-card--left .exp-card__icon {
-    right: auto;
-    left: 1rem;
-}
-
-.exp-card__content:hover .exp-card__icon {
-    transform: scale(1.08);
-    background: rgba(196, 92, 38, 0.15);
-}
-
-.exp-card__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin-bottom: 0.85rem;
-    font-size: 0.8rem;
-    color: var(--text-light);
-    font-weight: 500;
-}
-
-.exp-card--left .exp-card__tags {
-    justify-content: flex-end;
-}
-
-.exp-card__tags::before {
-    content: '';
-    display: none;
-}
-
-.exp-card__role {
-    font-size: 1.35rem;
+.exp-role {
+    font-size: 1.2rem;
     color: var(--text-primary);
-    margin-bottom: 0.35rem;
+    margin: 0.75rem 0 0.25rem;
     line-height: 1.3;
 }
 
-.exp-card__company {
+.exp-company {
     font-size: 0.95rem;
     color: var(--primary-color);
     font-weight: 500;
-    margin-bottom: 0.85rem;
-    line-height: 1.4;
-}
-
-.exp-card__points {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.exp-card__points li {
-    position: relative;
-    padding-left: 1.25rem;
     margin-bottom: 0.5rem;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.6;
 }
 
-.exp-card--right .exp-card__points li {
-    padding-left: 1.25rem;
-    padding-right: 0;
+.exp-tags {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
 }
 
-.exp-card--left .exp-card__points li {
-    padding-left: 0;
-    padding-right: 1.25rem;
-}
-
-.exp-card__points li::before {
-    content: '▹';
-    position: absolute;
-    left: 0;
+.exp-more {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    background: transparent;
+    border: 1px solid var(--primary-color);
     color: var(--primary-color);
-    font-weight: bold;
-}
-
-.exp-card--left .exp-card__points li::before {
-    left: auto;
-    right: 0;
-}
-
-/* Experience: letter opens in place (accordion) */
-.term-prompt {
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--primary-color);
-    font-weight: 700;
-    margin-right: 0.35rem;
-}
-
-.exp-letter {
-    cursor: default;
-    outline: none;
-}
-
-.exp-letter__wrap {
-    max-width: 420px;
-    margin: 0 auto;
-}
-
-.exp-letter .exp-card__content.exp-letter__face {
-    position: relative;
-    border: 2px solid var(--border-color);
-    border-top: 3px solid var(--primary-color);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    background: linear-gradient(180deg, #fff 0%, var(--page-bg) 100%);
-}
-
-.exp-letter .exp-card__content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 12px solid transparent;
-    border-right: 12px solid transparent;
-    border-top: 14px solid var(--primary-color);
-    opacity: 0.35;
-}
-
-.exp-letter__seal {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    width: 2.25rem;
-    height: 2.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--primary-color);
-    color: #fff;
-    border-radius: 50%;
-    font-size: 0.9rem;
-    box-shadow: 0 2px 8px rgba(196, 92, 38, 0.4);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.exp-letter.is-open .exp-letter__seal {
-    transform: scale(1.1);
-    box-shadow: 0 0 0 4px rgba(196, 92, 38, 0.2);
-}
-
-.exp-card--left .exp-letter__seal {
-    right: auto;
-    left: 0.75rem;
-}
-
-.exp-letter__btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: var(--primary-color);
-    color: #fff;
-    border: none;
     border-radius: 8px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     font-family: 'DM Sans', sans-serif;
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
-.exp-letter__btn:hover {
-    background: var(--secondary-color);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(196, 92, 38, 0.3);
+.exp-more:hover {
+    background: var(--primary-color);
+    color: #fff;
 }
 
-.exp-letter__btn i {
-    font-size: 0.85rem;
-}
-
-.exp-letter__btn--close {
-    margin-top: 0.75rem;
-    background: rgba(196, 92, 38, 0.15);
-    color: var(--primary-color);
-}
-
-.exp-letter__btn--close:hover {
-    background: rgba(196, 92, 38, 0.25);
-}
-
-.exp-letter__body {
+.exp-points {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
     max-height: 0;
     overflow: hidden;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-top: none;
-    border-radius: 0 0 14px 14px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: max-height 0.3s ease;
 }
 
-.exp-letter.is-open .exp-letter__body {
+.exp-item.is-open .exp-points {
     max-height: 400px;
 }
 
-.exp-letter__body .exp-letter__tags-line {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--primary-color);
-    padding: 1rem 1.75rem 0.5rem;
-    margin: 0;
-}
-
-.exp-letter__body .exp-card__points {
-    padding: 0 1.75rem 0.5rem;
-    margin: 0;
-    list-style: none;
-}
-
-.exp-letter__body .exp-card__points li {
+.exp-points li {
     position: relative;
     padding-left: 1.25rem;
     margin-bottom: 0.5rem;
     color: var(--text-secondary);
     font-size: 0.9rem;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
-.exp-letter__body .exp-card__points li::before {
+.exp-points li::before {
     content: '▹';
     position: absolute;
     left: 0;
     color: var(--primary-color);
     font-weight: bold;
-}
-
-.exp-card__content {
-    cursor: default;
 }
 
 /* Projects Section – clean grid */
@@ -2317,52 +2033,6 @@ section {
     .hero-stats {
         flex-direction: column;
         gap: 1rem;
-    }
-
-    /* Experience: single column on mobile */
-    .exp-spine-line {
-        left: 1.25rem;
-        transform: none;
-    }
-
-    .exp-card {
-        grid-template-columns: auto 1fr;
-        gap: 0 1rem;
-        max-width: 100%;
-    }
-
-    .exp-card--left .exp-letter__wrap,
-    .exp-card--right .exp-letter__wrap {
-        grid-column: 2;
-        justify-self: stretch;
-        text-align: left;
-        max-width: none;
-    }
-
-    .exp-card--left .exp-card__connector,
-    .exp-card--right .exp-card__connector {
-        grid-column: 1;
-        grid-row: 1;
-        padding: 0.6rem 0 0;
-    }
-
-    .exp-letter__body .exp-card__points li {
-        padding-right: 0;
-        padding-left: 1.25rem;
-    }
-
-    .exp-letter__body .exp-card__points li::before {
-        left: 0;
-        right: auto;
-    }
-
-    .exp-card__content:hover {
-        transform: translateY(-2px);
-    }
-
-    .exp-card--left .exp-letter__wrap:hover .exp-card__content,
-    .exp-card--right .exp-letter__wrap:hover .exp-card__content {
-        transform: translateY(-2px);
     }
 
     .contact-links {
