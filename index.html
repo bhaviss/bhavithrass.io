@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bhavithra Suruliyandi Selvakumar - Portfolio</title>
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
     <!-- Devicon (tech logos for skills) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
     <!-- Google Fonts -->
@@ -102,122 +102,109 @@
         </div>
     </section>
 
-    <!-- Experience Section – closed letter / envelope style, click to open -->
+    <!-- Experience Section – letter opens in place (accordion) -->
     <section id="experience">
         <div class="container container--wide">
-            <h2 class="section-title">Professional Experience</h2>
-            <p class="experience-intro">Like letters in an inbox — click to open and read.</p>
+            <h2 class="section-title experience-title">Professional Experience</h2>
+            <p class="experience-intro"><span class="term-prompt">$</span> Like letters in an inbox — click any card to open and read.</p>
             <div class="exp-spine">
                 <div class="exp-spine-line" aria-hidden="true"></div>
                 <div class="exp-list exp-letters">
-                    <article class="exp-letter exp-card exp-card--left" data-exp-role="Research Assistant – AI & ML" data-exp-company="Concordia University of Edmonton, Edmonton, AB" data-exp-date="Jan 2026 – Present" data-exp-tags="Python · ML · PyTorch · Cloud">
-                        <div class="exp-card__connector">
-                            <span class="exp-card__dot"></span>
-                        </div>
-                        <div class="exp-card__content exp-letter__face" tabindex="0" role="button" aria-expanded="false" aria-label="Open: Research Assistant">
-                            <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope-open-text"></i></span>
-                            <span class="exp-card__date">Jan 2026 – Present</span>
-                            <span class="exp-card__badge">Current</span>
-                            <h3 class="exp-card__role">Research Assistant – AI & ML</h3>
-                            <p class="exp-card__company">Concordia University of Edmonton, Edmonton, AB</p>
-                            <span class="exp-letter__open-hint"><i class="fas fa-hand-pointer"></i> Click to open letter</span>
-                            <div class="exp-card__tags" aria-hidden="true">Python · ML · PyTorch · Cloud</div>
-                            <ul class="exp-card__points" aria-hidden="true">
-                                <li>AI/ML research with LLMs and multimodal systems; Python, TensorFlow, PyTorch, cloud</li>
-                                <li>Large-scale data processing and model validation</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <article class="exp-letter exp-card exp-card--right" data-exp-role="Sessional Instructor (Part-Time)" data-exp-company="Concordia University of Edmonton, Edmonton, AB" data-exp-date="Jul 2025 – Dec 2025" data-exp-tags="Python · Cloud · DevOps · Teaching">
-                        <div class="exp-card__connector">
-                            <span class="exp-card__dot"></span>
-                        </div>
-                        <div class="exp-card__content exp-letter__face" tabindex="0" role="button" aria-expanded="false" aria-label="Open: Sessional Instructor">
-                            <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope-open-text"></i></span>
-                            <span class="exp-card__date">Jul 2025 – Dec 2025</span>
-                            <h3 class="exp-card__role">Sessional Instructor (Part-Time)</h3>
-                            <p class="exp-card__company">Concordia University of Edmonton, Edmonton, AB</p>
-                            <span class="exp-letter__open-hint"><i class="fas fa-hand-pointer"></i> Click to open letter</span>
-                            <div class="exp-card__tags" aria-hidden="true">Python · Cloud · DevOps · Teaching</div>
-                            <ul class="exp-card__points" aria-hidden="true">
-                                <li>Taught Python and cloud computing; mentored 50+ students in IT ops, automation, DevOps</li>
-                            </ul>
+                    <article class="exp-letter exp-card exp-card--left" tabindex="0" role="button" aria-expanded="false" aria-label="Research Assistant – click to expand">
+                        <div class="exp-card__connector"><span class="exp-card__dot"></span></div>
+                        <div class="exp-letter__wrap">
+                            <div class="exp-card__content exp-letter__face">
+                                <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+                                <span class="exp-card__date">Jan 2026 – Present</span>
+                                <span class="exp-card__badge">Current</span>
+                                <h3 class="exp-card__role">Research Assistant – AI & ML</h3>
+                                <p class="exp-card__company">Concordia University of Edmonton, Edmonton, AB</p>
+                                <span class="exp-letter__open-hint"><i class="fas fa-chevron-down"></i> Click to open</span>
+                            </div>
+                            <div class="exp-letter__body">
+                                <p class="exp-letter__tags-line">Python · ML · PyTorch · Cloud</p>
+                                <ul class="exp-card__points">
+                                    <li>AI/ML research with LLMs and multimodal systems; Python, TensorFlow, PyTorch, cloud</li>
+                                    <li>Large-scale data processing and model validation</li>
+                                </ul>
+                                <span class="exp-letter__close-hint"><i class="fas fa-chevron-up"></i> Click to close</span>
+                            </div>
                         </div>
                     </article>
 
-                    <article class="exp-letter exp-card exp-card--left" data-exp-role="IT & Cloud Operations Intern" data-exp-company="BinaryLogic, Edmonton, AB" data-exp-date="Oct 2025 – Jan 2026" data-exp-tags="M365 · Power BI · WordPress · IT Ops">
-                        <div class="exp-card__connector">
-                            <span class="exp-card__dot"></span>
-                        </div>
-                        <div class="exp-card__content exp-letter__face" tabindex="0" role="button" aria-expanded="false" aria-label="Open: IT & Cloud Operations Intern">
-                            <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope-open-text"></i></span>
-                            <span class="exp-card__date">Oct 2025 – Jan 2026</span>
-                            <h3 class="exp-card__role">IT & Cloud Operations Intern</h3>
-                            <p class="exp-card__company">BinaryLogic, Edmonton, AB</p>
-                            <span class="exp-letter__open-hint"><i class="fas fa-hand-pointer"></i> Click to open letter</span>
-                            <div class="exp-card__tags" aria-hidden="true">M365 · Power BI · WordPress · IT Ops</div>
-                            <ul class="exp-card__points" aria-hidden="true">
-                                <li>Microsoft 365, IT troubleshooting, system maintenance; 30% efficiency improvement</li>
-                                <li>Power BI reports, WordPress projects; 25% faster reporting</li>
-                            </ul>
+                    <article class="exp-letter exp-card exp-card--right" tabindex="0" role="button" aria-expanded="false" aria-label="Sessional Instructor – click to expand">
+                        <div class="exp-card__connector"><span class="exp-card__dot"></span></div>
+                        <div class="exp-letter__wrap">
+                            <div class="exp-card__content exp-letter__face">
+                                <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+                                <span class="exp-card__date">Jul 2025 – Dec 2025</span>
+                                <h3 class="exp-card__role">Sessional Instructor (Part-Time)</h3>
+                                <p class="exp-card__company">Concordia University of Edmonton, Edmonton, AB</p>
+                                <span class="exp-letter__open-hint"><i class="fas fa-chevron-down"></i> Click to open</span>
+                            </div>
+                            <div class="exp-letter__body">
+                                <p class="exp-letter__tags-line">Python · Cloud · DevOps · Teaching</p>
+                                <ul class="exp-card__points">
+                                    <li>Taught Python and cloud computing; mentored 50+ students in IT ops, automation, DevOps</li>
+                                </ul>
+                                <span class="exp-letter__close-hint"><i class="fas fa-chevron-up"></i> Click to close</span>
+                            </div>
                         </div>
                     </article>
 
-                    <article class="exp-letter exp-card exp-card--right" data-exp-role="Junior Data Analyst" data-exp-company="Besant Technologies, Chennai, India" data-exp-date="Jul 2022 – Jul 2024" data-exp-tags="AWS · GCP · ETL · Tableau · Airflow">
-                        <div class="exp-card__connector">
-                            <span class="exp-card__dot"></span>
-                        </div>
-                        <div class="exp-card__content exp-letter__face" tabindex="0" role="button" aria-expanded="false" aria-label="Open: Junior Data Analyst">
-                            <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope-open-text"></i></span>
-                            <span class="exp-card__date">Jul 2022 – Jul 2024</span>
-                            <h3 class="exp-card__role">Junior Data Analyst</h3>
-                            <p class="exp-card__company">Besant Technologies, Chennai, India</p>
-                            <span class="exp-letter__open-hint"><i class="fas fa-hand-pointer"></i> Click to open letter</span>
-                            <div class="exp-card__tags" aria-hidden="true">AWS · GCP · ETL · Tableau · Airflow</div>
-                            <ul class="exp-card__points" aria-hidden="true">
-                                <li>AWS Redshift, GCP BigQuery; ETL pipelines (1M+ records), 40% lower latency</li>
-                                <li>Power BI & Tableau dashboards; 50% faster stakeholder reporting</li>
-                                <li>Apache Airflow & NiFi automation; 65% less manual effort</li>
-                            </ul>
+                    <article class="exp-letter exp-card exp-card--left" tabindex="0" role="button" aria-expanded="false" aria-label="IT & Cloud Operations Intern – click to expand">
+                        <div class="exp-card__connector"><span class="exp-card__dot"></span></div>
+                        <div class="exp-letter__wrap">
+                            <div class="exp-card__content exp-letter__face">
+                                <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+                                <span class="exp-card__date">Oct 2025 – Jan 2026</span>
+                                <h3 class="exp-card__role">IT & Cloud Operations Intern</h3>
+                                <p class="exp-card__company">BinaryLogic, Edmonton, AB</p>
+                                <span class="exp-letter__open-hint"><i class="fas fa-chevron-down"></i> Click to open</span>
+                            </div>
+                            <div class="exp-letter__body">
+                                <p class="exp-letter__tags-line">M365 · Power BI · WordPress · IT Ops</p>
+                                <ul class="exp-card__points">
+                                    <li>Microsoft 365, IT troubleshooting, system maintenance; 30% efficiency improvement</li>
+                                    <li>Power BI reports, WordPress projects; 25% faster reporting</li>
+                                </ul>
+                                <span class="exp-letter__close-hint"><i class="fas fa-chevron-up"></i> Click to close</span>
+                            </div>
                         </div>
                     </article>
-                </div>
-            </div>
-            <!-- Experience detail drawer (click any card to open) -->
-            <div id="exp-drawer" class="exp-drawer" aria-hidden="true">
-                <div class="exp-drawer__backdrop" aria-label="Close"></div>
-                <div class="exp-drawer__panel">
-                    <button type="button" class="exp-drawer__close" aria-label="Close"><i class="fas fa-times"></i></button>
-                    <div class="exp-drawer__content">
-                        <span class="exp-drawer__date" id="exp-drawer-date"></span>
-                        <h3 class="exp-drawer__role" id="exp-drawer-role"></h3>
-                        <p class="exp-drawer__company" id="exp-drawer-company"></p>
-                        <p class="exp-drawer__tags" id="exp-drawer-tags"></p>
-                        <ul class="exp-drawer__points" id="exp-drawer-points"></ul>
-                    </div>
+
+                    <article class="exp-letter exp-card exp-card--right" tabindex="0" role="button" aria-expanded="false" aria-label="Junior Data Analyst – click to expand">
+                        <div class="exp-card__connector"><span class="exp-card__dot"></span></div>
+                        <div class="exp-letter__wrap">
+                            <div class="exp-card__content exp-letter__face">
+                                <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+                                <span class="exp-card__date">Jul 2022 – Jul 2024</span>
+                                <h3 class="exp-card__role">Junior Data Analyst</h3>
+                                <p class="exp-card__company">Besant Technologies, Chennai, India</p>
+                                <span class="exp-letter__open-hint"><i class="fas fa-chevron-down"></i> Click to open</span>
+                            </div>
+                            <div class="exp-letter__body">
+                                <p class="exp-letter__tags-line">AWS · GCP · ETL · Tableau · Airflow</p>
+                                <ul class="exp-card__points">
+                                    <li>AWS Redshift, GCP BigQuery; ETL pipelines (1M+ records), 40% lower latency</li>
+                                    <li>Power BI & Tableau dashboards; 50% faster stakeholder reporting</li>
+                                    <li>Apache Airflow & NiFi automation; 65% less manual effort</li>
+                                </ul>
+                                <span class="exp-letter__close-hint"><i class="fas fa-chevron-up"></i> Click to close</span>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section – techie bento, no filters -->
     <section id="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-filter-bar">
-                <span class="projects-filter-label">Filter by domain:</span>
-                <div class="projects-filter-pills">
-                    <button type="button" class="filter-pill active" data-domain="all">All</button>
-                    <button type="button" class="filter-pill" data-domain="ml">ML / AI</button>
-                    <button type="button" class="filter-pill" data-domain="fullstack">Full Stack</button>
-                    <button type="button" class="filter-pill" data-domain="computervision">Computer Vision</button>
-                    <button type="button" class="filter-pill" data-domain="data">Data</button>
-                    <button type="button" class="filter-pill" data-domain="other">Other</button>
-                </div>
-                <button type="button" class="projects-shuffle" aria-label="Shuffle project order"><i class="fas fa-random"></i> Shuffle</button>
-            </div>
-            <div class="projects-container" id="projectsContainer">
+        <div class="container projects-terminal">
+            <h2 class="section-title projects-title"><span class="term-prompt">></span> Featured Projects</h2>
+            <p class="projects-intro"><span class="term-prompt">$</span> Hover and expand to explore.</p>
+            <div class="projects-container projects-bento" id="projectsContainer">
                 <!-- SpaceVisionAI -->
                 <div class="project-card featured" data-domain="ml computervision">
                     <!-- Project Media -->
@@ -478,11 +465,13 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills Section – terminal style, interactive -->
     <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
+        <div class="container skills-terminal-wrap">
+            <div class="skills-terminal">
+                <div class="skills-terminal-header"><span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span> skills --list</div>
+                <h2 class="section-title skills-title"><span class="term-prompt">$</span> Technical Skills</h2>
+                <div class="skills-grid">
                 <div class="skill-category">
                     <h3><i class="fas fa-cloud"></i> Cloud Platforms</h3>
                     <div class="skill-tags">
@@ -565,6 +554,7 @@
                         <span class="skill-tag" title="JIRA"><i class="devicon-jira-plain"></i><span>JIRA</span></span>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </section>

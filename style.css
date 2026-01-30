@@ -521,10 +521,11 @@ nav.active ul {
     max-width: 100%;
 }
 
-.exp-card--left .exp-card__content {
+.exp-card--left .exp-letter__wrap {
     grid-column: 1;
     justify-self: end;
     text-align: right;
+    max-width: 420px;
 }
 
 .exp-card--left .exp-card__connector {
@@ -532,10 +533,11 @@ nav.active ul {
     justify-self: center;
 }
 
-.exp-card--right .exp-card__content {
+.exp-card--right .exp-letter__wrap {
     grid-column: 3;
     justify-self: start;
     text-align: left;
+    max-width: 420px;
 }
 
 .exp-card--right .exp-card__connector {
@@ -567,13 +569,24 @@ nav.active ul {
 
 .exp-card__content {
     position: relative;
-    max-width: 420px;
+    width: 100%;
     background: var(--card-bg);
     padding: 1.75rem;
-    border-radius: 14px;
+    border-radius: 14px 14px 0 0;
     border: 1px solid var(--border-color);
+    border-bottom: none;
     box-shadow: var(--shadow-sm);
     transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.exp-letter .exp-card__content.exp-letter__face {
+    border-radius: 14px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.exp-letter.is-open .exp-card__content.exp-letter__face {
+    border-radius: 14px 14px 0 0;
+    border-bottom: none;
 }
 
 .exp-card__content:hover {
@@ -582,11 +595,11 @@ nav.active ul {
     transform: translateY(-2px);
 }
 
-.exp-card--left .exp-card__content:hover {
+.exp-card--left .exp-letter__wrap:hover .exp-card__content {
     transform: translateY(-2px) translateX(4px);
 }
 
-.exp-card--right .exp-card__content:hover {
+.exp-card--right .exp-letter__wrap:hover .exp-card__content {
     transform: translateY(-2px) translateX(-4px);
 }
 
@@ -712,13 +725,25 @@ nav.active ul {
     right: 0;
 }
 
-/* Letter / envelope style – closed by default, content only in drawer */
-.exp-letter .exp-card__content.exp-letter__face .exp-card__tags,
-.exp-letter .exp-card__content.exp-letter__face .exp-card__points {
-    display: none !important;
+/* Experience: letter opens in place (accordion) */
+.term-prompt {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-right: 0.35rem;
 }
 
-.exp-letter .exp-card__content {
+.exp-letter {
+    cursor: pointer;
+    outline: none;
+}
+
+.exp-letter__wrap {
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.exp-letter .exp-card__content.exp-letter__face {
     position: relative;
     border: 2px solid var(--border-color);
     border-top: 3px solid var(--primary-color);
@@ -754,14 +779,21 @@ nav.active ul {
     border-radius: 50%;
     font-size: 0.9rem;
     box-shadow: 0 2px 8px rgba(196, 92, 38, 0.4);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.exp-letter--left .exp-letter__seal {
+.exp-letter.is-open .exp-letter__seal {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(196, 92, 38, 0.2);
+}
+
+.exp-card--left .exp-letter__seal {
     right: auto;
     left: 0.75rem;
 }
 
-.exp-letter__open-hint {
+.exp-letter__open-hint,
+.exp-letter__close-hint {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -769,165 +801,53 @@ nav.active ul {
     font-size: 0.8rem;
     color: var(--text-light);
     font-weight: 500;
+    transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-.exp-letter .exp-card__content:hover .exp-letter__open-hint {
+.exp-letter .exp-card__content:hover .exp-letter__open-hint,
+.exp-letter:focus .exp-letter__open-hint {
     color: var(--primary-color);
 }
 
-.exp-card__hint {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin-top: 0.75rem;
-    font-size: 0.8rem;
-    color: var(--text-light);
-    font-weight: 500;
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.exp-card__content:hover .exp-card__hint,
-.exp-card__content:focus .exp-card__hint {
-    color: var(--primary-color);
-}
-
-.exp-card__content {
-    cursor: pointer;
-}
-
-.exp-card__content .exp-card__hint i {
-    font-size: 0.65rem;
-    transition: transform 0.2s ease;
-}
-
-.exp-card--right .exp-card__content:hover .exp-card__hint i {
-    transform: translateX(4px);
-}
-
-.exp-card--left .exp-card__content:hover .exp-card__hint i {
-    transform: translateX(-4px);
-}
-
-/* Experience drawer (click card to open) */
-.exp-drawer {
-    position: fixed;
-    inset: 0;
-    z-index: 10002;
-    pointer-events: none;
-    visibility: hidden;
-    transition: visibility 0.3s ease;
-}
-
-.exp-drawer.is-open {
-    pointer-events: auto;
-    visibility: visible;
-}
-
-.exp-drawer__backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.exp-drawer.is-open .exp-drawer__backdrop {
-    opacity: 1;
-}
-
-.exp-drawer__panel {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    max-width: 420px;
-    height: 100%;
+.exp-letter__body {
+    max-height: 0;
+    overflow: hidden;
     background: var(--card-bg);
-    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
-    transform: translateX(100%);
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 14px 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.exp-drawer.is-open .exp-drawer__panel {
-    transform: translateX(0);
+.exp-letter.is-open .exp-letter__body {
+    max-height: 400px;
 }
 
-.exp-drawer__close {
-    position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    border: none;
-    background: rgba(196, 92, 38, 0.1);
+.exp-letter__body .exp-letter__tags-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
     color: var(--primary-color);
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease, transform 0.2s ease;
-    z-index: 2;
-}
-
-.exp-drawer__close:hover {
-    background: rgba(196, 92, 38, 0.2);
-    transform: scale(1.05);
-}
-
-.exp-drawer__content {
-    padding: 2.5rem 2rem 2rem;
-}
-
-.exp-drawer__date {
-    display: inline-block;
-    padding: 0.4rem 1rem;
-    background: var(--primary-color);
-    color: #fff;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.exp-drawer__role {
-    font-size: 1.5rem;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-}
-
-.exp-drawer__company {
-    font-size: 1rem;
-    color: var(--primary-color);
-    font-weight: 500;
-    margin-bottom: 0.75rem;
-}
-
-.exp-drawer__tags {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-bottom: 1.25rem;
-}
-
-.exp-drawer__points {
-    list-style: none;
-    padding: 0;
+    padding: 1rem 1.75rem 0.5rem;
     margin: 0;
 }
 
-.exp-drawer__points li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.75rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
+.exp-letter__body .exp-card__points {
+    padding: 0 1.75rem 0.5rem;
+    margin: 0;
+    list-style: none;
 }
 
-.exp-drawer__points li::before {
+.exp-letter__body .exp-card__points li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.exp-letter__body .exp-card__points li::before {
     content: '▹';
     position: absolute;
     left: 0;
@@ -935,97 +855,72 @@ nav.active ul {
     font-weight: bold;
 }
 
-@media (max-width: 480px) {
-    .exp-drawer__panel {
-        max-width: 100%;
-    }
+.exp-letter__close-hint {
+    display: block;
+    padding: 0.5rem 1.75rem 1rem;
+    font-size: 0.75rem;
+    opacity: 0.7;
 }
 
-/* Projects Section – filter, shuffle, screenshot styling */
+.exp-letter.is-open .exp-letter__open-hint {
+    display: none;
+}
+
+.exp-letter:not(.is-open) .exp-letter__close-hint {
+    display: none;
+}
+
+.exp-letter.is-open .exp-letter__close-hint {
+    display: block;
+}
+
+.exp-card__content {
+    cursor: pointer;
+}
+
+/* Projects Section – techie bento, no filters */
 #projects {
     padding: 6rem 0;
     background: var(--section-bg);
     position: relative;
 }
 
-.projects-filter-bar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+.projects-terminal .section-title.projects-title {
+    text-align: left;
+    margin-bottom: 0.5rem;
 }
 
-.projects-filter-label {
+.projects-title .term-prompt {
+    margin-right: 0.5rem;
+}
+
+.projects-intro {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-secondary);
+    color: var(--text-light);
+    margin-bottom: 2rem;
 }
 
-.projects-filter-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.filter-pill {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--border-color);
-    background: var(--card-bg);
-    color: var(--text-secondary);
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    font-family: 'DM Sans', sans-serif;
-}
-
-.filter-pill:hover,
-.filter-pill.active {
-    background: rgba(196, 92, 38, 0.1);
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.projects-shuffle {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--primary-color);
-    background: transparent;
-    color: var(--primary-color);
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-    margin-left: auto;
-}
-
-.projects-shuffle:hover {
-    background: var(--primary-color);
-    color: #fff;
-    transform: scale(1.02);
-}
-
-.projects-container {
+.projects-container.projects-bento {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.project-card[data-domain].filter-hidden {
-    display: none;
+.projects-bento .project-card.featured {
+    grid-column: 1 / -1;
+    max-width: 100%;
 }
 
-/* Every card: vertical layout, media on top (order forces visual order) */
+@media (min-width: 900px) {
+    .projects-bento .project-card.featured {
+        grid-column: span 2;
+    }
+}
+
+/* Every card: vertical layout, techie bento style */
 .project-card {
     display: flex;
     flex-direction: column;
@@ -1034,13 +929,26 @@ nav.active ul {
     overflow: hidden;
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--border-color);
+    border-left: 3px solid var(--primary-color);
     transition: box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .project-card:hover {
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 8px 24px rgba(196, 92, 38, 0.12);
     border-color: var(--primary-color);
+    border-left-color: var(--secondary-color);
     transform: translateY(-6px);
+}
+
+.projects-bento .project-card h3 {
+    font-family: 'JetBrains Mono', 'Outfit', sans-serif;
+    font-size: 1.1rem;
+}
+
+.projects-bento .project-card h3::before {
+    content: '> ';
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
 .project-media {
@@ -1290,19 +1198,55 @@ nav.active ul {
     font-weight: 500;
 }
 
-/* Skills Section – techie / dev vibe */
+/* Skills Section – terminal style, interactive */
 #skills {
     padding: 6rem 0;
     background: var(--page-bg);
     position: relative;
 }
 
-#skills .section-title::before {
-    content: '>';
+.skills-terminal-wrap {
+    max-width: 1100px;
+}
+
+.skills-terminal {
+    background: linear-gradient(180deg, rgba(30, 30, 35, 0.03) 0%, rgba(30, 30, 35, 0.01) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 4px 20px rgba(0, 0, 0, 0.06);
+    position: relative;
+}
+
+.skills-terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
     font-family: 'JetBrains Mono', monospace;
-    color: var(--primary-color);
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.term-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    opacity: 0.6;
+}
+
+.term-dot:nth-child(1) { background: #e07c4a; }
+.term-dot:nth-child(2) { background: var(--primary-color); }
+.term-dot:nth-child(3) { background: var(--secondary-color); }
+
+.skills-title.term-prompt {
     margin-right: 0.5rem;
-    font-weight: 700;
+}
+
+#skills .section-title.skills-title {
+    margin-bottom: 1.5rem;
+    text-align: left;
 }
 
 .skills-grid {
@@ -1395,6 +1339,24 @@ nav.active ul {
 
 .skill-tag:hover i {
     transform: scale(1.15);
+}
+
+.skill-tag {
+    cursor: pointer;
+    user-select: none;
+}
+
+.skill-tag:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.skills-terminal .skill-category {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-left-color 0.25s ease;
+}
+
+.skills-terminal .skill-category:hover {
+    border-left-width: 4px;
+    box-shadow: 0 6px 20px rgba(196, 92, 38, 0.1);
 }
 
 /* Education Section */
@@ -2357,8 +2319,8 @@ section {
         max-width: 100%;
     }
 
-    .exp-card--left .exp-card__content,
-    .exp-card--right .exp-card__content {
+    .exp-card--left .exp-letter__wrap,
+    .exp-card--right .exp-letter__wrap {
         grid-column: 2;
         justify-self: stretch;
         text-align: left;
@@ -2372,13 +2334,12 @@ section {
         padding: 0.6rem 0 0;
     }
 
-    .exp-card--left .exp-card__points li,
-    .exp-card--right .exp-card__points li {
+    .exp-letter__body .exp-card__points li {
         padding-right: 0;
         padding-left: 1.25rem;
     }
 
-    .exp-card--left .exp-card__points li::before {
+    .exp-letter__body .exp-card__points li::before {
         left: 0;
         right: auto;
     }
@@ -2387,8 +2348,8 @@ section {
         transform: translateY(-2px);
     }
 
-    .exp-card--left .exp-card__content:hover,
-    .exp-card--right .exp-card__content:hover {
+    .exp-card--left .exp-letter__wrap:hover .exp-card__content,
+    .exp-card--right .exp-letter__wrap:hover .exp-card__content {
         transform: translateY(-2px);
     }
 
