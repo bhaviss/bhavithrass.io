@@ -451,21 +451,31 @@ function createFloatingParticles() {
     }
 }
 
-// Experience: click to open/close letter (accordion in place)
+// Experience: "Open letter" / "Close" button toggles accordion
 document.querySelectorAll('.exp-letter').forEach((card) => {
     const dot = card.querySelector('.exp-card__dot');
-    function toggleOpen(e) {
+    const openBtn = card.querySelector('.exp-letter__btn:not(.exp-letter__btn--close)');
+    const closeBtn = card.querySelector('.exp-letter__btn--close');
+    function openLetter(e) {
         if (e) e.preventDefault();
-        card.classList.toggle('is-open');
-        card.setAttribute('aria-expanded', card.classList.contains('is-open'));
+        e.stopPropagation();
+        card.classList.add('is-open');
+        card.setAttribute('aria-expanded', 'true');
+        if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
     }
-    card.addEventListener('click', toggleOpen);
-    card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleOpen(e);
-        }
-    });
+    function closeLetter(e) {
+        if (e) e.preventDefault();
+        e.stopPropagation();
+        card.classList.remove('is-open');
+        card.setAttribute('aria-expanded', 'false');
+        if (openBtn) openBtn.setAttribute('aria-expanded', 'false');
+    }
+    if (openBtn) {
+        openBtn.addEventListener('click', openLetter);
+    }
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeLetter);
+    }
     if (dot) {
         card.addEventListener('mouseenter', function() {
             dot.style.transform = 'scale(1.25)';
@@ -489,37 +499,16 @@ document.querySelectorAll('.project-toggle').forEach(btn => {
     });
 });
 
-// Projects: filter by domain
-const projectsContainer = document.getElementById('projectsContainer');
-const filterPills = document.querySelectorAll('.filter-pill[data-domain]');
-const projectCards = projectsContainer ? Array.from(projectsContainer.querySelectorAll('.project-card[data-domain]')) : [];
-
-filterPills.forEach(pill => {
-    pill.addEventListener('click', function() {
-        const domain = this.getAttribute('data-domain');
-        filterPills.forEach(p => p.classList.remove('active'));
-        this.classList.add('active');
-        projectCards.forEach(card => {
-            const cardDomains = (card.getAttribute('data-domain') || '').split(/\s+/);
-            const show = domain === 'all' || cardDomains.includes(domain);
-            card.classList.toggle('filter-hidden', !show);
-        });
-    });
-});
-
-// Projects: shuffle order
-const shuffleBtn = document.querySelector('.projects-shuffle');
-if (shuffleBtn && projectsContainer) {
-    const allCards = Array.from(projectsContainer.children).filter(el => el.classList.contains('project-card') || el.classList.contains('more-projects-grid'));
-    const getCards = () => {
-        const cards = [];
-        projectsContainer.querySelectorAll('.project-card').forEach(c => cards.push(c));
-        return cards;
-    };
-    shuffleBtn.addEventListener('click', function() {
-        const cards = getCards();
-        const shuffled = cards.slice().sort(() => Math.random() - 0.5);
-        shuffled.forEach(card => projectsContainer.appendChild(card));
+// Contact form: prevent submit if Formspree ID not set
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        const action = this.getAttribute('action') || '';
+        if (action.indexOf('YOUR_FORM_ID') !== -1) {
+            e.preventDefault();
+            alert('Form is not set up yet. To receive messages:\n\n1. Go to https://formspree.io\n2. Create a free form\n3. Copy your form ID from the form action URL\n4. In index.html, replace YOUR_FORM_ID with your form ID');
+            return false;
+        }
     });
 }
 

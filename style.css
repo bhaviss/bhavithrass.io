@@ -734,7 +734,7 @@ nav.active ul {
 }
 
 .exp-letter {
-    cursor: pointer;
+    cursor: default;
     outline: none;
 }
 
@@ -792,21 +792,41 @@ nav.active ul {
     left: 0.75rem;
 }
 
-.exp-letter__open-hint,
-.exp-letter__close-hint {
+.exp-letter__btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    margin-top: 0.75rem;
-    font-size: 0.8rem;
-    color: var(--text-light);
-    font-weight: 500;
-    transition: color 0.2s ease, opacity 0.2s ease;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.exp-letter .exp-card__content:hover .exp-letter__open-hint,
-.exp-letter:focus .exp-letter__open-hint {
+.exp-letter__btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(196, 92, 38, 0.3);
+}
+
+.exp-letter__btn i {
+    font-size: 0.85rem;
+}
+
+.exp-letter__btn--close {
+    margin-top: 0.75rem;
+    background: rgba(196, 92, 38, 0.15);
     color: var(--primary-color);
+}
+
+.exp-letter__btn--close:hover {
+    background: rgba(196, 92, 38, 0.25);
 }
 
 .exp-letter__body {
@@ -855,67 +875,40 @@ nav.active ul {
     font-weight: bold;
 }
 
-.exp-letter__close-hint {
-    display: block;
-    padding: 0.5rem 1.75rem 1rem;
-    font-size: 0.75rem;
-    opacity: 0.7;
-}
-
-.exp-letter.is-open .exp-letter__open-hint {
-    display: none;
-}
-
-.exp-letter:not(.is-open) .exp-letter__close-hint {
-    display: none;
-}
-
-.exp-letter.is-open .exp-letter__close-hint {
-    display: block;
-}
-
 .exp-card__content {
-    cursor: pointer;
+    cursor: default;
 }
 
-/* Projects Section – techie bento, no filters */
+/* Projects Section – clean grid */
 #projects {
     padding: 6rem 0;
     background: var(--section-bg);
     position: relative;
 }
 
-.projects-terminal .section-title.projects-title {
-    text-align: left;
-    margin-bottom: 0.5rem;
+.projects-sub {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin: -1.5rem auto 2.5rem;
+    max-width: 480px;
 }
 
-.projects-title .term-prompt {
-    margin-right: 0.5rem;
-}
-
-.projects-intro {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.95rem;
-    color: var(--text-light);
-    margin-bottom: 2rem;
-}
-
-.projects-container.projects-bento {
+.projects-container,
+.projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
+    gap: 1.75rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.projects-bento .project-card.featured {
+.projects-grid .project-card.featured {
     grid-column: 1 / -1;
-    max-width: 100%;
 }
 
 @media (min-width: 900px) {
-    .projects-bento .project-card.featured {
+    .projects-grid .project-card.featured {
         grid-column: span 2;
     }
 }
@@ -1350,13 +1343,9 @@ nav.active ul {
     transform: translateY(0) scale(0.98);
 }
 
-.skills-terminal .skill-category {
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-left-color 0.25s ease;
-}
-
-.skills-terminal .skill-category:hover {
+.skill-category:hover {
     border-left-width: 4px;
-    box-shadow: 0 6px 20px rgba(196, 92, 38, 0.1);
+    box-shadow: 0 6px 20px rgba(196, 92, 38, 0.08);
 }
 
 /* Education Section */
@@ -1905,6 +1894,29 @@ nav.active ul {
 
 .contact-form-note a:hover {
     text-decoration: underline;
+}
+
+.contact-form-setup {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(196, 92, 38, 0.06);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.contact-form-setup code {
+    background: rgba(0, 0, 0, 0.06);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.contact-form-setup a {
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 /* Footer */
