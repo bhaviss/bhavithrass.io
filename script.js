@@ -483,27 +483,42 @@ document.querySelectorAll('.project-toggle').forEach(btn => {
     });
 });
 
-// Contact form: open mailto so the message goes to your email
+// Contact form: submit to Formspree (https://formspree.io/f/meekzvrr) and show feedback
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        const nameEl = document.getElementById('contact-name');
-        const emailEl = document.getElementById('contact-email');
-        const msgEl = document.getElementById('contact-msg');
-        const name = (nameEl && nameEl.value.trim()) || '';
-        const email = (emailEl && emailEl.value.trim()) || '';
-        const message = (msgEl && msgEl.value.trim()) || '';
-        if (!name || !email || !message) {
-            if (!name) (nameEl || {}).focus?.();
-            else if (!email) (emailEl || {}).focus?.();
-            else (msgEl || {}).focus?.();
-            return;
-        }
-        const subject = 'Portfolio contact from ' + name;
-        const body = 'Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message;
-        const mailto = 'mailto:bhavithrass@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        window.location.href = mailto;
+        const feedback = document.getElementById('formFeedback');
+        const btn = document.getElementById('formSubmitBtn');
+        if (!feedback || !btn) return;
+        feedback.textContent = '';
+        feedback.className = 'form-feedback';
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        const formData = new FormData(this);
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: { Accept: 'application/json' }
+        })
+            .then(function(res) {
+                if (res.ok) {
+                    feedback.textContent = 'Message sent! I’ll get back to you soon.';
+                    feedback.className = 'form-feedback form-feedback-success';
+                    contactForm.reset();
+                } else {
+                    feedback.textContent = 'Something went wrong. Please email me directly at bhavithrass@gmail.com';
+                    feedback.className = 'form-feedback form-feedback-error';
+                }
+            })
+            .catch(function() {
+                feedback.textContent = 'Something went wrong. Please email me directly at bhavithrass@gmail.com';
+                feedback.className = 'form-feedback form-feedback-error';
+            })
+            .finally(function() {
+                btn.disabled = false;
+                btn.textContent = 'Send message';
+            });
     });
 }
 

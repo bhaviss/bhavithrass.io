@@ -525,15 +525,17 @@
                 </div>
                 <div class="leave-message">
                     <h3>Leave a message</h3>
-                    <p class="contact-form-intro">Fill in the form and click Send—your email app will open with a message addressed to me.</p>
-                    <form class="contact-form" id="contactForm" action="#" method="get" novalidate>
+                    <p class="contact-form-intro">Send me a message and I’ll get back to you.</p>
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/meekzvrr" method="POST">
+                        <input type="hidden" name="_subject" value="Portfolio contact from bhaviss.com">
                         <label for="contact-name">Name</label>
                         <input type="text" id="contact-name" name="name" required placeholder="Your name" autocomplete="name">
                         <label for="contact-email">Email</label>
                         <input type="email" id="contact-email" name="email" required placeholder="your@email.com" autocomplete="email">
                         <label for="contact-msg">Message</label>
                         <textarea id="contact-msg" name="message" rows="4" required placeholder="Your message..."></textarea>
-                        <button type="submit" class="btn btn-primary">Send message</button>
+                        <p class="form-feedback" id="formFeedback" aria-live="polite"></p>
+                        <button type="submit" class="btn btn-primary" id="formSubmitBtn">Send message</button>
                     </form>
                     <p class="contact-form-note">Or email me directly at <a href="mailto:bhavithrass@gmail.com">bhavithrass@gmail.com</a>.</p>
                 </div>

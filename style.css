@@ -1606,6 +1606,22 @@ nav.active ul {
     margin-top: 0.5rem;
 }
 
+.form-feedback {
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    min-height: 1.4em;
+}
+
+.form-feedback-success {
+    color: var(--success-color);
+    font-weight: 500;
+}
+
+.form-feedback-error {
+    color: #b91c1c;
+    font-weight: 500;
+}
+
 .contact-form-note {
     margin-top: 1rem;
     font-size: 0.9rem;
