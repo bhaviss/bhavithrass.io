@@ -451,16 +451,26 @@ function createFloatingParticles() {
     }
 }
 
-// Experience: "Read more" toggles bullet points
-document.querySelectorAll('.exp-more').forEach((btn) => {
-    btn.addEventListener('click', function() {
-        const item = this.closest('.exp-item');
-        const points = item ? item.querySelector('.exp-points') : null;
-        const isOpen = item && item.classList.toggle('is-open');
-        this.setAttribute('aria-expanded', isOpen);
-        this.textContent = isOpen ? 'Read less' : 'Read more';
+// Experience: "Read more" toggles bullet points (run after DOM is ready)
+function initExperienceReadMore() {
+    document.querySelectorAll('.exp-more').forEach((btn) => {
+        btn.addEventListener('click', function() {
+            const item = this.closest('.exp-item');
+            if (!item) return;
+            const points = item.querySelector('.exp-points');
+            item.classList.toggle('is-open');
+            const isOpen = item.classList.contains('is-open');
+            this.setAttribute('aria-expanded', isOpen);
+            this.textContent = isOpen ? 'Read less' : 'Read more';
+            if (points) points.style.maxHeight = isOpen ? (Math.max(points.scrollHeight + 40, 400)) + 'px' : '0';
+        });
     });
-});
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initExperienceReadMore);
+} else {
+    initExperienceReadMore();
+}
 
 // Project cards: View details toggle
 document.querySelectorAll('.project-toggle').forEach(btn => {
@@ -473,16 +483,27 @@ document.querySelectorAll('.project-toggle').forEach(btn => {
     });
 });
 
-// Contact form: prevent submit if Formspree ID not set
+// Contact form: open mailto so the message goes to your email
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-        const action = this.getAttribute('action') || '';
-        if (action.indexOf('YOUR_FORM_ID') !== -1) {
-            e.preventDefault();
-            alert('Form is not set up yet. To receive messages:\n\n1. Go to https://formspree.io\n2. Create a free form\n3. Copy your form ID from the form action URL\n4. In index.html, replace YOUR_FORM_ID with your form ID');
-            return false;
+        e.preventDefault();
+        const nameEl = document.getElementById('contact-name');
+        const emailEl = document.getElementById('contact-email');
+        const msgEl = document.getElementById('contact-msg');
+        const name = (nameEl && nameEl.value.trim()) || '';
+        const email = (emailEl && emailEl.value.trim()) || '';
+        const message = (msgEl && msgEl.value.trim()) || '';
+        if (!name || !email || !message) {
+            if (!name) (nameEl || {}).focus?.();
+            else if (!email) (emailEl || {}).focus?.();
+            else (msgEl || {}).focus?.();
+            return;
         }
+        const subject = 'Portfolio contact from ' + name;
+        const body = 'Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message;
+        const mailto = 'mailto:bhavithrass@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        window.location.href = mailto;
     });
 }
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bhavithra Suruliyandi Selvakumar - Portfolio</title>
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=8">
     <!-- Devicon (tech logos for skills) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
     <!-- Google Fonts -->
@@ -156,268 +156,160 @@
         </div>
     </section>
 
-    <!-- Projects Section – clean grid -->
+    <!-- Projects Section -->
     <section id="projects">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <p class="projects-sub">Selected work in AI/ML, full stack, and data.</p>
+            <h2 class="section-title">Projects</h2>
+            <p class="projects-sub">AI/ML, full stack, and data work.</p>
             <div class="projects-grid" id="projectsContainer">
                 <!-- SpaceVisionAI -->
-                <div class="project-card featured" data-domain="ml computervision">
-                    <!-- Project Media -->
-                    <div class="project-media" id="spaceVideoContainer">
-                        <video id="spaceVideo" controls playsinline webkit-playsinline preload="metadata" poster="images/projects/space-debris-thumb.jpg" data-caption="Real-time Space Debris Detection and Tracking">
+                <article class="project-card">
+                    <div class="project-media">
+                        <video id="spaceVideo" controls playsinline preload="metadata" poster="images/projects/space-debris-thumb.jpg" data-caption="Space Debris Detection">
                             <source src="images/projects/space-debris-tracking.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
                         </video>
                     </div>
-                    
-                    <!-- Project Content -->
                     <div class="project-card-content">
-                        <div class="project-header">
-                            <i class="fas fa-satellite project-icon"></i>
-                            <span class="project-badge">Master's Thesis</span>
+                        <span class="project-badge">Master's Thesis</span>
+                        <h3>SpaceVisionAI</h3>
+                        <p class="project-desc">Multimodal deep learning for real-time space debris detection and tracking. 62.4% accuracy, 12% over baseline.</p>
+                        <div class="project-tech-pills">
+                            <span>Python</span><span>TensorFlow</span><span>PyTorch</span><span>CV</span>
                         </div>
-                        
-                        <h3>SpaceVisionAI: Multimodal Deep Learning for Space Debris Detection</h3>
-                        <p class="project-tech">Python | TensorFlow | PyTorch | SORT | Computer Vision | Deep Learning</p>
-                        <p>Engineered a cutting-edge multimodal deep learning system for real-time satellite debris detection and tracking. Achieved 62.4% detection accuracy, outperforming traditional ML approaches by 12%. Applied SORT (Simple Online and Realtime Tracking) algorithm for multi-frame consistency and trajectory prediction.</p>
-                        <div class="project-metrics">
-                            <span><i class="fas fa-chart-line"></i> 62.4% Accuracy</span>
-                            <span><i class="fas fa-arrow-up"></i> 12% Improvement</span>
-                            <span><i class="fas fa-rocket"></i> Real-time Tracking</span>
-                        </div>
-                        <button type="button" class="project-toggle" aria-expanded="false"><i class="fas fa-chevron-down"></i> View details</button>
-                        <div class="project-details">
-                            <ul>
-                                <li>Developed multimodal architecture combining visual and sensor data for improved detection</li>
-                                <li>Implemented SORT tracking algorithm for consistent debris identification across frames</li>
-                                <li>Optimized model inference for real-time processing of satellite imagery</li>
-                                <li>Conducted extensive benchmarking against traditional machine learning approaches</li>
-                            </ul>
-                        </div>
-                        <a href="https://github.com/bhaviss/Space-debris" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View Code
-                        </a>
+                        <a href="https://github.com/bhaviss/Space-debris" target="_blank" rel="noopener" class="project-link">View Code <i class="fas fa-external-link-alt"></i></a>
                     </div>
-                </div>
+                </article>
 
                 <!-- Geo QR Attendance -->
-                <div class="project-card project-attendance" data-domain="fullstack">
-                    <!-- Project Content -->
-                    <div class="project-card-content">
-                        <div class="project-header">
-                            <i class="fas fa-qrcode project-icon"></i>
-                            <span class="project-badge">Full Stack</span>
-                        </div>
-                        
-                        <h3>Geo QR Attendance Tracking System</h3>
-                        <p class="project-tech">Flask | React | Node.js | MySQL | JWT | Geolocation API | REST API</p>
-                        <p>Architected a comprehensive full-stack geo-location based attendance management system serving 500+ users. Implemented secure JWT authentication, role-based access control (RBAC), and real-time geofencing validation. Decreased attendance reporting time by 75% through automated dashboards and analytics.</p>
-                        <div class="project-metrics">
-                            <span><i class="fas fa-users"></i> 500+ Users</span>
-                            <span><i class="fas fa-clock"></i> 75% Time Reduction</span>
-                            <span><i class="fas fa-shield-alt"></i> Secure Authentication</span>
-                        </div>
-                        <button type="button" class="project-toggle" aria-expanded="false"><i class="fas fa-chevron-down"></i> View details</button>
-                        <div class="project-details">
-                            <ul>
-                                <li>Developed QR code generation and scanning system with geolocation verification</li>
-                                <li>Built responsive React frontend with real-time attendance updates</li>
-                                <li>Implemented Flask/Node.js backend with MySQL database for data persistence</li>
-                                <li>Created automated reporting dashboard with data visualization and export features</li>
-                                <li>Deployed role-based access control for admin, instructor, and student roles</li>
-                            </ul>
-                        </div>
-                        <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Geo%20QR%20Attendance" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View Code
-                        </a>
-                    </div>
-                    
-                    <!-- Project Image Gallery -->
+                <article class="project-card">
                     <div class="project-media gallery">
-                        <img src="images/projects/attendance-1.png" alt="Geo QR Attendance System - Submission Form" />
-                        <img src="images/projects/attendance-2.png" alt="Geo QR Attendance System - Mobile View" />
-                        <img src="images/projects/attendance-3.png" alt="Geo QR Attendance System - Location Detection" />
-                        <img src="images/projects/attendance-4.png" alt="Geo QR Attendance System - Success Page" />
-                        <img src="images/projects/attendance-5.png" alt="Geo QR Attendance System - Database Records" />
+                        <img src="images/projects/attendance-1.png" alt="Geo QR Attendance" />
+                        <img src="images/projects/attendance-2.png" alt="" />
+                        <img src="images/projects/attendance-3.png" alt="" />
+                        <img src="images/projects/attendance-4.png" alt="" />
+                        <img src="images/projects/attendance-5.png" alt="" />
                     </div>
-                </div>
+                    <div class="project-card-content">
+                        <span class="project-badge">Full Stack</span>
+                        <h3>Geo QR Attendance</h3>
+                        <p class="project-desc">Geo-location attendance system for 500+ users. JWT, RBAC, dashboards. 75% faster reporting.</p>
+                        <div class="project-tech-pills">
+                            <span>Flask</span><span>React</span><span>MySQL</span><span>JWT</span>
+                        </div>
+                        <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Geo%20QR%20Attendance" target="_blank" rel="noopener" class="project-link">View Code <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </article>
 
-                <!-- Snow Detection -->
-                <div class="project-card project-snow" data-domain="computervision ml">
-                    <!-- Project Media -->
+                <!-- SnowSense -->
+                <article class="project-card">
                     <div class="project-media gallery">
-                        <img src="images/projects/snow-1.png" alt="Snow Detection System - Web Interface" />
-                        <img src="images/projects/snow-2.png" alt="Snow Detection System - Real-time Detection" />
+                        <img src="images/projects/snow-1.png" alt="SnowSense" />
+                        <img src="images/projects/snow-2.png" alt="" />
                     </div>
-                    
-                    <!-- Project Content -->
                     <div class="project-card-content">
-                        <div class="project-header">
-                            <i class="fas fa-snowflake project-icon"></i>
+                        <span class="project-badge">Computer Vision</span>
+                        <h3>SnowSense</h3>
+                        <p class="project-desc">Real-time snow detection with YOLOv8. 91% accuracy, 50+ FPS, Flask deployment.</p>
+                        <div class="project-tech-pills">
+                            <span>YOLOv8</span><span>OpenCV</span><span>Flask</span>
                         </div>
-                        
-                        <h3>SnowSense: Real-Time Snow Detection System</h3>
-                        <p class="project-tech">YOLOv8 | OpenCV | Flask | Computer Vision | Deep Learning</p>
-                        <p>Built an intelligent real-time computer vision system using YOLOv8 achieving 91% accuracy for automated snow detection. Optimized model deployment with Flask web application to process video streams at 50+ FPS. Mechanized inspection pipeline, reducing manual monitoring effort by 65%.</p>
-                        <div class="project-metrics">
-                            <span><i class="fas fa-bullseye"></i> 91% Accuracy</span>
-                            <span><i class="fas fa-tachometer-alt"></i> 50+ FPS</span>
-                            <span><i class="fas fa-robot"></i> 65% Automation</span>
-                        </div>
-                        <button type="button" class="project-toggle" aria-expanded="false"><i class="fas fa-chevron-down"></i> View details</button>
-                        <div class="project-details">
-                            <ul>
-                                <li>Trained YOLOv8 model on custom snow dataset with data augmentation techniques</li>
-                                <li>Developed responsive Flask web interface for real-time detection and monitoring</li>
-                                <li>Implemented efficient video processing pipeline with frame optimization</li>
-                            </ul>
-                        </div>
-                        <a href="https://github.com/bhaviss" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View Code
-                        </a>
+                        <a href="https://github.com/bhaviss" target="_blank" rel="noopener" class="project-link">View Code <i class="fas fa-external-link-alt"></i></a>
                     </div>
-                </div>
+                </article>
+
+                <!-- Chatbot -->
+                <article class="project-card">
+                    <div class="project-media">
+                        <img src="images/projects/chatbot-1.png" alt="Chatbot GUI" />
+                    </div>
+                    <div class="project-card-content">
+                        <span class="project-badge">NLP</span>
+                        <h3>Interactive Chatbot</h3>
+                        <p class="project-desc">Tkinter GUI chatbot with sentiment analysis, trivia quiz, and personalized responses.</p>
+                        <div class="project-tech-pills">
+                            <span>Python</span><span>Tkinter</span><span>NLTK</span>
+                        </div>
+                        <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Chatbot" target="_blank" rel="noopener" class="project-link">View Code <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </article>
 
                 <!-- CO2 Prediction -->
-                <div class="project-card project-simple">
-                    <div class="project-placeholder"><i class="fas fa-chart-line"></i></div>
-                    <div class="project-card-content">
-                        <div class="project-header">
-                            <i class="fas fa-chart-area project-icon"></i>
-                        </div>
-                        <h3>CO2 Prediction Forecasting</h3>
-                        <p class="project-tech">Python | Machine Learning | Regression</p>
-                        <p>Developed a predictive model to forecast CO2 emissions based on historical data and various environmental factors using advanced regression techniques.</p>
-                        <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Forecasting%20Emissions" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View Code
-                        </a>
-                    </div>
-                </div>
-
-                <!-- NLP Chatbot -->
-                <div class="project-card project-chatbot">
-                    <!-- Project Content -->
-                    <div class="project-card-content">
-                        <div class="project-header">
-                            <i class="fas fa-comments project-icon"></i>
-                            <span class="project-badge">NLP Project</span>
-                        </div>
-                        <h3>Interactive Chatbot with Tkinter GUI</h3>
-                        <p class="project-tech">Python | Tkinter | NLP | NLTK | Pattern Matching</p>
-                        <p>Developed an intelligent interactive chatbot with a graphical user interface using Tkinter. Features include sentiment analysis, personalized responses, age prediction algorithm, trivia quiz game, and time-based greetings for enhanced user engagement.</p>
-                        <div class="project-metrics">
-                            <span><i class="fas fa-brain"></i> Smart Responses</span>
-                            <span><i class="fas fa-gamepad"></i> Interactive Games</span>
-                        </div>
-                        <button type="button" class="project-toggle" aria-expanded="false"><i class="fas fa-chevron-down"></i> View details</button>
-                        <div class="project-details">
-                            <ul>
-                                <li>Built intuitive Tkinter GUI with real-time chat display and user input</li>
-                                <li>Implemented emotion detection and personalized responses based on user mood</li>
-                                <li>Created age prediction algorithm using mathematical remainders (Chinese Remainder Theorem)</li>
-                                <li>Integrated trivia quiz system with multiple questions and answer validation</li>
-                                <li>Added dynamic time-based greetings and conversational context awareness</li>
-                            </ul>
-                        </div>
-                        <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Chatbot" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View Code
-                        </a>
-                    </div>
-                    
+                <article class="project-card">
                     <div class="project-media">
-                        <img src="images/projects/chatbot-1.png" alt="Interactive Chatbot with Tkinter GUI - Conversation Interface" />
+                        <div class="project-placeholder"><i class="fas fa-chart-line"></i></div>
                     </div>
-                </div>
-
-                <!-- More Projects Grid -->
-                <div class="more-projects-grid">
-                    <!-- University Management System -->
-                    <div class="project-card project-simple" data-domain="other">
-                        <div class="project-placeholder"><i class="fas fa-university"></i></div>
-                        <div class="project-card-content">
-                            <div class="project-header">
-                                <i class="fas fa-university project-icon"></i>
-                            </div>
-                            <h3>University Management System</h3>
-                            <p class="project-tech">MySQL | PHP | Database Design</p>
-                            <p>Created a comprehensive database management system for a university, handling student records, course management, and faculty details with a PHP web interface.</p>
-                            <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/UniversityDB%20project" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i> View Code
-                            </a>
+                    <div class="project-card-content">
+                        <span class="project-badge">ML</span>
+                        <h3>CO2 Prediction</h3>
+                        <p class="project-desc">Regression model to forecast CO2 emissions from historical and environmental data.</p>
+                        <div class="project-tech-pills">
+                            <span>Python</span><span>Regression</span>
                         </div>
+                        <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Forecasting%20Emissions" target="_blank" rel="noopener" class="project-link">View Code <i class="fas fa-external-link-alt"></i></a>
                     </div>
+                </article>
 
-                    <!-- OTT Dashboard -->
-                    <div class="project-card project-simple" data-domain="data">
+                <article class="project-card">
+                    <div class="project-placeholder"><i class="fas fa-university"></i></div>
+                    <div class="project-card-content">
+                        <span class="project-badge">Database</span>
+                        <h3>University Management System</h3>
+                        <p class="project-desc">Database system for student records, courses, faculty. PHP web interface.</p>
+                        <div class="project-tech-pills"><span>MySQL</span><span>PHP</span></div>
+                        <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/UniversityDB%20project" target="_blank" rel="noopener" class="project-link">View Code <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-media">
                         <div class="project-placeholder"><i class="fas fa-tv"></i></div>
-                        <div class="project-card-content">
-                            <div class="project-header">
-                                <i class="fas fa-tv project-icon"></i>
-                            </div>
-                            <h3>OTT Platform Dashboard</h3>
-                            <p class="project-tech">Power BI | Data Visualization</p>
-                            <p>Built a dynamic Power BI dashboard for an OTT platform, providing detailed insights and visualizations for user behavior, content trends, and revenue metrics.</p>
-                            <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Powerbi" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i> View Code
-                            </a>
-                        </div>
                     </div>
-
-                    <!-- Air Delay Prediction -->
-                    <div class="project-card project-simple" data-domain="data ml">
+                    <div class="project-card-content">
+                        <span class="project-badge">Data</span>
+                        <h3>OTT Platform Dashboard</h3>
+                        <p class="project-desc">Power BI dashboard for user behavior, content trends, revenue.</p>
+                        <div class="project-tech-pills"><span>Power BI</span></div>
+                        <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Powerbi" target="_blank" rel="noopener" class="project-link">View Code <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-media">
                         <div class="project-placeholder"><i class="fas fa-plane"></i></div>
-                        <div class="project-card-content">
-                            <div class="project-header">
-                                <i class="fas fa-plane project-icon"></i>
-                            </div>
-                            <h3>Air Delay Prediction</h3>
-                            <p class="project-tech">Python | Machine Learning | Regression</p>
-                            <p>Implemented a regression model to predict airline delays based on historical data such as weather conditions, airport traffic, and flight schedules.</p>
-                            <a href="https://github.com/bhaviss/Projects_bhavi/blob/master/ML/Regression_Airlines_Delay.ipynb" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i> View Code
-                            </a>
-                        </div>
                     </div>
-
-                    <!-- Exoplanet Classification -->
-                    <div class="project-card project-simple" data-domain="ml data">
+                    <div class="project-card-content">
+                        <span class="project-badge">ML</span>
+                        <h3>Air Delay Prediction</h3>
+                        <p class="project-desc">Regression model for airline delays from weather and traffic data.</p>
+                        <div class="project-tech-pills"><span>Python</span><span>Regression</span></div>
+                        <a href="https://github.com/bhaviss/Projects_bhavi/blob/master/ML/Regression_Airlines_Delay.ipynb" target="_blank" rel="noopener" class="project-link">View Code <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-media">
                         <div class="project-placeholder"><i class="fas fa-globe"></i></div>
-                        <div class="project-card-content">
-                            <div class="project-header">
-                                <i class="fas fa-globe project-icon"></i>
-                            </div>
-                            <h3>Exoplanet Classification</h3>
-                            <p class="project-tech">Python | Machine Learning | Classification</p>
-                            <p>Built a classification model to predict exoplanet characteristics using machine learning algorithms, analyzing astronomical features to classify exoplanets.</p>
-                            <a href="https://github.com/bhaviss/Projects_bhavi/blob/master/ML/Classification_Exoplanet%20.ipynb" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i> View Code
-                            </a>
-                        </div>
                     </div>
-
-                    <!-- Socket Programming -->
-                    <div class="project-card project-simple" data-domain="other">
+                    <div class="project-card-content">
+                        <span class="project-badge">ML</span>
+                        <h3>Exoplanet Classification</h3>
+                        <p class="project-desc">Classification model for exoplanet characteristics from astronomical features.</p>
+                        <div class="project-tech-pills"><span>Python</span><span>Classification</span></div>
+                        <a href="https://github.com/bhaviss/Projects_bhavi/blob/master/ML/Classification_Exoplanet%20.ipynb" target="_blank" rel="noopener" class="project-link">View Code <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-media">
                         <div class="project-placeholder"><i class="fas fa-network-wired"></i></div>
-                        <div class="project-card-content">
-                            <div class="project-header">
-                                <i class="fas fa-network-wired project-icon"></i>
-                            </div>
-                            <h3>Socket Programming</h3>
-                            <p class="project-tech">C / Python | Sockets | TCP/IP | Network Programming</p>
-                            <p>Implemented client-server applications using socket programming for network communication. Built programs demonstrating TCP/IP concepts and inter-process communication.</p>
-                            <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Socket%20Programming" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i> View Code
-                            </a>
-                        </div>
                     </div>
-                </div>
-                <div class="projects-github-wrap">
-                    <a href="https://github.com/bhaviss/Projects_bhavi" target="_blank" class="projects-github-link">
-                        <i class="fab fa-github"></i> View all projects on GitHub
-                    </a>
-                </div>
+                    <div class="project-card-content">
+                        <span class="project-badge">Networking</span>
+                        <h3>Socket Programming</h3>
+                        <p class="project-desc">Client-server apps with sockets. TCP/IP, inter-process communication.</p>
+                        <div class="project-tech-pills"><span>C</span><span>Python</span><span>TCP/IP</span></div>
+                        <a href="https://github.com/bhaviss/Projects_bhavi/tree/master/Socket%20Programming" target="_blank" rel="noopener" class="project-link">View Code <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </article>
+            </div>
+            <div class="projects-github-wrap">
+                <a href="https://github.com/bhaviss/Projects_bhavi" target="_blank" rel="noopener" class="projects-github-link"><i class="fab fa-github"></i> All projects on GitHub</a>
             </div>
         </div>
     </section>
@@ -633,19 +525,17 @@
                 </div>
                 <div class="leave-message">
                     <h3>Leave a message</h3>
-                    <!-- Replace YOUR_FORM_ID with your Formspree form ID from https://formspree.io (create a form there, copy the ID from the action URL) -->
-                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                        <input type="hidden" name="_subject" value="Portfolio contact from bhaviss.com">
+                    <p class="contact-form-intro">Fill in the form and click Send—your email app will open with a message addressed to me.</p>
+                    <form class="contact-form" id="contactForm" action="#" method="get" novalidate>
                         <label for="contact-name">Name</label>
-                        <input type="text" id="contact-name" name="name" required placeholder="Your name">
+                        <input type="text" id="contact-name" name="name" required placeholder="Your name" autocomplete="name">
                         <label for="contact-email">Email</label>
-                        <input type="email" id="contact-email" name="email" required placeholder="your@email.com">
+                        <input type="email" id="contact-email" name="email" required placeholder="your@email.com" autocomplete="email">
                         <label for="contact-msg">Message</label>
                         <textarea id="contact-msg" name="message" rows="4" required placeholder="Your message..."></textarea>
                         <button type="submit" class="btn btn-primary">Send message</button>
                     </form>
                     <p class="contact-form-note">Or email me directly at <a href="mailto:bhavithrass@gmail.com">bhavithrass@gmail.com</a>.</p>
-                    <p class="contact-form-setup">To receive messages here: create a free form at <a href="https://formspree.io" target="_blank" rel="noopener">formspree.io</a>, then in <code>index.html</code> replace <code>YOUR_FORM_ID</code> in the form action with your form&rsquo;s ID.</p>
                 </div>
             </div>
         </div>
@@ -671,6 +561,6 @@
         <div class="modal-caption"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=8"></script>
 </body>
 </html>
