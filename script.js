@@ -524,6 +524,40 @@ document.querySelectorAll('.project-toggle').forEach(btn => {
     });
 });
 
+// Projects: filter by domain
+const projectsContainer = document.getElementById('projectsContainer');
+const filterPills = document.querySelectorAll('.filter-pill[data-domain]');
+const projectCards = projectsContainer ? Array.from(projectsContainer.querySelectorAll('.project-card[data-domain]')) : [];
+
+filterPills.forEach(pill => {
+    pill.addEventListener('click', function() {
+        const domain = this.getAttribute('data-domain');
+        filterPills.forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        projectCards.forEach(card => {
+            const cardDomains = (card.getAttribute('data-domain') || '').split(/\s+/);
+            const show = domain === 'all' || cardDomains.includes(domain);
+            card.classList.toggle('filter-hidden', !show);
+        });
+    });
+});
+
+// Projects: shuffle order
+const shuffleBtn = document.querySelector('.projects-shuffle');
+if (shuffleBtn && projectsContainer) {
+    const allCards = Array.from(projectsContainer.children).filter(el => el.classList.contains('project-card') || el.classList.contains('more-projects-grid'));
+    const getCards = () => {
+        const cards = [];
+        projectsContainer.querySelectorAll('.project-card').forEach(c => cards.push(c));
+        return cards;
+    };
+    shuffleBtn.addEventListener('click', function() {
+        const cards = getCards();
+        const shuffled = cards.slice().sort(() => Math.random() - 0.5);
+        shuffled.forEach(card => projectsContainer.appendChild(card));
+    });
+}
+
 // Enhanced skill category animation on scroll with stagger
 const skillObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

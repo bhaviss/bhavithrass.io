@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bhavithra Suruliyandi Selvakumar - Portfolio</title>
     <link rel="stylesheet" href="style.css?v=3">
+    <!-- Devicon (tech logos for skills) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -100,84 +102,84 @@
         </div>
     </section>
 
-    <!-- Experience Section - Zigzag layout -->
+    <!-- Experience Section – closed letter / envelope style, click to open -->
     <section id="experience">
         <div class="container container--wide">
             <h2 class="section-title">Professional Experience</h2>
-            <p class="experience-intro">Where I’ve been building and learning.</p>
+            <p class="experience-intro">Like letters in an inbox — click to open and read.</p>
             <div class="exp-spine">
                 <div class="exp-spine-line" aria-hidden="true"></div>
-                <div class="exp-list">
-                    <article class="exp-card exp-card--left" data-exp-role="Research Assistant – AI & ML" data-exp-company="Concordia University of Edmonton, Edmonton, AB" data-exp-date="Jan 2026 – Present" data-exp-tags="Python · ML · PyTorch · Cloud">
+                <div class="exp-list exp-letters">
+                    <article class="exp-letter exp-card exp-card--left" data-exp-role="Research Assistant – AI & ML" data-exp-company="Concordia University of Edmonton, Edmonton, AB" data-exp-date="Jan 2026 – Present" data-exp-tags="Python · ML · PyTorch · Cloud">
                         <div class="exp-card__connector">
                             <span class="exp-card__dot"></span>
                         </div>
-                        <div class="exp-card__content" tabindex="0" role="button" aria-expanded="false" aria-label="View details: Research Assistant">
-                            <span class="exp-card__icon" aria-hidden="true"><i class="fas fa-flask"></i></span>
+                        <div class="exp-card__content exp-letter__face" tabindex="0" role="button" aria-expanded="false" aria-label="Open: Research Assistant">
+                            <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope-open-text"></i></span>
                             <span class="exp-card__date">Jan 2026 – Present</span>
                             <span class="exp-card__badge">Current</span>
                             <h3 class="exp-card__role">Research Assistant – AI & ML</h3>
                             <p class="exp-card__company">Concordia University of Edmonton, Edmonton, AB</p>
-                            <div class="exp-card__tags">Python · ML · PyTorch · Cloud</div>
-                            <ul class="exp-card__points">
+                            <span class="exp-letter__open-hint"><i class="fas fa-hand-pointer"></i> Click to open letter</span>
+                            <div class="exp-card__tags" aria-hidden="true">Python · ML · PyTorch · Cloud</div>
+                            <ul class="exp-card__points" aria-hidden="true">
                                 <li>AI/ML research with LLMs and multimodal systems; Python, TensorFlow, PyTorch, cloud</li>
                                 <li>Large-scale data processing and model validation</li>
                             </ul>
-                            <span class="exp-card__hint"><i class="fas fa-chevron-right"></i> Click to view full details</span>
                         </div>
                     </article>
 
-                    <article class="exp-card exp-card--right" data-exp-role="Sessional Instructor (Part-Time)" data-exp-company="Concordia University of Edmonton, Edmonton, AB" data-exp-date="Jul 2025 – Dec 2025" data-exp-tags="Python · Cloud · DevOps · Teaching">
+                    <article class="exp-letter exp-card exp-card--right" data-exp-role="Sessional Instructor (Part-Time)" data-exp-company="Concordia University of Edmonton, Edmonton, AB" data-exp-date="Jul 2025 – Dec 2025" data-exp-tags="Python · Cloud · DevOps · Teaching">
                         <div class="exp-card__connector">
                             <span class="exp-card__dot"></span>
                         </div>
-                        <div class="exp-card__content" tabindex="0" role="button" aria-expanded="false" aria-label="View details: Sessional Instructor">
-                            <span class="exp-card__icon" aria-hidden="true"><i class="fas fa-chalkboard-teacher"></i></span>
+                        <div class="exp-card__content exp-letter__face" tabindex="0" role="button" aria-expanded="false" aria-label="Open: Sessional Instructor">
+                            <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope-open-text"></i></span>
                             <span class="exp-card__date">Jul 2025 – Dec 2025</span>
                             <h3 class="exp-card__role">Sessional Instructor (Part-Time)</h3>
                             <p class="exp-card__company">Concordia University of Edmonton, Edmonton, AB</p>
-                            <div class="exp-card__tags">Python · Cloud · DevOps · Teaching</div>
-                            <ul class="exp-card__points">
+                            <span class="exp-letter__open-hint"><i class="fas fa-hand-pointer"></i> Click to open letter</span>
+                            <div class="exp-card__tags" aria-hidden="true">Python · Cloud · DevOps · Teaching</div>
+                            <ul class="exp-card__points" aria-hidden="true">
                                 <li>Taught Python and cloud computing; mentored 50+ students in IT ops, automation, DevOps</li>
                             </ul>
-                            <span class="exp-card__hint"><i class="fas fa-chevron-right"></i> Click to view full details</span>
                         </div>
                     </article>
 
-                    <article class="exp-card exp-card--left" data-exp-role="IT & Cloud Operations Intern" data-exp-company="BinaryLogic, Edmonton, AB" data-exp-date="Oct 2025 – Jan 2026" data-exp-tags="M365 · Power BI · WordPress · IT Ops">
+                    <article class="exp-letter exp-card exp-card--left" data-exp-role="IT & Cloud Operations Intern" data-exp-company="BinaryLogic, Edmonton, AB" data-exp-date="Oct 2025 – Jan 2026" data-exp-tags="M365 · Power BI · WordPress · IT Ops">
                         <div class="exp-card__connector">
                             <span class="exp-card__dot"></span>
                         </div>
-                        <div class="exp-card__content" tabindex="0" role="button" aria-expanded="false" aria-label="View details: IT & Cloud Operations Intern">
-                            <span class="exp-card__icon" aria-hidden="true"><i class="fas fa-server"></i></span>
+                        <div class="exp-card__content exp-letter__face" tabindex="0" role="button" aria-expanded="false" aria-label="Open: IT & Cloud Operations Intern">
+                            <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope-open-text"></i></span>
                             <span class="exp-card__date">Oct 2025 – Jan 2026</span>
                             <h3 class="exp-card__role">IT & Cloud Operations Intern</h3>
                             <p class="exp-card__company">BinaryLogic, Edmonton, AB</p>
-                            <div class="exp-card__tags">M365 · Power BI · WordPress · IT Ops</div>
-                            <ul class="exp-card__points">
+                            <span class="exp-letter__open-hint"><i class="fas fa-hand-pointer"></i> Click to open letter</span>
+                            <div class="exp-card__tags" aria-hidden="true">M365 · Power BI · WordPress · IT Ops</div>
+                            <ul class="exp-card__points" aria-hidden="true">
                                 <li>Microsoft 365, IT troubleshooting, system maintenance; 30% efficiency improvement</li>
                                 <li>Power BI reports, WordPress projects; 25% faster reporting</li>
                             </ul>
-                            <span class="exp-card__hint"><i class="fas fa-chevron-right"></i> Click to view full details</span>
                         </div>
                     </article>
 
-                    <article class="exp-card exp-card--right" data-exp-role="Junior Data Analyst" data-exp-company="Besant Technologies, Chennai, India" data-exp-date="Jul 2022 – Jul 2024" data-exp-tags="AWS · GCP · ETL · Tableau · Airflow">
+                    <article class="exp-letter exp-card exp-card--right" data-exp-role="Junior Data Analyst" data-exp-company="Besant Technologies, Chennai, India" data-exp-date="Jul 2022 – Jul 2024" data-exp-tags="AWS · GCP · ETL · Tableau · Airflow">
                         <div class="exp-card__connector">
                             <span class="exp-card__dot"></span>
                         </div>
-                        <div class="exp-card__content" tabindex="0" role="button" aria-expanded="false" aria-label="View details: Junior Data Analyst">
-                            <span class="exp-card__icon" aria-hidden="true"><i class="fas fa-chart-line"></i></span>
+                        <div class="exp-card__content exp-letter__face" tabindex="0" role="button" aria-expanded="false" aria-label="Open: Junior Data Analyst">
+                            <span class="exp-letter__seal" aria-hidden="true"><i class="fas fa-envelope-open-text"></i></span>
                             <span class="exp-card__date">Jul 2022 – Jul 2024</span>
                             <h3 class="exp-card__role">Junior Data Analyst</h3>
                             <p class="exp-card__company">Besant Technologies, Chennai, India</p>
-                            <div class="exp-card__tags">AWS · GCP · ETL · Tableau · Airflow</div>
-                            <ul class="exp-card__points">
+                            <span class="exp-letter__open-hint"><i class="fas fa-hand-pointer"></i> Click to open letter</span>
+                            <div class="exp-card__tags" aria-hidden="true">AWS · GCP · ETL · Tableau · Airflow</div>
+                            <ul class="exp-card__points" aria-hidden="true">
                                 <li>AWS Redshift, GCP BigQuery; ETL pipelines (1M+ records), 40% lower latency</li>
                                 <li>Power BI & Tableau dashboards; 50% faster stakeholder reporting</li>
                                 <li>Apache Airflow & NiFi automation; 65% less manual effort</li>
                             </ul>
-                            <span class="exp-card__hint"><i class="fas fa-chevron-right"></i> Click to view full details</span>
                         </div>
                     </article>
                 </div>
@@ -203,9 +205,21 @@
     <section id="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-container">
+            <div class="projects-filter-bar">
+                <span class="projects-filter-label">Filter by domain:</span>
+                <div class="projects-filter-pills">
+                    <button type="button" class="filter-pill active" data-domain="all">All</button>
+                    <button type="button" class="filter-pill" data-domain="ml">ML / AI</button>
+                    <button type="button" class="filter-pill" data-domain="fullstack">Full Stack</button>
+                    <button type="button" class="filter-pill" data-domain="computervision">Computer Vision</button>
+                    <button type="button" class="filter-pill" data-domain="data">Data</button>
+                    <button type="button" class="filter-pill" data-domain="other">Other</button>
+                </div>
+                <button type="button" class="projects-shuffle" aria-label="Shuffle project order"><i class="fas fa-random"></i> Shuffle</button>
+            </div>
+            <div class="projects-container" id="projectsContainer">
                 <!-- SpaceVisionAI -->
-                <div class="project-card featured">
+                <div class="project-card featured" data-domain="ml computervision">
                     <!-- Project Media -->
                     <div class="project-media" id="spaceVideoContainer">
                         <video id="spaceVideo" controls playsinline webkit-playsinline preload="metadata" poster="images/projects/space-debris-thumb.jpg" data-caption="Real-time Space Debris Detection and Tracking">
@@ -245,7 +259,7 @@
                 </div>
 
                 <!-- Geo QR Attendance -->
-                <div class="project-card project-attendance">
+                <div class="project-card project-attendance" data-domain="fullstack">
                     <!-- Project Content -->
                     <div class="project-card-content">
                         <div class="project-header">
@@ -287,7 +301,7 @@
                 </div>
 
                 <!-- Snow Detection -->
-                <div class="project-card project-snow">
+                <div class="project-card project-snow" data-domain="computervision ml">
                     <!-- Project Media -->
                     <div class="project-media gallery">
                         <img src="images/projects/snow-1.png" alt="Snow Detection System - Web Interface" />
@@ -376,7 +390,7 @@
                 <!-- More Projects Grid -->
                 <div class="more-projects-grid">
                     <!-- University Management System -->
-                    <div class="project-card project-simple">
+                    <div class="project-card project-simple" data-domain="other">
                         <div class="project-placeholder"><i class="fas fa-university"></i></div>
                         <div class="project-card-content">
                             <div class="project-header">
@@ -392,7 +406,7 @@
                     </div>
 
                     <!-- OTT Dashboard -->
-                    <div class="project-card project-simple">
+                    <div class="project-card project-simple" data-domain="data">
                         <div class="project-placeholder"><i class="fas fa-tv"></i></div>
                         <div class="project-card-content">
                             <div class="project-header">
@@ -408,7 +422,7 @@
                     </div>
 
                     <!-- Air Delay Prediction -->
-                    <div class="project-card project-simple">
+                    <div class="project-card project-simple" data-domain="data ml">
                         <div class="project-placeholder"><i class="fas fa-plane"></i></div>
                         <div class="project-card-content">
                             <div class="project-header">
@@ -424,7 +438,7 @@
                     </div>
 
                     <!-- Exoplanet Classification -->
-                    <div class="project-card project-simple">
+                    <div class="project-card project-simple" data-domain="ml data">
                         <div class="project-placeholder"><i class="fas fa-globe"></i></div>
                         <div class="project-card-content">
                             <div class="project-header">
@@ -440,7 +454,7 @@
                     </div>
 
                     <!-- Socket Programming -->
-                    <div class="project-card project-simple">
+                    <div class="project-card project-simple" data-domain="other">
                         <div class="project-placeholder"><i class="fas fa-network-wired"></i></div>
                         <div class="project-card-content">
                             <div class="project-header">
@@ -472,83 +486,83 @@
                 <div class="skill-category">
                     <h3><i class="fas fa-cloud"></i> Cloud Platforms</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">AWS S3</span>
-                        <span class="skill-tag">AWS Redshift</span>
-                        <span class="skill-tag">AWS IAM</span>
-                        <span class="skill-tag">Microsoft 365</span>
-                        <span class="skill-tag">GCP</span>
-                        <span class="skill-tag">Azure</span>
-                        <span class="skill-tag">BigQuery</span>
+                        <span class="skill-tag" title="AWS S3"><i class="devicon-amazonwebservices-plain-wordmark"></i><span>AWS S3</span></span>
+                        <span class="skill-tag" title="AWS Redshift"><i class="devicon-amazonwebservices-plain-wordmark"></i><span>AWS Redshift</span></span>
+                        <span class="skill-tag" title="AWS IAM"><i class="devicon-amazonwebservices-plain-wordmark"></i><span>AWS IAM</span></span>
+                        <span class="skill-tag" title="Microsoft 365"><i class="devicon-microsoft-plain"></i><span>MS365</span></span>
+                        <span class="skill-tag" title="Google Cloud"><i class="devicon-googlecloud-plain"></i><span>GCP</span></span>
+                        <span class="skill-tag" title="Azure"><i class="devicon-azure-plain"></i><span>Azure</span></span>
+                        <span class="skill-tag" title="BigQuery"><i class="devicon-googlecloud-plain"></i><span>BigQuery</span></span>
                     </div>
                 </div>
 
                 <div class="skill-category">
                     <h3><i class="fas fa-server"></i> Cloud & DevOps</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">CI/CD Pipelines</span>
-                        <span class="skill-tag">Linux Administration</span>
-                        <span class="skill-tag">Cloud Security</span>
+                        <span class="skill-tag" title="Docker"><i class="devicon-docker-plain"></i><span>Docker</span></span>
+                        <span class="skill-tag" title="Kubernetes"><i class="devicon-kubernetes-plain"></i><span>Kubernetes</span></span>
+                        <span class="skill-tag" title="CI/CD"><i class="fas fa-sync-alt"></i><span>CI/CD</span></span>
+                        <span class="skill-tag" title="Linux"><i class="devicon-linux-plain"></i><span>Linux</span></span>
+                        <span class="skill-tag" title="Cloud Security"><i class="fas fa-shield-alt"></i><span>Security</span></span>
                     </div>
                 </div>
 
                 <div class="skill-category">
                     <h3><i class="fas fa-database"></i> Data Engineering</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Apache Airflow</span>
-                        <span class="skill-tag">Apache NiFi</span>
-                        <span class="skill-tag">ETL Pipelines</span>
-                        <span class="skill-tag">Big Data Processing</span>
+                        <span class="skill-tag" title="Apache Airflow"><i class="devicon-apache-plain"></i><span>Airflow</span></span>
+                        <span class="skill-tag" title="Apache NiFi"><i class="devicon-apache-plain"></i><span>NiFi</span></span>
+                        <span class="skill-tag" title="ETL"><i class="fas fa-exchange-alt"></i><span>ETL</span></span>
+                        <span class="skill-tag" title="Big Data"><i class="fas fa-database"></i><span>Big Data</span></span>
                     </div>
                 </div>
 
                 <div class="skill-category">
                     <h3><i class="fas fa-code"></i> Programming Languages</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag" title="Python"><i class="devicon-python-plain"></i><span>Python</span></span>
+                        <span class="skill-tag" title="SQL"><i class="fas fa-database"></i><span>SQL</span></span>
+                        <span class="skill-tag" title="Java"><i class="devicon-java-plain"></i><span>Java</span></span>
+                        <span class="skill-tag" title="R"><i class="devicon-r-plain"></i><span>R</span></span>
+                        <span class="skill-tag" title="C++"><i class="devicon-cplusplus-plain"></i><span>C++</span></span>
+                        <span class="skill-tag" title="JavaScript"><i class="devicon-javascript-plain"></i><span>JavaScript</span></span>
                     </div>
                 </div>
 
                 <div class="skill-category">
                     <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">LLMs</span>
-                        <span class="skill-tag">NLP</span>
-                        <span class="skill-tag">Computer Vision</span>
-                        <span class="skill-tag">OpenCV</span>
-                        <span class="skill-tag">YOLO</span>
+                        <span class="skill-tag" title="TensorFlow"><i class="devicon-tensorflow-original"></i><span>TensorFlow</span></span>
+                        <span class="skill-tag" title="PyTorch"><i class="devicon-pytorch-plain"></i><span>PyTorch</span></span>
+                        <span class="skill-tag" title="Scikit-learn"><i class="devicon-python-plain"></i><span>Scikit-learn</span></span>
+                        <span class="skill-tag" title="LLMs"><i class="fas fa-brain"></i><span>LLMs</span></span>
+                        <span class="skill-tag" title="NLP"><i class="fas fa-language"></i><span>NLP</span></span>
+                        <span class="skill-tag" title="Computer Vision"><i class="fas fa-eye"></i><span>CV</span></span>
+                        <span class="skill-tag" title="OpenCV"><i class="devicon-opencv-plain"></i><span>OpenCV</span></span>
+                        <span class="skill-tag" title="YOLO"><i class="fas fa-bullseye"></i><span>YOLO</span></span>
                     </div>
                 </div>
 
                 <div class="skill-category">
                     <h3><i class="fas fa-storage"></i> Databases</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag" title="MySQL"><i class="devicon-mysql-plain"></i><span>MySQL</span></span>
+                        <span class="skill-tag" title="PostgreSQL"><i class="devicon-postgresql-plain"></i><span>PostgreSQL</span></span>
+                        <span class="skill-tag" title="MongoDB"><i class="devicon-mongodb-plain"></i><span>MongoDB</span></span>
                     </div>
                 </div>
 
                 <div class="skill-category">
                     <h3><i class="fas fa-tools"></i> Tools & Frameworks</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">Tableau</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">JIRA</span>
+                        <span class="skill-tag" title="Flask"><i class="devicon-flask-original"></i><span>Flask</span></span>
+                        <span class="skill-tag" title="FastAPI"><i class="devicon-fastapi-plain"></i><span>FastAPI</span></span>
+                        <span class="skill-tag" title="React"><i class="devicon-react-plain"></i><span>React</span></span>
+                        <span class="skill-tag" title="REST APIs"><i class="fas fa-plug"></i><span>REST</span></span>
+                        <span class="skill-tag" title="Power BI"><i class="devicon-microsoft-plain"></i><span>Power BI</span></span>
+                        <span class="skill-tag" title="Tableau"><i class="fas fa-chart-bar"></i><span>Tableau</span></span>
+                        <span class="skill-tag" title="Git"><i class="devicon-git-plain"></i><span>Git</span></span>
+                        <span class="skill-tag" title="JIRA"><i class="devicon-jira-plain"></i><span>JIRA</span></span>
                     </div>
                 </div>
             </div>
