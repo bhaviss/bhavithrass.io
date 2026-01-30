@@ -451,11 +451,56 @@ function createFloatingParticles() {
     }
 }
 
-// Experience cards: subtle hover on dot and content
+// Experience cards: hover + click to open detail drawer
+const expDrawer = document.getElementById('exp-drawer');
+const expDrawerBackdrop = document.querySelector('.exp-drawer__backdrop');
+const expDrawerClose = document.querySelector('.exp-drawer__close');
+const expDrawerDate = document.getElementById('exp-drawer-date');
+const expDrawerRole = document.getElementById('exp-drawer-role');
+const expDrawerCompany = document.getElementById('exp-drawer-company');
+const expDrawerTags = document.getElementById('exp-drawer-tags');
+const expDrawerPoints = document.getElementById('exp-drawer-points');
+
+function openExpDrawer(card) {
+    if (!expDrawer || !expDrawerPoints) return;
+    const content = card.querySelector('.exp-card__content');
+    if (!content) return;
+    expDrawerDate.textContent = card.dataset.expDate || '';
+    expDrawerRole.textContent = card.dataset.expRole || '';
+    expDrawerCompany.textContent = card.dataset.expCompany || '';
+    expDrawerTags.textContent = card.dataset.expTags || '';
+    const pointsList = content.querySelector('.exp-card__points');
+    expDrawerPoints.innerHTML = '';
+    if (pointsList) {
+        pointsList.querySelectorAll('li').forEach(li => {
+            const newLi = document.createElement('li');
+            newLi.textContent = li.textContent;
+            expDrawerPoints.appendChild(newLi);
+        });
+    }
+    expDrawer.setAttribute('aria-hidden', 'false');
+    expDrawer.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeExpDrawer() {
+    if (!expDrawer) return;
+    expDrawer.setAttribute('aria-hidden', 'true');
+    expDrawer.classList.remove('is-open');
+    document.body.style.overflow = '';
+}
+
+if (expDrawerBackdrop) expDrawerBackdrop.addEventListener('click', closeExpDrawer);
+if (expDrawerClose) expDrawerClose.addEventListener('click', closeExpDrawer);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && expDrawer && expDrawer.classList.contains('is-open')) closeExpDrawer(); });
+
 document.querySelectorAll('.exp-card').forEach((card) => {
     const content = card.querySelector('.exp-card__content');
     const dot = card.querySelector('.exp-card__dot');
     if (!content || !dot) return;
+
+    content.addEventListener('click', (e) => { e.preventDefault(); openExpDrawer(card); });
+    content.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openExpDrawer(card); } });
 
     card.addEventListener('mouseenter', function() {
         dot.style.transform = 'scale(1.25)';
@@ -465,6 +510,17 @@ document.querySelectorAll('.exp-card').forEach((card) => {
     card.addEventListener('mouseleave', function() {
         dot.style.transform = '';
         dot.style.boxShadow = '';
+    });
+});
+
+// Project cards: View details toggle
+document.querySelectorAll('.project-toggle').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const details = this.nextElementSibling;
+        if (!details || !details.classList.contains('project-details')) return;
+        const isExpanded = details.classList.toggle('expanded');
+        btn.setAttribute('aria-expanded', isExpanded);
+        btn.innerHTML = isExpanded ? '<i class="fas fa-chevron-down"></i> Hide details' : '<i class="fas fa-chevron-down"></i> View details';
     });
 });
 

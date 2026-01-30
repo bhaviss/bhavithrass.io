@@ -108,11 +108,11 @@
             <div class="exp-spine">
                 <div class="exp-spine-line" aria-hidden="true"></div>
                 <div class="exp-list">
-                    <article class="exp-card exp-card--left">
+                    <article class="exp-card exp-card--left" data-exp-role="Research Assistant – AI & ML" data-exp-company="Concordia University of Edmonton, Edmonton, AB" data-exp-date="Jan 2026 – Present" data-exp-tags="Python · ML · PyTorch · Cloud">
                         <div class="exp-card__connector">
                             <span class="exp-card__dot"></span>
                         </div>
-                        <div class="exp-card__content">
+                        <div class="exp-card__content" tabindex="0" role="button" aria-expanded="false" aria-label="View details: Research Assistant">
                             <span class="exp-card__icon" aria-hidden="true"><i class="fas fa-flask"></i></span>
                             <span class="exp-card__date">Jan 2026 – Present</span>
                             <span class="exp-card__badge">Current</span>
@@ -123,14 +123,15 @@
                                 <li>AI/ML research with LLMs and multimodal systems; Python, TensorFlow, PyTorch, cloud</li>
                                 <li>Large-scale data processing and model validation</li>
                             </ul>
+                            <span class="exp-card__hint"><i class="fas fa-chevron-right"></i> Click to view full details</span>
                         </div>
                     </article>
 
-                    <article class="exp-card exp-card--right">
+                    <article class="exp-card exp-card--right" data-exp-role="Sessional Instructor (Part-Time)" data-exp-company="Concordia University of Edmonton, Edmonton, AB" data-exp-date="Jul 2025 – Dec 2025" data-exp-tags="Python · Cloud · DevOps · Teaching">
                         <div class="exp-card__connector">
                             <span class="exp-card__dot"></span>
                         </div>
-                        <div class="exp-card__content">
+                        <div class="exp-card__content" tabindex="0" role="button" aria-expanded="false" aria-label="View details: Sessional Instructor">
                             <span class="exp-card__icon" aria-hidden="true"><i class="fas fa-chalkboard-teacher"></i></span>
                             <span class="exp-card__date">Jul 2025 – Dec 2025</span>
                             <h3 class="exp-card__role">Sessional Instructor (Part-Time)</h3>
@@ -139,14 +140,15 @@
                             <ul class="exp-card__points">
                                 <li>Taught Python and cloud computing; mentored 50+ students in IT ops, automation, DevOps</li>
                             </ul>
+                            <span class="exp-card__hint"><i class="fas fa-chevron-right"></i> Click to view full details</span>
                         </div>
                     </article>
 
-                    <article class="exp-card exp-card--left">
+                    <article class="exp-card exp-card--left" data-exp-role="IT & Cloud Operations Intern" data-exp-company="BinaryLogic, Edmonton, AB" data-exp-date="Oct 2025 – Jan 2026" data-exp-tags="M365 · Power BI · WordPress · IT Ops">
                         <div class="exp-card__connector">
                             <span class="exp-card__dot"></span>
                         </div>
-                        <div class="exp-card__content">
+                        <div class="exp-card__content" tabindex="0" role="button" aria-expanded="false" aria-label="View details: IT & Cloud Operations Intern">
                             <span class="exp-card__icon" aria-hidden="true"><i class="fas fa-server"></i></span>
                             <span class="exp-card__date">Oct 2025 – Jan 2026</span>
                             <h3 class="exp-card__role">IT & Cloud Operations Intern</h3>
@@ -156,14 +158,15 @@
                                 <li>Microsoft 365, IT troubleshooting, system maintenance; 30% efficiency improvement</li>
                                 <li>Power BI reports, WordPress projects; 25% faster reporting</li>
                             </ul>
+                            <span class="exp-card__hint"><i class="fas fa-chevron-right"></i> Click to view full details</span>
                         </div>
                     </article>
 
-                    <article class="exp-card exp-card--right">
+                    <article class="exp-card exp-card--right" data-exp-role="Junior Data Analyst" data-exp-company="Besant Technologies, Chennai, India" data-exp-date="Jul 2022 – Jul 2024" data-exp-tags="AWS · GCP · ETL · Tableau · Airflow">
                         <div class="exp-card__connector">
                             <span class="exp-card__dot"></span>
                         </div>
-                        <div class="exp-card__content">
+                        <div class="exp-card__content" tabindex="0" role="button" aria-expanded="false" aria-label="View details: Junior Data Analyst">
                             <span class="exp-card__icon" aria-hidden="true"><i class="fas fa-chart-line"></i></span>
                             <span class="exp-card__date">Jul 2022 – Jul 2024</span>
                             <h3 class="exp-card__role">Junior Data Analyst</h3>
@@ -174,8 +177,23 @@
                                 <li>Power BI & Tableau dashboards; 50% faster stakeholder reporting</li>
                                 <li>Apache Airflow & NiFi automation; 65% less manual effort</li>
                             </ul>
+                            <span class="exp-card__hint"><i class="fas fa-chevron-right"></i> Click to view full details</span>
                         </div>
                     </article>
+                </div>
+            </div>
+            <!-- Experience detail drawer (click any card to open) -->
+            <div id="exp-drawer" class="exp-drawer" aria-hidden="true">
+                <div class="exp-drawer__backdrop" aria-label="Close"></div>
+                <div class="exp-drawer__panel">
+                    <button type="button" class="exp-drawer__close" aria-label="Close"><i class="fas fa-times"></i></button>
+                    <div class="exp-drawer__content">
+                        <span class="exp-drawer__date" id="exp-drawer-date"></span>
+                        <h3 class="exp-drawer__role" id="exp-drawer-role"></h3>
+                        <p class="exp-drawer__company" id="exp-drawer-company"></p>
+                        <p class="exp-drawer__tags" id="exp-drawer-tags"></p>
+                        <ul class="exp-drawer__points" id="exp-drawer-points"></ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -211,6 +229,7 @@
                             <span><i class="fas fa-arrow-up"></i> 12% Improvement</span>
                             <span><i class="fas fa-rocket"></i> Real-time Tracking</span>
                         </div>
+                        <button type="button" class="project-toggle" aria-expanded="false"><i class="fas fa-chevron-down"></i> View details</button>
                         <div class="project-details">
                             <ul>
                                 <li>Developed multimodal architecture combining visual and sensor data for improved detection</li>
@@ -242,6 +261,7 @@
                             <span><i class="fas fa-clock"></i> 75% Time Reduction</span>
                             <span><i class="fas fa-shield-alt"></i> Secure Authentication</span>
                         </div>
+                        <button type="button" class="project-toggle" aria-expanded="false"><i class="fas fa-chevron-down"></i> View details</button>
                         <div class="project-details">
                             <ul>
                                 <li>Developed QR code generation and scanning system with geolocation verification</li>
@@ -278,7 +298,6 @@
                     <div class="project-card-content">
                         <div class="project-header">
                             <i class="fas fa-snowflake project-icon"></i>
-                            <span class="project-badge">IT597 Project</span>
                         </div>
                         
                         <h3>SnowSense: Real-Time Snow Detection System</h3>
@@ -289,6 +308,7 @@
                             <span><i class="fas fa-tachometer-alt"></i> 50+ FPS</span>
                             <span><i class="fas fa-robot"></i> 65% Automation</span>
                         </div>
+                        <button type="button" class="project-toggle" aria-expanded="false"><i class="fas fa-chevron-down"></i> View details</button>
                         <div class="project-details">
                             <ul>
                                 <li>Trained YOLOv8 model on custom snow dataset with data augmentation techniques</li>
@@ -333,6 +353,7 @@
                             <span><i class="fas fa-brain"></i> Smart Responses</span>
                             <span><i class="fas fa-gamepad"></i> Interactive Games</span>
                         </div>
+                        <button type="button" class="project-toggle" aria-expanded="false"><i class="fas fa-chevron-down"></i> View details</button>
                         <div class="project-details">
                             <ul>
                                 <li>Built intuitive Tkinter GUI with real-time chat display and user input</li>
@@ -454,7 +475,9 @@
                         <span class="skill-tag">AWS S3</span>
                         <span class="skill-tag">AWS Redshift</span>
                         <span class="skill-tag">AWS IAM</span>
-                        <span class="skill-tag">Google Cloud Platform</span>
+                        <span class="skill-tag">Microsoft 365</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">Azure</span>
                         <span class="skill-tag">BigQuery</span>
                     </div>
                 </div>
@@ -594,12 +617,33 @@
                 <div class="creative-content">
                     <p>Creating engaging content for Instagram, Facebook, and TikTok. Designing promotional flyers, reels, and social media campaigns that drive customer engagement.</p>
                     <div class="creative-links">
-                        <div class="creative-samples">
-                            <span>Recent Work:</span>
-                            <a href="https://www.instagram.com/p/DTaoYzvj66l/" target="_blank">Post 1</a>
-                            <a href="https://www.instagram.com/p/DR3i1hDkTDd/" target="_blank">Post 2</a>
-                            <a href="https://www.instagram.com/p/DRDI25hku5n/" target="_blank">Post 3</a>
-                            <a href="https://www.instagram.com/p/DQGJb-hkfgU/" target="_blank">Post 4</a>
+                        <p class="creative-samples-title">Recent Work</p>
+                        <div class="creative-posts">
+                            <a href="https://www.instagram.com/p/DTaoYzvj66l/" target="_blank" rel="noopener noreferrer" class="creative-post-card">
+                                <span class="creative-post__icon"><i class="fab fa-instagram"></i></span>
+                                <span class="creative-post__label">Campaign</span>
+                                <span class="creative-post__cta">View on Instagram</span>
+                            </a>
+                            <a href="https://www.instagram.com/p/DR3i1hDkTDd/" target="_blank" rel="noopener noreferrer" class="creative-post-card">
+                                <span class="creative-post__icon"><i class="fab fa-instagram"></i></span>
+                                <span class="creative-post__label">Reel</span>
+                                <span class="creative-post__cta">View on Instagram</span>
+                            </a>
+                            <a href="https://www.instagram.com/p/DRDI25hku5n/" target="_blank" rel="noopener noreferrer" class="creative-post-card">
+                                <span class="creative-post__icon"><i class="fab fa-instagram"></i></span>
+                                <span class="creative-post__label">Content</span>
+                                <span class="creative-post__cta">View on Instagram</span>
+                            </a>
+                            <a href="https://www.instagram.com/p/DQGJb-hkfgU/" target="_blank" rel="noopener noreferrer" class="creative-post-card">
+                                <span class="creative-post__icon"><i class="fab fa-instagram"></i></span>
+                                <span class="creative-post__label">Brand</span>
+                                <span class="creative-post__cta">View on Instagram</span>
+                            </a>
+                            <a href="https://www.instagram.com/p/DQFwQ8ugXw4/" target="_blank" rel="noopener noreferrer" class="creative-post-card">
+                                <span class="creative-post__icon"><i class="fab fa-instagram"></i></span>
+                                <span class="creative-post__label">Featured</span>
+                                <span class="creative-post__cta">View on Instagram</span>
+                            </a>
                         </div>
                     </div>
                 </div>
