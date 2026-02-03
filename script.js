@@ -31,7 +31,7 @@ const revealObserver = new IntersectionObserver((entries) => {
             el.style.transitionDelay = (i * staggerStep) + 'ms';
         });
     });
-}, { threshold: 0.08, rootMargin: '0px 0px -80px 0px' });
+}, { threshold: 0.12, rootMargin: '0px 0px -100px 0px' });
 
 document.querySelectorAll('section[id]:not(#hero)').forEach(section => {
     revealObserver.observe(section);
