@@ -110,6 +110,9 @@
                 <div class="exp-terminal-header">
                     <span class="exp-term-dot"></span><span class="exp-term-dot"></span><span class="exp-term-dot"></span>
                     <span class="exp-terminal-prompt">$ cat experience.txt</span>
+                    <button type="button" class="exp-open-txt" id="expOpenTxtBtn" aria-label="Open experience.txt in pop-out">
+                        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="exp-timeline">
                 <div class="exp-item">
@@ -566,6 +569,20 @@
             <p class="footer-subtitle">Built with <i class="fas fa-heart" style="color: #ff0000;"></i> and passion for technology</p>
         </div>
     </footer>
+
+    <!-- Experience.txt pop-out modal -->
+    <div id="experienceModal" class="experience-modal" role="dialog" aria-labelledby="experienceModalTitle" aria-modal="true">
+        <div class="experience-modal-backdrop"></div>
+        <div class="experience-modal-box">
+            <div class="experience-modal-header">
+                <h2 id="experienceModalTitle" class="experience-modal-title">experience.txt</h2>
+                <button type="button" class="experience-modal-close" id="experienceModalClose" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <pre id="experienceTxtContent" class="experience-txt-content"></pre>
+        </div>
+    </div>
 
     <!-- Lightbox Modal for Images/Videos -->
     <div id="mediaModal" class="media-modal">

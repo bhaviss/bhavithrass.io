@@ -622,6 +622,56 @@ pulseStyle.textContent = `
 `;
 document.head.appendChild(pulseStyle);
 
+// Experience.txt pop-out modal – build content from exp-items and open/close
+(function() {
+    var expOpenBtn = document.getElementById('expOpenTxtBtn');
+    var expModal = document.getElementById('experienceModal');
+    var expModalClose = document.getElementById('experienceModalClose');
+    var expModalBackdrop = expModal && expModal.querySelector('.experience-modal-backdrop');
+    var expTxtContent = document.getElementById('experienceTxtContent');
+
+    function buildExperienceTxt() {
+        var items = document.querySelectorAll('#experience .exp-item');
+        if (!items.length || !expTxtContent) return '';
+        var lines = [];
+        items.forEach(function(item) {
+            var date = item.querySelector('.exp-date');
+            var badge = item.querySelector('.exp-badge');
+            var role = item.querySelector('.exp-role');
+            var company = item.querySelector('.exp-company');
+            var tags = item.querySelector('.exp-tags');
+            var points = item.querySelectorAll('.exp-points li');
+            if (date) lines.push(date.textContent.trim());
+            if (badge) lines.push('  ' + badge.textContent.trim());
+            if (role) lines.push(role.textContent.trim());
+            if (company) lines.push(company.textContent.trim());
+            if (tags) lines.push(tags.textContent.trim());
+            points.forEach(function(li) {
+                lines.push('  • ' + li.textContent.trim());
+            });
+            lines.push('');
+        });
+        return lines.join('\n');
+    }
+
+    function openExperienceModal() {
+        if (!expModal || !expTxtContent) return;
+        expTxtContent.textContent = buildExperienceTxt();
+        expModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeExperienceModal() {
+        if (!expModal) return;
+        expModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (expOpenBtn) expOpenBtn.addEventListener('click', openExperienceModal);
+    if (expModalClose) expModalClose.addEventListener('click', closeExperienceModal);
+    if (expModalBackdrop) expModalBackdrop.addEventListener('click', closeExperienceModal);
+})();
+
 // Lightbox Modal for Images and Videos
 const modal = document.getElementById('mediaModal');
 const modalImg = document.getElementById('modalImage');
@@ -677,9 +727,16 @@ modal.addEventListener('click', function(e) {
     }
 });
 
-// Close on Escape key
+// Close on Escape key (experience modal takes precedence)
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
+    if (e.key !== 'Escape') return;
+    var expModal = document.getElementById('experienceModal');
+    if (expModal && expModal.classList.contains('active')) {
+        expModal.classList.remove('active');
+        document.body.style.overflow = '';
+        return;
+    }
+    if (modal && modal.classList.contains('active')) {
         closeModal();
     }
 });
