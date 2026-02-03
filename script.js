@@ -451,7 +451,7 @@ function createFloatingParticles() {
     }
 }
 
-// Experience: "Read more" toggles bullet points (event delegation so it always works)
+// Experience: "Read more" toggles bullet points (event delegation + explicit maxHeight so expand works)
 function initExperienceReadMore() {
     var experienceSection = document.getElementById('experience');
     if (!experienceSection) return;
@@ -462,13 +462,24 @@ function initExperienceReadMore() {
         e.stopPropagation();
         var item = btn.closest('.exp-item');
         if (!item) return;
-        item.classList.toggle('is-open');
-        var isOpen = item.classList.contains('is-open');
+        var points = item.querySelector('.exp-points');
+        var isOpen = item.classList.toggle('is-open');
         btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         btn.textContent = isOpen ? 'Read less' : 'Read more';
+        if (points) {
+            if (isOpen) {
+                points.style.maxHeight = (points.scrollHeight + 40) + 'px';
+            } else {
+                points.style.maxHeight = '0';
+            }
+        }
     });
 }
-document.addEventListener('DOMContentLoaded', initExperienceReadMore);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initExperienceReadMore);
+} else {
+    initExperienceReadMore();
+}
 
 // Project cards: View details toggle
 document.querySelectorAll('.project-toggle').forEach(btn => {

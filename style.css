@@ -632,7 +632,7 @@ nav.active ul {
     font-weight: bold;
 }
 
-/* Projects Section – bento-style grid: featured row + uniform grid */
+/* Projects Section – Netflix/techie horizontal scroll row */
 #projects {
     padding: 6rem 0;
     background: var(--section-bg);
@@ -643,50 +643,57 @@ nav.active ul {
     text-align: center;
     color: var(--text-secondary);
     font-size: 1rem;
-    margin: -1.5rem auto 2.5rem;
+    margin: -1.5rem auto 2rem;
     max-width: 480px;
 }
 
 .projects-container,
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.25rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5rem 0 1.5rem;
+    margin: 0 -0.5rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--border-color);
 }
 
-/* First two projects span more (featured row) */
-.projects-grid .project-card:nth-child(1) {
-    grid-column: span 2;
+.projects-grid::-webkit-scrollbar {
+    height: 8px;
 }
 
-.projects-grid .project-card:nth-child(1) .project-media {
-    aspect-ratio: 21/9;
+.projects-grid::-webkit-scrollbar-track {
+    background: var(--border-color);
+    border-radius: 4px;
 }
 
-.projects-grid .project-card:nth-child(2) {
-    grid-column: span 1;
+.projects-grid::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
 }
 
-/* Every card: media on top, content below – clean template grid */
+/* Netflix-style card: fixed width, poster ratio, hover scale */
 .project-card {
+    flex: 0 0 300px;
     display: flex;
     flex-direction: column;
     background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
-    border-left: 3px solid var(--primary-color);
-    transition: box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .project-card:hover {
-    box-shadow: 0 8px 24px rgba(196, 92, 38, 0.12);
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(196, 92, 38, 0.18);
     border-color: var(--primary-color);
-    border-left-color: var(--secondary-color);
-    transform: translateY(-6px);
+    z-index: 2;
 }
 
 .projects-bento .project-card h3 {
@@ -708,6 +715,11 @@ nav.active ul {
     border-radius: 12px 12px 0 0;
     overflow: hidden;
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+/* Netflix-style poster ratio on cards in horizontal row */
+.projects-grid .project-media {
+    aspect-ratio: 16/9;
 }
 
 .project-media::after {
@@ -736,8 +748,15 @@ nav.active ul {
     order: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    padding: 1.25rem;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+    min-height: 0;
+}
+
+/* Card with placeholder as first child (no .project-media) – same aspect as others */
+.project-card > .project-placeholder {
+    aspect-ratio: 16/9;
+    min-height: 120px;
 }
 
 /* Placeholder when no image - inside .project-media for consistent card structure */
@@ -1797,17 +1816,8 @@ section {
         justify-content: center;
     }
 
-    .projects-container,
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .projects-grid .project-card:nth-child(1) {
-        grid-column: span 1;
-    }
-
-    .projects-grid .project-card:nth-child(1) .project-media {
-        aspect-ratio: 16/10;
+    .projects-grid .project-card {
+        flex: 0 0 260px;
     }
 
     }
@@ -1871,8 +1881,11 @@ section {
         grid-template-columns: 1fr;
     }
     
-    /* Disable 3D effects on mobile for better performance */
-    .project-card:hover,
+    /* Slightly smaller hover scale on mobile */
+    .project-card:hover {
+        transform: scale(1.03) !important;
+    }
+
     .skill-category:hover {
         transform: translateY(-8px) scale(1.02) !important;
     }
