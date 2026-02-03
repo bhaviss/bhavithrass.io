@@ -31,7 +31,7 @@ const revealObserver = new IntersectionObserver((entries) => {
             el.style.transitionDelay = (i * staggerStep) + 'ms';
         });
     });
-}, { threshold: 0.12, rootMargin: '0px 0px -100px 0px' });
+}, { threshold: 0.1, rootMargin: '0px 0px -120px 0px' });
 
 document.querySelectorAll('section[id]:not(#hero)').forEach(section => {
     revealObserver.observe(section);
@@ -465,7 +465,8 @@ function initExperienceReadMore() {
         var points = item.querySelector('.exp-points');
         var isOpen = item.classList.toggle('is-open');
         btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        btn.textContent = isOpen ? 'Read less' : 'Read more';
+        var textEl = btn.querySelector('.exp-more-text');
+        if (textEl) textEl.textContent = isOpen ? 'Read less' : 'Read more';
         if (points) {
             if (isOpen) {
                 points.style.maxHeight = (points.scrollHeight + 40) + 'px';
