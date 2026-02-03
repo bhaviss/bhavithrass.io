@@ -20,7 +20,7 @@ if (scrollProgress && !prefersReducedMotion) {
 
 // Smooth scroll-triggered reveal: add reveal-section and stagger children
 const revealSelector = '.exp-item, .skill-category, .project-card, .education-card, .creative-card';
-const staggerStep = 100; // ms between each child – more noticeable cascade
+const staggerStep = 80; // ms between each child – smooth cascade on scroll
 
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -31,7 +31,7 @@ const revealObserver = new IntersectionObserver((entries) => {
             el.style.transitionDelay = (i * staggerStep) + 'ms';
         });
     });
-}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -80px 0px' });
 
 document.querySelectorAll('section[id]:not(#hero)').forEach(section => {
     revealObserver.observe(section);
@@ -451,26 +451,24 @@ function createFloatingParticles() {
     }
 }
 
-// Experience: "Read more" toggles bullet points (run after DOM is ready)
+// Experience: "Read more" toggles bullet points (event delegation so it always works)
 function initExperienceReadMore() {
-    document.querySelectorAll('.exp-more').forEach((btn) => {
-        btn.addEventListener('click', function() {
-            const item = this.closest('.exp-item');
-            if (!item) return;
-            const points = item.querySelector('.exp-points');
-            item.classList.toggle('is-open');
-            const isOpen = item.classList.contains('is-open');
-            this.setAttribute('aria-expanded', isOpen);
-            this.textContent = isOpen ? 'Read less' : 'Read more';
-            if (points) points.style.maxHeight = isOpen ? (Math.max(points.scrollHeight + 40, 400)) + 'px' : '0';
-        });
+    var experienceSection = document.getElementById('experience');
+    if (!experienceSection) return;
+    experienceSection.addEventListener('click', function(e) {
+        var btn = e.target && e.target.closest ? e.target.closest('.exp-more') : null;
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+        var item = btn.closest('.exp-item');
+        if (!item) return;
+        item.classList.toggle('is-open');
+        var isOpen = item.classList.contains('is-open');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        btn.textContent = isOpen ? 'Read less' : 'Read more';
     });
 }
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initExperienceReadMore);
-} else {
-    initExperienceReadMore();
-}
+document.addEventListener('DOMContentLoaded', initExperienceReadMore);
 
 // Project cards: View details toggle
 document.querySelectorAll('.project-toggle').forEach(btn => {
@@ -483,20 +481,28 @@ document.querySelectorAll('.project-toggle').forEach(btn => {
     });
 });
 
-// Contact form: submit to Formspree (https://formspree.io/f/meekzvrr) and show feedback
+// Contact form: submit to Formspree (https://formspree.io/f/meekznkg) and show feedback
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
+    const formAction = 'https://formspree.io/f/meekznkg';
+    contactForm.setAttribute('action', formAction);
+
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const feedback = document.getElementById('formFeedback');
         const btn = document.getElementById('formSubmitBtn');
+        const replyToEl = document.getElementById('contact-replyto');
         if (!feedback || !btn) return;
         feedback.textContent = '';
         feedback.className = 'form-feedback';
         btn.disabled = true;
         btn.textContent = 'Sending…';
+
+        const emailInput = this.querySelector('[name="email"]');
+        if (replyToEl && emailInput) replyToEl.value = emailInput.value || '';
         const formData = new FormData(this);
-        fetch(this.action, {
+
+        fetch(formAction, {
             method: 'POST',
             body: formData,
             headers: { Accept: 'application/json' }
@@ -506,13 +512,18 @@ if (contactForm) {
                     feedback.textContent = 'Message sent! I’ll get back to you soon.';
                     feedback.className = 'form-feedback form-feedback-success';
                     contactForm.reset();
-                } else {
+                    return;
+                }
+                return res.json().then(function(data) {
+                    feedback.textContent = data.error || 'Something went wrong. Please email me directly at bhavithrass@gmail.com';
+                    feedback.className = 'form-feedback form-feedback-error';
+                }).catch(function() {
                     feedback.textContent = 'Something went wrong. Please email me directly at bhavithrass@gmail.com';
                     feedback.className = 'form-feedback form-feedback-error';
-                }
+                });
             })
             .catch(function() {
-                feedback.textContent = 'Something went wrong. Please email me directly at bhavithrass@gmail.com';
+                feedback.textContent = 'Network error. Please email me directly at bhavithrass@gmail.com';
                 feedback.className = 'form-feedback form-feedback-error';
             })
             .finally(function() {

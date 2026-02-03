@@ -72,7 +72,7 @@ section[id] {
     transform: none;
 }
 
-/* Smooth scroll-triggered reveal – tweaked distance, duration, stagger + scale */
+/* Smooth scroll-triggered reveal – stronger fade + slide, smoother easing */
 @media (prefers-reduced-motion: no-preference) {
     .reveal-section .section-title,
     .reveal-section .experience-intro,
@@ -80,7 +80,8 @@ section[id] {
     .reveal-section .creative-intro p,
     .reveal-section .contact-intro {
         transform: translateY(0);
-        transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity: 1;
+        transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
     }
 
     section:not(#hero) .section-title,
@@ -88,17 +89,20 @@ section[id] {
     section .about-lead,
     section .creative-intro p,
     section .contact-intro {
-        transform: translateY(20px);
-        transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+        transform: translateY(36px);
+        opacity: 0.6;
+        transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
     }
 
     .reveal-item {
-        transform: translateY(28px) scale(0.98);
-        transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+        transform: translateY(40px) scale(0.97);
+        opacity: 0;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
     }
 
     .reveal-section .reveal-item {
         transform: translateY(0) scale(1);
+        opacity: 1;
     }
 
     section .exp-item,
@@ -106,16 +110,18 @@ section[id] {
     section .project-card,
     section .education-card,
     section .creative-card {
-        transform: translateY(28px) scale(0.98);
-        transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+        transform: translateY(40px) scale(0.97);
+        opacity: 0;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
     }
 
-    .reveal-section .exp-card,
+    .reveal-section .exp-item,
     .reveal-section .skill-category,
     .reveal-section .project-card,
     .reveal-section .education-card,
     .reveal-section .creative-card {
         transform: translateY(0) scale(1);
+        opacity: 1;
     }
 }
 
@@ -475,7 +481,7 @@ nav.active ul {
     line-height: 1.8;
 }
 
-/* Experience Section – simple timeline */
+/* Experience Section – vertical timeline with line + dots */
 #experience {
     padding: 6rem 0;
     background: var(--page-bg);
@@ -483,25 +489,62 @@ nav.active ul {
 }
 
 .exp-timeline {
-    max-width: 640px;
+    max-width: 720px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.exp-timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--primary-color), var(--border-color));
+    border-radius: 2px;
+    opacity: 0.6;
 }
 
 .exp-item {
+    position: relative;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 1.5rem 2rem;
+    margin-bottom: 1.5rem;
     box-shadow: var(--shadow-sm);
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.exp-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 1.75rem;
+    width: 14px;
+    height: 14px;
+    background: var(--primary-color);
+    border: 3px solid var(--page-bg);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--primary-color);
+    z-index: 2;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .exp-item:hover {
     box-shadow: var(--shadow-md);
     border-color: var(--primary-color);
+}
+
+.exp-item:hover::before {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 4px rgba(196, 92, 38, 0.25);
+}
+
+.exp-item:last-child {
+    margin-bottom: 0;
 }
 
 .exp-date {
@@ -571,11 +614,11 @@ nav.active ul {
     margin: 0.75rem 0 0;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.35s ease-out;
 }
 
 .exp-item.is-open .exp-points {
-    max-height: 400px;
+    max-height: 500px;
 }
 
 .exp-points li {
@@ -595,7 +638,7 @@ nav.active ul {
     font-weight: bold;
 }
 
-/* Projects Section – clean grid */
+/* Projects Section – bento-style grid: featured row + uniform grid */
 #projects {
     padding: 6rem 0;
     background: var(--section-bg);
@@ -613,10 +656,23 @@ nav.active ul {
 .projects-container,
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.75rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+/* First two projects span more (featured row) */
+.projects-grid .project-card:nth-child(1) {
+    grid-column: span 2;
+}
+
+.projects-grid .project-card:nth-child(1) .project-media {
+    aspect-ratio: 21/9;
+}
+
+.projects-grid .project-card:nth-child(2) {
+    grid-column: span 1;
 }
 
 /* Every card: media on top, content below – clean template grid */
@@ -1747,8 +1803,17 @@ section {
         justify-content: center;
     }
 
-    .projects-container {
+    .projects-container,
+    .projects-grid {
         grid-template-columns: 1fr;
+    }
+
+    .projects-grid .project-card:nth-child(1) {
+        grid-column: span 1;
+    }
+
+    .projects-grid .project-card:nth-child(1) .project-media {
+        aspect-ratio: 16/10;
     }
 
     }
@@ -1829,6 +1894,26 @@ section {
     
     .creative-posts {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Experience timeline: keep line + dots, reduce padding on small screens */
+    .exp-timeline {
+        padding-left: 1.75rem;
+    }
+
+    .exp-item::before {
+        left: -1.75rem;
+        width: 12px;
+        height: 12px;
+        top: 1.5rem;
+    }
+
+    .exp-timeline::before {
+        left: 5px;
+    }
+
+    .exp-item {
+        padding: 1.25rem 1rem 1.25rem 1.5rem;
     }
 }
 
