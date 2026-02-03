@@ -72,7 +72,7 @@ section[id] {
     transform: none;
 }
 
-/* Smooth scroll-triggered reveal – stronger fade + slide, smoother easing */
+/* Smooth scroll-triggered reveal – slide + scale only (no opacity so content is never hidden) */
 @media (prefers-reduced-motion: no-preference) {
     .reveal-section .section-title,
     .reveal-section .experience-intro,
@@ -80,8 +80,7 @@ section[id] {
     .reveal-section .creative-intro p,
     .reveal-section .contact-intro {
         transform: translateY(0);
-        opacity: 1;
-        transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
+        transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     section:not(#hero) .section-title,
@@ -89,20 +88,17 @@ section[id] {
     section .about-lead,
     section .creative-intro p,
     section .contact-intro {
-        transform: translateY(36px);
-        opacity: 0.6;
-        transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
+        transform: translateY(20px);
+        transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .reveal-item {
-        transform: translateY(40px) scale(0.97);
-        opacity: 0;
-        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+        transform: translateY(28px) scale(0.98);
+        transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .reveal-section .reveal-item {
         transform: translateY(0) scale(1);
-        opacity: 1;
     }
 
     section .exp-item,
@@ -110,9 +106,8 @@ section[id] {
     section .project-card,
     section .education-card,
     section .creative-card {
-        transform: translateY(40px) scale(0.97);
-        opacity: 0;
-        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+        transform: translateY(28px) scale(0.98);
+        transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .reveal-section .exp-item,
@@ -121,7 +116,6 @@ section[id] {
     .reveal-section .education-card,
     .reveal-section .creative-card {
         transform: translateY(0) scale(1);
-        opacity: 1;
     }
 }
 
