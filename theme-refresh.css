@@ -21,6 +21,10 @@ html {
     scroll-behavior: auto;
 }
 
+html.lenis {
+    scroll-behavior: auto !important;
+}
+
 html.lenis,
 html.lenis body {
     height: auto;
@@ -220,7 +224,6 @@ nav a::after {
     section:not(#hero):not(.reveal-section) .section-sub,
     section:not(#hero):not(.reveal-section) .about-lead,
     section:not(#hero):not(.reveal-section) .about-text,
-    section:not(#hero):not(.reveal-section) .creative-intro p,
     section:not(#hero):not(.reveal-section) .contact-intro {
         transform: translate3d(0, 36px, 0);
         opacity: 0;
@@ -235,7 +238,6 @@ nav a::after {
     section:not(#hero).reveal-section .section-sub,
     section:not(#hero).reveal-section .about-lead,
     section:not(#hero).reveal-section .about-text,
-    section:not(#hero).reveal-section .creative-intro p,
     section:not(#hero).reveal-section .contact-intro {
         transform: translate3d(0, 0, 0);
         opacity: 1;
@@ -258,8 +260,7 @@ nav a::after {
     }
 
     section:not(#hero):not(.reveal-section) .exp-item,
-    section:not(#hero):not(.reveal-section) .education-card,
-    section:not(#hero):not(.reveal-section) .creative-card {
+    section:not(#hero):not(.reveal-section) .education-card {
         transform: translate3d(0, 32px, 0);
         opacity: 0;
         transition:
@@ -268,8 +269,7 @@ nav a::after {
     }
 
     section:not(#hero).reveal-section .exp-item,
-    section:not(#hero).reveal-section .education-card,
-    section:not(#hero).reveal-section .creative-card {
+    section:not(#hero).reveal-section .education-card {
         transform: translate3d(0, 0, 0);
         opacity: 1;
     }
@@ -467,24 +467,6 @@ nav a::after {
 
 .cert-tag:hover i {
     transform: none;
-}
-
-/* Creative: calm hover */
-.creative-card {
-    transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.4s ease, border-color 0.35s ease;
-}
-
-.creative-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
-}
-
-.creative-header h3 {
-    animation: none;
-}
-
-.creative-content p {
-    animation: none;
 }
 
 /* Contact */

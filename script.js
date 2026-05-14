@@ -103,17 +103,13 @@
             return;
         }
         lenis = new window.Lenis({
-            lerp: 0.072,
-            wheelMultiplier: 0.88,
-            touchMultiplier: 1.75,
+            lerp: 0.048,
+            wheelMultiplier: 0.62,
+            touchMultiplier: 1.2,
             smoothWheel: true,
-            syncTouch: false
+            syncTouch: false,
+            autoRaf: true
         });
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
         bindScrollUpdates();
     }
 
@@ -129,8 +125,6 @@
         '.skill-category',
         '.project-card',
         '.education-card',
-        '.creative-card',
-        '.creative-intro p',
         '.contact-intro',
         '.projects-github-wrap',
         '.certifications'
