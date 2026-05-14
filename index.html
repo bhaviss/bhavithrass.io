@@ -17,7 +17,7 @@
     <meta name="twitter:image" content="https://www.bhaviss.com/images/my-photo.png">
     <title>Bhavithra Suruliyandi Selvakumar - Portfolio</title>
     <link rel="stylesheet" href="style.css?v=10">
-    <link rel="stylesheet" href="theme-refresh.css?v=13">
+    <link rel="stylesheet" href="theme-refresh.css?v=14">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css">
     <!-- Devicon (tech logos for skills) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
@@ -39,7 +39,18 @@
         <span class="scroll-progress__bar"></span>
     </div>
 
-    <!-- Header -->
+    <nav class="chapter-rail" id="chapterRail" aria-label="On this page">
+        <ol class="chapter-rail__list">
+            <li><a class="chapter-rail__link" href="#hero" data-section="hero"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Home</span></a></li>
+            <li><a class="chapter-rail__link" href="#about" data-section="about"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">About</span></a></li>
+            <li><a class="chapter-rail__link" href="#story" data-section="story"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Process</span></a></li>
+            <li><a class="chapter-rail__link" href="#experience" data-section="experience"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Timeline</span></a></li>
+            <li><a class="chapter-rail__link" href="#projects" data-section="projects"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Projects</span></a></li>
+            <li><a class="chapter-rail__link" href="#skills" data-section="skills"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Skills</span></a></li>
+            <li><a class="chapter-rail__link" href="#education" data-section="education"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Education</span></a></li>
+            <li><a class="chapter-rail__link" href="#contact" data-section="contact"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Contact</span></a></li>
+        </ol>
+    </nav>
     <header id="header">
         <div class="container">
             <div class="header-content">
@@ -78,7 +89,7 @@
                             <i class="fab fa-github"></i> GitHub
                         </a>
                     </div>
-                    <div class="hero-stats">
+                    <div class="hero-stats hero-stats--scrolly">
                         <div class="stat">
                             <span class="stat-number">3.92</span>
                             <span class="stat-label">Master's GPA</span>
@@ -231,25 +242,37 @@
         <div class="container">
             <h2 class="section-title section-title--editorial">Selected work <em>built scroll by scroll.</em></h2>
             <p class="section-sub">AI/ML, full stack, and data work.</p>
-            <div class="projects-grid" id="projectsContainer" data-lenis-prevent-wheel>
-                <!-- SpaceVisionAI -->
-                <article class="project-card">
-                    <div class="project-media">
-                        <video id="spaceVideo" controls playsinline preload="metadata" poster="images/projects/space-debris-thumb.jpg" data-caption="Space Debris Detection">
+
+            <div class="case-study" id="caseStudy">
+                <header class="case-study__header">
+                    <p class="case-study__kicker">Case study · Master&apos;s thesis</p>
+                    <h3 class="case-study__title">SpaceVisionAI — debris you can actually see coming</h3>
+                    <p class="case-study__lead">Scroll horizontally for the short version: problem, approach, metrics, and where the code lives.</p>
+                </header>
+                <div class="case-study__scroller" id="caseStudyScroller" data-lenis-prevent-wheel tabindex="0" role="region" aria-roledescription="carousel" aria-label="SpaceVisionAI case study slides">
+                    <article class="case-study__slide case-study__slide--media">
+                        <video controls playsinline preload="metadata" poster="images/projects/space-debris-thumb.jpg" data-caption="Space Debris Detection">
                             <source src="images/projects/space-debris-tracking.mp4" type="video/mp4">
                         </video>
-                    </div>
-                    <div class="project-card-content">
-                        <span class="project-badge">Master's Thesis</span>
-                        <h3>SpaceVisionAI</h3>
-                        <p class="project-desc">Multimodal deep learning for real-time space debris detection and tracking. 62.4% accuracy, 12% over baseline.</p>
-                        <div class="project-tech-pills">
-                            <span>Python</span><span>TensorFlow</span><span>PyTorch</span><span>CV</span>
-                        </div>
-                        <a href="https://github.com/bhaviss/Space-debris" target="_blank" rel="noopener" class="project-link">View Code <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </article>
+                    </article>
+                    <article class="case-study__slide">
+                        <span class="case-study__step">01 — Problem</span>
+                        <p class="case-study__text">Low Earth orbit is crowded; operators need reliable cues from sensor data—not a single model score in isolation.</p>
+                    </article>
+                    <article class="case-study__slide">
+                        <span class="case-study__step">02 — Approach</span>
+                        <p class="case-study__text">Multimodal deep learning for real-time detection and tracking, iterating against a strong baseline with clear validation.</p>
+                    </article>
+                    <article class="case-study__slide">
+                        <span class="case-study__step">03 — Outcome</span>
+                        <p class="case-study__text"><strong>62.4%</strong> accuracy with a <strong>+12%</strong> lift over baseline on the thesis benchmark—Python, TensorFlow, and PyTorch end-to-end.</p>
+                        <a href="https://github.com/bhaviss/Space-debris" target="_blank" rel="noopener" class="case-study__cta">Repository <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+                    </article>
+                </div>
+                <div class="case-study__dots" id="caseStudyDots"></div>
+            </div>
 
+            <div class="projects-grid" id="projectsContainer" data-lenis-prevent-wheel>
                 <!-- Geo QR Attendance -->
                 <article class="project-card">
                     <div class="project-media gallery">
@@ -598,6 +621,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
-    <script src="script.js?v=23"></script>
+    <script src="script.js?v=24"></script>
 </body>
 </html>

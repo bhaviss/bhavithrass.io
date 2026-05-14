@@ -24,6 +24,8 @@
     var navLinks = document.querySelectorAll('nav a');
     var nav = document.getElementById('nav');
     var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    var chapterRail = document.getElementById('chapterRail');
+    var chapterRailLinks = chapterRail ? chapterRail.querySelectorAll('.chapter-rail__link') : [];
 
     function onScrollUpdate(y) {
         if (!prefersReducedMotion) {
@@ -54,6 +56,10 @@
         });
         navLinks.forEach(function (link) {
             link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+        });
+        chapterRailLinks.forEach(function (link) {
+            var sec = link.getAttribute('data-section');
+            link.classList.toggle('is-active', sec === current);
         });
         if (!prefersReducedMotion) {
             var heroImage = document.querySelector('.hero-image .image-wrapper');
@@ -142,6 +148,52 @@
         projectsGrid.addEventListener('scroll', syncProjectsHScroll, { passive: true });
         window.addEventListener('resize', syncProjectsHScroll, { passive: true });
         syncProjectsHScroll();
+    })();
+
+    (function () {
+        var sc = document.getElementById('caseStudyScroller');
+        var dotsWrap = document.getElementById('caseStudyDots');
+        if (!sc || !dotsWrap) return;
+        if (prefersReducedMotion) {
+            dotsWrap.setAttribute('hidden', '');
+            return;
+        }
+        var slides = sc.querySelectorAll('.case-study__slide');
+        if (!slides.length) return;
+        slides.forEach(function (_, i) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'case-study__dot-btn';
+            b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            b.addEventListener('click', function () {
+                slides[i].scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+            });
+            dotsWrap.appendChild(b);
+        });
+        var dotBtns = dotsWrap.querySelectorAll('.case-study__dot-btn');
+
+        function syncCaseStudyDots() {
+            var scRect = sc.getBoundingClientRect();
+            var center = scRect.left + scRect.width * 0.35;
+            var bestIdx = 0;
+            var bestDist = Infinity;
+            slides.forEach(function (sl, i) {
+                var r = sl.getBoundingClientRect();
+                var mid = r.left + r.width * 0.5;
+                var d = Math.abs(mid - center);
+                if (d < bestDist) {
+                    bestDist = d;
+                    bestIdx = i;
+                }
+            });
+            dotBtns.forEach(function (d, i) {
+                d.classList.toggle('is-active', i === bestIdx);
+            });
+        }
+
+        sc.addEventListener('scroll', syncCaseStudyDots, { passive: true });
+        window.addEventListener('resize', syncCaseStudyDots, { passive: true });
+        syncCaseStudyDots();
     })();
 
     /* Section reveal — stagger children; unobserve after first trigger */
