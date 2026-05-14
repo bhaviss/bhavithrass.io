@@ -112,19 +112,43 @@
 
     initLenis();
 
-    /* Section reveal */
-    var revealSelector = '.exp-item, .skill-category, .project-card, .education-card, .creative-card';
-    var staggerStep = 70;
+    /* Section reveal — stagger children; unobserve after first trigger */
+    var revealSelector = [
+        '.section-title',
+        '.section-sub',
+        '.about-lead',
+        '.about-text',
+        '.exp-item',
+        '.skill-category',
+        '.project-card',
+        '.education-card',
+        '.creative-card',
+        '.creative-intro p',
+        '.contact-intro',
+        '.projects-github-wrap',
+        '.certifications'
+    ].join(',');
+    var staggerStep = 85;
     var revealObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
             if (!entry.isIntersecting || prefersReducedMotion) return;
             var section = entry.target;
             section.classList.add('reveal-section');
-            section.querySelectorAll(revealSelector).forEach(function (el, i) {
-                el.style.transitionDelay = (i * staggerStep) + 'ms';
+            var animated = section.querySelectorAll(revealSelector);
+            var maxDelay = 0;
+            animated.forEach(function (el, i) {
+                var d = i * staggerStep;
+                el.style.transitionDelay = d + 'ms';
+                if (d > maxDelay) maxDelay = d;
             });
+            window.setTimeout(function () {
+                animated.forEach(function (el) {
+                    el.style.transitionDelay = '';
+                });
+            }, maxDelay + 1100);
+            revealObserver.unobserve(section);
         });
-    }, { threshold: 0.08, rootMargin: '0px 0px -80px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
 
     document.querySelectorAll('section[id]:not(#hero)').forEach(function (section) {
         revealObserver.observe(section);

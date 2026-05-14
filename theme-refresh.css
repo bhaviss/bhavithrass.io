@@ -200,61 +200,93 @@ nav a::after {
     color: var(--text-secondary);
 }
 
-/* Scroll reveals: single axis, short distance */
+/*
+ * Scroll-driven enter transitions.
+ * Must beat style.css `section:not(#hero) .section-title` etc., so we use
+ * :not(.reveal-section) for "before" and section.reveal-section for "after".
+ */
 @media (prefers-reduced-motion: no-preference) {
-    section:not(#hero) .section-title,
-    section .about-lead,
-    section .creative-intro p,
-    section .contact-intro {
-        transform: translateY(20px);
-        opacity: 0.92;
-        transition: transform 0.75s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.75s ease;
+    section:not(#hero):not(.reveal-section) .section-title,
+    section:not(#hero):not(.reveal-section) .section-sub,
+    section:not(#hero):not(.reveal-section) .about-lead,
+    section:not(#hero):not(.reveal-section) .about-text,
+    section:not(#hero):not(.reveal-section) .creative-intro p,
+    section:not(#hero):not(.reveal-section) .contact-intro {
+        transform: translate3d(0, 36px, 0);
+        opacity: 0;
+        filter: blur(6px);
+        transition:
+            transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 0.85s cubic-bezier(0.33, 1, 0.68, 1),
+            filter 0.75s ease;
     }
 
-    .reveal-section .section-title,
-    .reveal-section .about-lead,
-    .reveal-section .creative-intro p,
-    .reveal-section .contact-intro {
-        transform: translateY(0);
+    section:not(#hero).reveal-section .section-title,
+    section:not(#hero).reveal-section .section-sub,
+    section:not(#hero).reveal-section .about-lead,
+    section:not(#hero).reveal-section .about-text,
+    section:not(#hero).reveal-section .creative-intro p,
+    section:not(#hero).reveal-section .contact-intro {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    section:not(#hero):not(.reveal-section) .projects-github-wrap,
+    section:not(#hero):not(.reveal-section) .certifications {
+        transform: translate3d(0, 28px, 0);
+        opacity: 0;
+        transition:
+            transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    section:not(#hero).reveal-section .projects-github-wrap,
+    section:not(#hero).reveal-section .certifications {
+        transform: translate3d(0, 0, 0);
         opacity: 1;
     }
 
-    section .reveal-item,
-    section .exp-item,
-    section .education-card,
-    section .creative-card {
-        transform: translateY(18px);
-        opacity: 0.94;
-        transition: transform 0.7s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.7s ease;
+    section:not(#hero):not(.reveal-section) .exp-item,
+    section:not(#hero):not(.reveal-section) .education-card,
+    section:not(#hero):not(.reveal-section) .creative-card {
+        transform: translate3d(0, 32px, 0);
+        opacity: 0;
+        transition:
+            transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 0.75s cubic-bezier(0.33, 1, 0.68, 1);
     }
 
-    .reveal-section .reveal-item,
-    .reveal-section .exp-item,
-    .reveal-section .education-card,
-    .reveal-section .creative-card {
-        transform: translateY(0);
+    section:not(#hero).reveal-section .exp-item,
+    section:not(#hero).reveal-section .education-card,
+    section:not(#hero).reveal-section .creative-card {
+        transform: translate3d(0, 0, 0);
         opacity: 1;
     }
 
-    section .skill-category {
-        transform: translateY(14px);
-        opacity: 0.95;
-        transition: transform 0.65s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.65s ease;
+    section:not(#hero):not(.reveal-section) .skill-category {
+        transform: translate3d(0, 28px, 0);
+        opacity: 0;
+        transition:
+            transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 0.72s cubic-bezier(0.33, 1, 0.68, 1);
     }
 
-    .reveal-section .skill-category {
-        transform: translateY(0);
+    section:not(#hero).reveal-section .skill-category {
+        transform: translate3d(0, 0, 0);
         opacity: 1;
     }
 
-    section .project-card {
-        transform: translateY(14px);
-        opacity: 0.96;
-        transition: transform 0.65s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.65s ease;
+    section:not(#hero):not(.reveal-section) .project-card {
+        transform: translate3d(0, 40px, 0) scale(0.97);
+        opacity: 0;
+        transition:
+            transform 0.88s cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 0.78s cubic-bezier(0.33, 1, 0.68, 1);
     }
 
-    .reveal-section .project-card {
-        transform: translateY(0);
+    section:not(#hero).reveal-section .project-card {
+        transform: translate3d(0, 0, 0) scale(1);
         opacity: 1;
     }
 }
