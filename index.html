@@ -17,7 +17,7 @@
     <meta name="twitter:image" content="https://www.bhaviss.com/images/my-photo.png">
     <title>Bhavithra Suruliyandi Selvakumar - Portfolio</title>
     <link rel="stylesheet" href="style.css?v=10">
-    <link rel="stylesheet" href="theme-refresh.css?v=15">
+    <link rel="stylesheet" href="theme-refresh.css?v=16">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css">
     <!-- Devicon (tech logos for skills) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
@@ -34,28 +34,38 @@
         <div class="parallax-bg__glow parallax-bg__glow--2"></div>
         <div class="parallax-bg__glow parallax-bg__glow--3"></div>
     </div>
+
+    <div id="siteGate" class="site-gate" role="dialog" aria-modal="true" aria-labelledby="siteGateTitle">
+        <div class="site-gate__inner">
+            <p class="site-gate__marquee" aria-hidden="true">
+                <span class="site-gate__marquee-track">
+                    <span class="site-gate__marquee-chunk">portfolio · research · ml · 2026 · </span>
+                    <span class="site-gate__marquee-chunk" aria-hidden="true">portfolio · research · ml · 2026 · </span>
+                </span>
+            </p>
+            <p class="site-gate__glyph" aria-hidden="true">✲</p>
+            <h1 class="site-gate__title" id="siteGateTitle">Bhavithra SS</h1>
+            <p class="site-gate__tagline">research &amp; machine learning <em>based in edmonton.</em></p>
+            <div class="site-gate__actions">
+                <button type="button" class="site-gate__btn site-gate__btn--primary" id="siteGateEnter">Enter</button>
+                <button type="button" class="site-gate__btn site-gate__btn--ghost" id="siteGateSkip">Skip intro</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scroll progress: inner bar can use CSS scroll() timeline when supported -->
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true">
         <span class="scroll-progress__bar"></span>
     </div>
 
-    <nav class="chapter-rail" id="chapterRail" aria-label="On this page">
-        <ol class="chapter-rail__list">
-            <li><a class="chapter-rail__link" href="#hero" data-section="hero"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Home</span></a></li>
-            <li><a class="chapter-rail__link" href="#about" data-section="about"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">About</span></a></li>
-            <li><a class="chapter-rail__link" href="#story" data-section="story"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Process</span></a></li>
-            <li><a class="chapter-rail__link" href="#experience" data-section="experience"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Timeline</span></a></li>
-            <li><a class="chapter-rail__link" href="#projects" data-section="projects"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Projects</span></a></li>
-            <li><a class="chapter-rail__link" href="#skills" data-section="skills"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Skills</span></a></li>
-            <li><a class="chapter-rail__link" href="#education" data-section="education"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Education</span></a></li>
-            <li><a class="chapter-rail__link" href="#contact" data-section="contact"><span class="chapter-rail__dot" aria-hidden="true"></span><span class="chapter-rail__label">Contact</span></a></li>
-        </ol>
-    </nav>
-    <header id="header">
+    <header id="header" class="site-header">
         <div class="container">
             <div class="header-content">
-                <div class="logo">Bhavithra SS</div>
-                <nav id="nav">
+                <a href="#hero" class="logo">Bhavithra SS</a>
+                <button type="button" class="site-menu-toggle" id="siteMenuToggle" aria-expanded="false" aria-controls="siteMenuOverlay" aria-label="Open menu">
+                    <span class="site-menu-toggle__label" data-open="menu" data-close="close">menu</span>
+                </button>
+                <nav id="nav" class="site-header__nav" aria-label="Primary">
                     <ul>
                         <li><a href="#hero">Home</a></li>
                         <li><a href="#about">About</a></li>
@@ -67,12 +77,27 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
             </div>
         </div>
     </header>
+
+    <div id="siteMenuOverlay" class="site-menu" aria-hidden="true">
+        <div class="site-menu__backdrop" tabindex="-1"></div>
+        <div class="site-menu__panel">
+            <button type="button" class="site-menu__close" id="siteMenuClose" aria-label="Close menu">close</button>
+            <nav class="site-menu__links" aria-label="Site">
+                <a href="#hero">Home</a>
+                <a href="#about">About</a>
+                <a href="#story">Process</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Work</a>
+                <a href="#skills">Skills</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a class="site-menu__email" href="mailto:bhavithrass@gmail.com">bhavithrass@gmail.com</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="hero">
@@ -621,6 +646,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
-    <script src="script.js?v=24"></script>
+    <script src="script.js?v=25"></script>
 </body>
 </html>
