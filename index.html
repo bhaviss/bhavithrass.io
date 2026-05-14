@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Bhavithra Suruliyandi Selvakumar - Portfolio</title>
-    <link rel="stylesheet" href="style.css?v=8">
+    <link rel="stylesheet" href="style.css?v=10">
+    <link rel="stylesheet" href="theme-refresh.css?v=1">
     <!-- Devicon (tech logos for skills) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -46,8 +47,8 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <p class="code-intro">$ whoami</p>
-                    <h1 class="hero-title"><span class="gradient-text">Bhavithra SS</span></h1>
+                    <p class="hero-eyebrow">Research Assistant · AI &amp; Machine Learning</p>
+                    <h1 class="hero-title">Bhavithra SS</h1>
                     <p class="hero-subtitle">I build with AI, data, and the cloud.</p>
                     <p class="hero-description">Research in AI & ML at Concordia, with a thing for LLMs, computer vision, and turning messy data into something useful. When I'm not in the lab, I'm probably breaking something in the cloud—on purpose.</p>
                     <div class="hero-buttons">
@@ -102,16 +103,15 @@
         </div>
     </section>
 
-    <!-- Experience Section – techie/terminal -->
     <section id="experience">
         <div class="container">
             <h2 class="section-title">Professional Experience</h2>
-            <div class="exp-terminal">
-                <div class="exp-terminal-header">
-                    <span class="exp-term-dot"></span><span class="exp-term-dot"></span><span class="exp-term-dot"></span>
-                    <span class="exp-terminal-prompt">$ cat experience.txt</span>
-                    <button type="button" class="exp-open-txt" id="expOpenTxtBtn" aria-label="Open experience.txt in pop-out">
-                        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+            <p class="section-sub">Research, teaching, analytics, and cloud operations.</p>
+            <div class="experience-panel">
+                <div class="experience-panel__toolbar">
+                    <span class="experience-panel__hint">Chronological timeline</span>
+                    <button type="button" class="btn-outline-sm" id="expOpenTxtBtn" aria-label="Open plain-text experience summary">
+                        <i class="fas fa-align-left" aria-hidden="true"></i> Text summary
                     </button>
                 </div>
                 <div class="exp-timeline">
@@ -177,7 +177,7 @@
     <section id="projects">
         <div class="container">
             <h2 class="section-title">Projects</h2>
-            <p class="projects-sub">AI/ML, full stack, and data work.</p>
+            <p class="section-sub">AI/ML, full stack, and data work.</p>
             <div class="projects-grid" id="projectsContainer">
                 <!-- SpaceVisionAI -->
                 <article class="project-card">
@@ -331,13 +331,11 @@
         </div>
     </section>
 
-    <!-- Skills Section – terminal style, interactive -->
     <section id="skills">
-        <div class="container skills-terminal-wrap">
-            <div class="skills-terminal">
-                <div class="skills-terminal-header"><span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span> skills --list</div>
-                <h2 class="section-title skills-title"><span class="term-prompt">$</span> Technical Skills</h2>
-                <div class="skills-grid">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-sub">Stack and tools I use regularly.</p>
+            <div class="skills-grid">
                 <div class="skill-category">
                     <h3><i class="fas fa-cloud"></i> Cloud Platforms</h3>
                     <div class="skill-tags">
@@ -419,7 +417,6 @@
                         <span class="skill-tag" title="Git"><i class="devicon-git-plain"></i><span>Git</span></span>
                         <span class="skill-tag" title="JIRA"><i class="devicon-jira-plain"></i><span>JIRA</span></span>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -566,7 +563,7 @@
     <footer>
         <div class="container">
             <p>&copy; 2026 Bhavithra Suruliyandi Selvakumar. All rights reserved.</p>
-            <p class="footer-subtitle">Built with <i class="fas fa-heart" style="color: #ff0000;"></i> and passion for technology</p>
+            <p class="footer-subtitle">Built with care for clarity and performance.</p>
         </div>
     </footer>
 
@@ -575,7 +572,7 @@
         <div class="experience-modal-backdrop"></div>
         <div class="experience-modal-box">
             <div class="experience-modal-header">
-                <h2 id="experienceModalTitle" class="experience-modal-title">experience.txt</h2>
+                <h2 id="experienceModalTitle" class="experience-modal-title">Experience summary</h2>
                 <button type="button" class="experience-modal-close" id="experienceModalClose" aria-label="Close">
                     <i class="fas fa-times"></i>
                 </button>
@@ -596,6 +593,6 @@
         <div class="modal-caption"></div>
     </div>
 
-    <script src="script.js?v=9"></script>
+    <script src="script.js?v=11"></script>
 </body>
 </html>
