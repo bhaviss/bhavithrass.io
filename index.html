@@ -17,7 +17,7 @@
     <meta name="twitter:image" content="https://www.bhaviss.com/images/my-photo.png">
     <title>Bhavithra Suruliyandi Selvakumar - Portfolio</title>
     <link rel="stylesheet" href="style.css?v=10">
-    <link rel="stylesheet" href="theme-refresh.css?v=12">
+    <link rel="stylesheet" href="theme-refresh.css?v=13">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css">
     <!-- Devicon (tech logos for skills) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
@@ -48,6 +48,7 @@
                     <ul>
                         <li><a href="#hero">Home</a></li>
                         <li><a href="#about">About</a></li>
+                        <li><a href="#story">Process</a></li>
                         <li><a href="#experience">Experience</a></li>
                         <li><a href="#projects">Work</a></li>
                         <li><a href="#skills">Skills</a></li>
@@ -102,6 +103,13 @@
         </div>
     </section>
 
+    <div class="story-marquee" aria-hidden="true">
+        <div class="story-marquee__track">
+            <span class="story-marquee__segment">Research · LLMs · Vision · PyTorch · Data · Cloud · RL · Multimodal · Teaching · Pipelines · APIs · Stories worth the scroll</span>
+            <span class="story-marquee__segment">Research · LLMs · Vision · PyTorch · Data · Cloud · RL · Multimodal · Teaching · Pipelines · APIs · Stories worth the scroll</span>
+        </div>
+    </div>
+
     <!-- About Section -->
     <section id="about">
         <div class="container">
@@ -120,6 +128,31 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="story">
+        <div class="container">
+            <p class="story-eyebrow">How I work</p>
+            <h2 class="section-title section-title--editorial">From a fuzzy question <em>to something you can ship.</em></h2>
+            <p class="section-sub story-lead">The same rhythm whether it is a model, a dashboard, or a class full of students: frame the problem, iterate where it is measurable, then make it easy for the next person to run.</p>
+            <ol class="story-steps">
+                <li class="story-step">
+                    <span class="story-step__num" aria-hidden="true">01</span>
+                    <h3 class="story-step__title">Frame &amp; instrument</h3>
+                    <p class="story-step__body">Clarify success metrics, data constraints, and failure modes before touching architecture—so experiments stay honest.</p>
+                </li>
+                <li class="story-step">
+                    <span class="story-step__num" aria-hidden="true">02</span>
+                    <h3 class="story-step__title">Build in tight loops</h3>
+                    <p class="story-step__body">Prototype fast, log everything useful, and compare against baselines. Favor small, reviewable changes over big-bang rewrites.</p>
+                </li>
+                <li class="story-step">
+                    <span class="story-step__num" aria-hidden="true">03</span>
+                    <h3 class="story-step__title">Hand off cleanly</h3>
+                    <p class="story-step__body">Docs, reproducible runs, and deployment paths matter. The best work is boring to operate and exciting to extend.</p>
+                </li>
+            </ol>
         </div>
     </section>
 
@@ -196,7 +229,7 @@
     <!-- Projects Section -->
     <section id="projects">
         <div class="container">
-            <h2 class="section-title">Projects</h2>
+            <h2 class="section-title section-title--editorial">Selected work <em>built scroll by scroll.</em></h2>
             <p class="section-sub">AI/ML, full stack, and data work.</p>
             <div class="projects-grid" id="projectsContainer" data-lenis-prevent-wheel>
                 <!-- SpaceVisionAI -->
@@ -565,6 +598,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
-    <script src="script.js?v=22"></script>
+    <script src="script.js?v=23"></script>
 </body>
 </html>

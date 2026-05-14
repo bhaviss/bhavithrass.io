@@ -150,13 +150,15 @@
         '.section-sub',
         '.about-lead',
         '.about-text',
+        '.story-eyebrow',
         '.exp-item',
         '.skill-category',
         '.project-card',
         '.education-card',
         '.contact-intro',
         '.projects-github-wrap',
-        '.certifications'
+        '.certifications',
+        '.story-step'
     ].join(',');
     var staggerStep = 85;
     var revealObserver = new IntersectionObserver(function (entries) {
@@ -170,7 +172,8 @@
                 if (
                     (section.id === 'projects' && el.classList.contains('project-card')) ||
                     (section.id === 'experience' && el.classList.contains('exp-item')) ||
-                    (section.id === 'skills' && el.classList.contains('skill-category'))
+                    (section.id === 'skills' && el.classList.contains('skill-category')) ||
+                    (section.id === 'story' && el.classList.contains('story-step'))
                 ) {
                     return;
                 }
@@ -182,7 +185,7 @@
                 animated.forEach(function (el) {
                     el.style.transitionDelay = '';
                 });
-            }, Math.max(maxDelay + 1200, (section.id === 'projects' || section.id === 'experience' || section.id === 'skills') ? 1900 : 0));
+            }, Math.max(maxDelay + 1200, (section.id === 'projects' || section.id === 'experience' || section.id === 'skills' || section.id === 'story') ? 1900 : 0));
             revealObserver.unobserve(section);
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
