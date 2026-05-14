@@ -8,6 +8,17 @@
     var lenis = null;
 
     var scrollProgress = document.getElementById('scrollProgress');
+    var scrollProgressBar = scrollProgress ? scrollProgress.querySelector('.scroll-progress__bar') : null;
+    var useCssScrollProgress =
+        !prefersReducedMotion &&
+        typeof CSS !== 'undefined' &&
+        typeof CSS.supports === 'function' &&
+        (CSS.supports('animation-timeline', 'scroll()') ||
+            CSS.supports('animation-timeline', 'scroll(root)'));
+    if (useCssScrollProgress && scrollProgress) {
+        scrollProgress.classList.add('scroll-progress--sd');
+    }
+
     var header = document.getElementById('header');
     var sections = document.querySelectorAll('section[id]');
     var navLinks = document.querySelectorAll('nav a');
@@ -20,7 +31,12 @@
             var scrollUnit = docHeight > 0 ? Math.min(1, Math.max(0, y / docHeight)) : 0;
             document.documentElement.style.setProperty('--scroll', String(scrollUnit));
             if (scrollProgress) {
-                scrollProgress.style.width = scrollUnit * 100 + '%';
+                if (useCssScrollProgress && scrollProgressBar) {
+                    scrollProgress.style.width = '100%';
+                    scrollProgress.style.transition = 'none';
+                } else {
+                    scrollProgress.style.width = scrollUnit * 100 + '%';
+                }
             }
         } else if (scrollProgress) {
             var dh = document.documentElement.scrollHeight - window.innerHeight;
