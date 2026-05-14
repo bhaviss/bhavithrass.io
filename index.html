@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Bhavithra SS — Research Assistant in AI & ML. Portfolio: projects in computer vision, LLMs, data, and cloud. Scan the QR on the site to revisit anytime.">
+    <link rel="canonical" href="https://www.bhaviss.com/">
+    <meta property="og:title" content="Bhavithra SS — AI, data & the cloud">
+    <meta property="og:description" content="Research Assistant in AI & ML at Concordia. Explore projects, experience, and skills—or scan the QR on the page to open this portfolio on your phone.">
+    <meta property="og:url" content="https://www.bhaviss.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.bhaviss.com/images/my-photo.png">
+    <meta property="og:locale" content="en_CA">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bhavithra SS — Portfolio">
+    <meta name="twitter:description" content="AI & ML research, projects, and story-driven portfolio.">
+    <meta name="twitter:image" content="https://www.bhaviss.com/images/my-photo.png">
     <title>Bhavithra Suruliyandi Selvakumar - Portfolio</title>
     <link rel="stylesheet" href="style.css?v=10">
-    <link rel="stylesheet" href="theme-refresh.css?v=3">
+    <link rel="stylesheet" href="theme-refresh.css?v=6">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css">
     <!-- Devicon (tech logos for skills) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
@@ -19,6 +31,25 @@
 <body>
     <!-- Scroll progress bar -->
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <aside class="story-rail" id="storyRail" aria-label="Chapters — scroll the story">
+        <p class="story-rail__label">The story</p>
+        <ol class="story-rail__list">
+            <li><a href="#hero" class="story-rail__link" data-story-id="hero"><span class="story-rail__n">01</span><span class="story-rail__t">Opening</span></a></li>
+            <li><a href="#about" class="story-rail__link" data-story-id="about"><span class="story-rail__n">02</span><span class="story-rail__t">Who I am</span></a></li>
+            <li><a href="#experience" class="story-rail__link" data-story-id="experience"><span class="story-rail__n">03</span><span class="story-rail__t">The path</span></a></li>
+            <li><a href="#projects" class="story-rail__link" data-story-id="projects"><span class="story-rail__n">04</span><span class="story-rail__t">What I built</span></a></li>
+            <li><a href="#skills" class="story-rail__link" data-story-id="skills"><span class="story-rail__n">05</span><span class="story-rail__t">Toolkit</span></a></li>
+            <li><a href="#education" class="story-rail__link" data-story-id="education"><span class="story-rail__n">06</span><span class="story-rail__t">Foundation</span></a></li>
+            <li><a href="#creative" class="story-rail__link" data-story-id="creative"><span class="story-rail__n">07</span><span class="story-rail__t">Beyond code</span></a></li>
+            <li><a href="#contact" class="story-rail__link" data-story-id="contact"><span class="story-rail__n">08</span><span class="story-rail__t">Next step</span></a></li>
+        </ol>
+    </aside>
+
+    <div class="story-stage" id="storyStage" aria-live="polite">
+        <span class="story-stage__n" id="storyStageN">01</span>
+        <p class="story-stage__line" id="storyStageLine"><span class="story-stage__k" id="storyStageK">Opening</span> — The short pitch and how to scan this portfolio.</p>
+    </div>
     <!-- Header -->
     <header id="header">
         <div class="container">
@@ -34,6 +65,7 @@
                         <li><a href="#education">Education</a></li>
                         <li><a href="#creative">Creative</a></li>
                         <li><a href="#contact">Contact</a></li>
+                        <li><a href="#hero-qr">QR</a></li>
                     </ul>
                 </nav>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -71,6 +103,18 @@
                             <span class="stat-number">12+</span>
                             <span class="stat-label">Projects</span>
                         </div>
+                    </div>
+                    <div class="hero-qr" id="hero-qr">
+                        <div class="hero-qr__copy">
+                            <p class="hero-qr__eyebrow">Conferences · LinkedIn · coffee chats</p>
+                            <p class="hero-qr__title">Scan to open this portfolio on your phone</p>
+                            <p class="hero-qr__hint">Met at <strong>Upper Bound</strong> or found me online—save this page or grab a screenshot of the code.</p>
+                            <p class="hero-qr__url"><a href="https://www.bhaviss.com/" target="_blank" rel="noopener">www.bhaviss.com</a></p>
+                        </div>
+                        <figure class="hero-qr__figure">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&amp;data=https%3A%2F%2Fwww.bhaviss.com%2F" width="200" height="200" alt="QR code: opens bhaviss.com portfolio" loading="lazy" decoding="async">
+                            <figcaption>Points to this site—ideal for a featured link or in-person scan.</figcaption>
+                        </figure>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -595,6 +639,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
-    <script src="script.js?v=13"></script>
+    <script src="script.js?v=16"></script>
 </body>
 </html>

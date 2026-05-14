@@ -14,6 +14,70 @@
     var nav = document.getElementById('nav');
     var mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
+    var STORY_CHAPTERS = [
+        { id: 'hero', n: '01', kicker: 'Opening', line: 'What I build in AI, data, and the cloud—and a QR so you can reopen this portfolio after Upper Bound or from LinkedIn.' },
+        { id: 'about', n: '02', kicker: 'Who I am', line: 'The bridge between research curiosity and systems that have to work in production.' },
+        { id: 'experience', n: '03', kicker: 'The path', line: 'Teaching, data platforms, cloud ops, and research—how the chapters so far shaped the work I do today.' },
+        { id: 'projects', n: '04', kicker: 'Proof in the work', line: 'From multimodal space sensing to attendance systems and vision pipelines—things I shipped, not just slides.' },
+        { id: 'skills', n: '05', kicker: 'The toolkit', line: 'The languages, clouds, and ML stacks I reach for when it is time to turn ideas into running software.' },
+        { id: 'education', n: '06', kicker: 'The foundation', line: 'Coursework, GPA, and certifications that sit underneath the projects you just scrolled.' },
+        { id: 'creative', n: '07', kicker: 'Beyond the terminal', line: 'Campaigns and content when storytelling and design matter as much as the algorithm.' },
+        { id: 'contact', n: '08', kicker: 'Your turn', line: 'Research collaborations, roles, or a hard problem—here is how we keep the conversation going.' }
+    ];
+
+    function injectStoryBeats() {
+        STORY_CHAPTERS.forEach(function (ch) {
+            var sec = document.getElementById(ch.id);
+            if (!sec) return;
+            var container = sec.querySelector('.container');
+            if (!container || container.querySelector('.story-beat')) return;
+            var beat = document.createElement('div');
+            beat.className = 'story-beat';
+            beat.setAttribute('role', 'note');
+            var n = document.createElement('span');
+            n.className = 'story-beat__n';
+            n.textContent = ch.n;
+            var k = document.createElement('span');
+            k.className = 'story-beat__kicker';
+            k.textContent = ch.kicker;
+            var p = document.createElement('p');
+            p.className = 'story-beat__line';
+            p.textContent = ch.line;
+            beat.appendChild(n);
+            beat.appendChild(k);
+            beat.appendChild(p);
+            container.insertBefore(beat, container.firstChild);
+        });
+    }
+
+    injectStoryBeats();
+
+    var storyRailLinks = document.querySelectorAll('.story-rail__link');
+    var storyStageN = document.getElementById('storyStageN');
+    var storyStageK = document.getElementById('storyStageK');
+    var storyStageLine = document.getElementById('storyStageLine');
+
+    function updateStoryUI(currentId) {
+        storyRailLinks.forEach(function (a) {
+            a.classList.toggle('is-active', a.getAttribute('data-story-id') === currentId);
+        });
+        var meta = null;
+        for (var si = 0; si < STORY_CHAPTERS.length; si++) {
+            if (STORY_CHAPTERS[si].id === currentId) {
+                meta = STORY_CHAPTERS[si];
+                break;
+            }
+        }
+        if (meta && storyStageN && storyStageK && storyStageLine) {
+            storyStageN.textContent = meta.n;
+            storyStageK.textContent = meta.kicker;
+            while (storyStageK.nextSibling) {
+                storyStageLine.removeChild(storyStageK.nextSibling);
+            }
+            storyStageLine.appendChild(document.createTextNode(' — ' + meta.line));
+        }
+    }
+
     function onScrollUpdate(y) {
         if (scrollProgress && !prefersReducedMotion) {
             var docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -46,6 +110,7 @@
         if (scrollTopBtn) {
             scrollTopBtn.style.display = y > 400 ? 'flex' : 'none';
         }
+        updateStoryUI(current || 'hero');
     }
 
     function bindScrollUpdates() {
@@ -114,6 +179,8 @@
 
     /* Section reveal — stagger children; unobserve after first trigger */
     var revealSelector = [
+        '.story-beat',
+        '.hero-qr',
         '.section-title',
         '.section-sub',
         '.about-lead',
@@ -150,7 +217,7 @@
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
 
-    document.querySelectorAll('section[id]:not(#hero)').forEach(function (section) {
+    document.querySelectorAll('section[id]').forEach(function (section) {
         revealObserver.observe(section);
     });
 
