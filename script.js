@@ -131,6 +131,19 @@
 
     initLenis();
 
+    (function () {
+        var projectsGrid = document.getElementById('projectsContainer');
+        if (!projectsGrid || prefersReducedMotion) return;
+        function syncProjectsHScroll() {
+            var max = projectsGrid.scrollWidth - projectsGrid.clientWidth;
+            var t = max > 0 ? projectsGrid.scrollLeft / max : 0;
+            projectsGrid.style.setProperty('--projects-hscroll', String(t));
+        }
+        projectsGrid.addEventListener('scroll', syncProjectsHScroll, { passive: true });
+        window.addEventListener('resize', syncProjectsHScroll, { passive: true });
+        syncProjectsHScroll();
+    })();
+
     /* Section reveal — stagger children; unobserve after first trigger */
     var revealSelector = [
         '.section-title',
@@ -154,6 +167,13 @@
             var animated = section.querySelectorAll(revealSelector);
             var maxDelay = 0;
             animated.forEach(function (el, i) {
+                if (
+                    (section.id === 'projects' && el.classList.contains('project-card')) ||
+                    (section.id === 'experience' && el.classList.contains('exp-item')) ||
+                    (section.id === 'skills' && el.classList.contains('skill-category'))
+                ) {
+                    return;
+                }
                 var d = i * staggerStep;
                 el.style.transitionDelay = d + 'ms';
                 if (d > maxDelay) maxDelay = d;
@@ -162,7 +182,7 @@
                 animated.forEach(function (el) {
                     el.style.transitionDelay = '';
                 });
-            }, maxDelay + 1100);
+            }, Math.max(maxDelay + 1200, (section.id === 'projects' || section.id === 'experience' || section.id === 'skills') ? 1900 : 0));
             revealObserver.unobserve(section);
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
