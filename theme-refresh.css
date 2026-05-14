@@ -17,6 +17,22 @@
 
 html {
     scroll-snap-type: none;
+    scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+html.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.lenis-smooth {
+        scroll-behavior: auto;
+    }
 }
 
 body {
