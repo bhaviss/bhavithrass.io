@@ -56,7 +56,7 @@ body {
 }
 
 /* Stack main flow above parallax; keep fixed UI layers untouched */
-body > *:not(.parallax-bg):not(.scroll-progress):not(.site-gate):not(.site-menu):not(.experience-modal):not(.media-modal):not(.scroll-top-btn) {
+body > *:not(.parallax-bg):not(.scroll-progress):not(.site-menu):not(.experience-modal):not(.media-modal):not(.scroll-top-btn) {
     position: relative;
     z-index: 1;
 }
@@ -308,7 +308,7 @@ nav a::after {
 }
 
 .hero-title {
-    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-size: clamp(2.75rem, 7vw, 4rem);
     font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--text-primary);
@@ -316,8 +316,10 @@ nav a::after {
 
 .hero-subtitle {
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--text-secondary);
+    font-size: clamp(1.15rem, 2.8vw, 1.65rem);
+    letter-spacing: 0.01em;
 }
 
 .hero-text > * {
@@ -330,15 +332,6 @@ nav a::after {
 .hero-text > *:nth-child(4) { animation-delay: 0.24s; }
 .hero-text > *:nth-child(5) { animation-delay: 0.3s; }
 .hero-text > *:nth-child(6) { animation-delay: 0.36s; }
-
-/* Hero intro runs after the gate clears so motion is actually visible */
-@media (prefers-reduced-motion: no-preference) {
-    html.site-gate-active .hero-text > * {
-        opacity: 0;
-        transform: translateY(18px);
-        animation: none !important;
-    }
-}
 
 @keyframes heroFadeUp {
     from {
@@ -1403,248 +1396,6 @@ section[id]:not(#hero)::before {
     }
 }
 
-/* —— Pacôme Pertant–inspired gate + minimal menu (adapted for this portfolio; not a copy) —— */
-html.site-gate-active .scroll-progress {
-    opacity: 0;
-    pointer-events: none;
-}
-
-html.site-gate-active,
-html.site-gate-active body {
-    overflow: hidden;
-    height: 100%;
-}
-
-.site-gate {
-    position: fixed;
-    inset: 0;
-    z-index: 5000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #000;
-    color: #fafafa;
-    text-align: center;
-    padding: 2rem 1.5rem;
-    opacity: 1;
-    visibility: visible;
-    transition:
-        opacity 0.75s cubic-bezier(0.33, 1, 0.68, 1),
-        visibility 0s;
-}
-
-.site-gate--leave {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition:
-        opacity 0.65s cubic-bezier(0.33, 1, 0.68, 1),
-        visibility 0s linear 0.7s;
-}
-
-html.site-gate-done .site-gate {
-    display: none;
-}
-
-.site-gate__inner {
-    max-width: 32rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
-}
-
-.site-gate__marquee {
-    width: 100%;
-    overflow: hidden;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: rgba(250, 250, 250, 0.58);
-    margin: 0;
-}
-
-.site-gate__reel {
-    width: 100%;
-    overflow: hidden;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.28em;
-    text-transform: lowercase;
-    color: rgba(250, 250, 250, 0.52);
-    margin: -0.5rem 0 0;
-}
-
-.site-gate__reel-track {
-    display: inline-flex;
-    width: max-content;
-    will-change: transform;
-    animation: site-gate-marquee 22s linear infinite reverse;
-}
-
-.site-gate__reel-chunk {
-    flex-shrink: 0;
-    padding-right: 1.5rem;
-    white-space: nowrap;
-}
-
-.site-gate__marquee-track {
-    display: inline-flex;
-    width: max-content;
-    will-change: transform;
-    animation: site-gate-marquee 18s linear infinite;
-}
-
-.site-gate__marquee-chunk {
-    flex-shrink: 0;
-    padding-right: 1.5rem;
-    white-space: nowrap;
-}
-
-@keyframes site-gate-marquee {
-    to {
-        transform: translateX(-50%);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .site-gate__marquee-track,
-    .site-gate__reel-track {
-        animation: none;
-    }
-}
-
-.site-gate__glyph {
-    margin: 0;
-    font-size: 1.25rem;
-    line-height: 1;
-    color: rgba(250, 250, 250, 0.5);
-    letter-spacing: 0.2em;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    html.site-gate-active .site-gate__glyph {
-        animation: site-gate-glyph-pulse 2.2s ease-in-out 0.12s infinite both;
-    }
-
-    html.site-gate-active .site-gate__inner > *:not(.site-gate__glyph) {
-        animation: site-gate-line-in 0.75s cubic-bezier(0.33, 1, 0.68, 1) backwards;
-    }
-
-    html.site-gate-active .site-gate__inner > .site-gate__reel {
-        animation-delay: 0.02s;
-    }
-
-    html.site-gate-active .site-gate__inner > .site-gate__marquee {
-        animation-delay: 0.08s;
-    }
-
-    html.site-gate-active .site-gate__inner > .site-gate__title {
-        animation-delay: 0.18s;
-    }
-
-    html.site-gate-active .site-gate__inner > .site-gate__tagline {
-        animation-delay: 0.26s;
-    }
-
-    html.site-gate-active .site-gate__inner > .site-gate__actions {
-        animation-delay: 0.34s;
-    }
-}
-
-@keyframes site-gate-line-in {
-    from {
-        opacity: 0;
-        transform: translateY(14px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes site-gate-glyph-pulse {
-    0%,
-    100% {
-        opacity: 0.45;
-        transform: scale(1);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1.06);
-    }
-}
-
-.site-gate__title {
-    font-family: 'Fraunces', 'Georgia', serif;
-    font-size: clamp(2.5rem, 10vw, 4.25rem);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin: 0;
-}
-
-.site-gate__tagline {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(0.95rem, 2.8vw, 1.15rem);
-    font-weight: 400;
-    color: rgba(250, 250, 250, 0.72);
-    margin: 0;
-    line-height: 1.5;
-    max-width: 22em;
-}
-
-.site-gate__tagline em {
-    font-style: italic;
-    color: #fafafa;
-}
-
-.site-gate__actions {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.65rem;
-    width: min(18rem, 100%);
-    margin-top: 0.5rem;
-}
-
-.site-gate__btn {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    padding: 0.95rem 1.25rem;
-    border-radius: 2px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    cursor: pointer;
-    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-}
-
-.site-gate__btn--primary {
-    background: #fafafa;
-    color: #000;
-    border-color: #fafafa;
-}
-
-.site-gate__btn--primary:hover {
-    background: #e5e5e5;
-}
-
-.site-gate__btn--ghost {
-    background: transparent;
-    color: rgba(250, 250, 250, 0.85);
-}
-
-.site-gate__btn--ghost:hover {
-    background: rgba(255, 255, 255, 0.06);
-}
-
 /* Header: logo + pill menu */
 .site-header .header-content {
     position: relative;
@@ -1799,15 +1550,4 @@ html.site-gate-done .site-gate {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
-}
-
-/* Hero reads stronger once gate is cleared */
-html.site-gate-done #hero .hero-title {
-    font-size: clamp(2.75rem, 7vw, 4rem);
-}
-
-html.site-gate-done #hero .hero-subtitle {
-    font-size: clamp(1.15rem, 2.8vw, 1.65rem);
-    font-weight: 400;
-    letter-spacing: 0.01em;
 }

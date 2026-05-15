@@ -133,48 +133,6 @@
 
     initLenis();
 
-    (function initSiteGate() {
-        var gate = document.getElementById('siteGate');
-        if (!gate) return;
-        var gateSeenKey = 'bhaviGateSeen';
-        var gateSeenVal = 'pacome-ui-3';
-        if (prefersReducedMotion || sessionStorage.getItem(gateSeenKey) === gateSeenVal) {
-            document.documentElement.classList.add('site-gate-done');
-            return;
-        }
-        document.documentElement.classList.add('site-gate-active');
-        var finished = false;
-        function escGate(e) {
-            if (e.key !== 'Escape') return;
-            if (!document.documentElement.classList.contains('site-gate-active')) return;
-            dismissGate();
-        }
-        function dismissGate() {
-            if (finished) return;
-            finished = true;
-            document.removeEventListener('keydown', escGate);
-            sessionStorage.setItem(gateSeenKey, gateSeenVal);
-            document.documentElement.classList.remove('site-gate-active');
-            gate.classList.add('site-gate--leave');
-            var cleanup = function () {
-                document.documentElement.classList.add('site-gate-done');
-                gate.setAttribute('hidden', '');
-            };
-            gate.addEventListener('transitionend', function onEnd(e) {
-                if (e.propertyName !== 'opacity') return;
-                gate.removeEventListener('transitionend', onEnd);
-                cleanup();
-            });
-            window.setTimeout(cleanup, 900);
-        }
-        var enter = document.getElementById('siteGateEnter');
-        var skip = document.getElementById('siteGateSkip');
-        if (enter) enter.addEventListener('click', dismissGate);
-        if (skip) skip.addEventListener('click', dismissGate);
-        document.addEventListener('keydown', escGate);
-        if (enter) enter.focus();
-    })();
-
     function setSiteMenuOpen(open) {
         if (!siteMenu || !siteMenuToggle) return;
         siteMenu.classList.toggle('is-open', open);
