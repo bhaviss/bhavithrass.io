@@ -137,7 +137,7 @@
         var gate = document.getElementById('siteGate');
         if (!gate) return;
         var gateSeenKey = 'bhaviGateSeen';
-        var gateSeenVal = 'pacome-ui-2';
+        var gateSeenVal = 'pacome-ui-3';
         if (prefersReducedMotion || sessionStorage.getItem(gateSeenKey) === gateSeenVal) {
             document.documentElement.classList.add('site-gate-done');
             return;
