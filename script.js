@@ -26,7 +26,6 @@
     var siteMenuToggle = document.getElementById('siteMenuToggle');
     var siteMenu = document.getElementById('siteMenuOverlay');
     var siteMenuClose = document.getElementById('siteMenuClose');
-    var siteMenuClose = document.getElementById('siteMenuClose');
 
     function onScrollUpdate(y) {
         if (!prefersReducedMotion) {
@@ -137,7 +136,9 @@
     (function initSiteGate() {
         var gate = document.getElementById('siteGate');
         if (!gate) return;
-        if (prefersReducedMotion || sessionStorage.getItem('bhaviGateSeen') === '1') {
+        var gateSeenKey = 'bhaviGateSeen';
+        var gateSeenVal = 'pacome-ui-2';
+        if (prefersReducedMotion || sessionStorage.getItem(gateSeenKey) === gateSeenVal) {
             document.documentElement.classList.add('site-gate-done');
             return;
         }
@@ -152,7 +153,7 @@
             if (finished) return;
             finished = true;
             document.removeEventListener('keydown', escGate);
-            sessionStorage.setItem('bhaviGateSeen', '1');
+            sessionStorage.setItem(gateSeenKey, gateSeenVal);
             document.documentElement.classList.remove('site-gate-active');
             gate.classList.add('site-gate--leave');
             var cleanup = function () {
@@ -217,15 +218,76 @@
 
     (function () {
         var projectsGrid = document.getElementById('projectsContainer');
-        if (!projectsGrid || prefersReducedMotion) return;
+        var layoutScroll = document.getElementById('layoutScroll');
+        var layoutStack = document.getElementById('layoutStack');
+        var STORAGE_KEY = 'bhaviProjLayout';
+
+        if (!projectsGrid) return;
+
         function syncProjectsHScroll() {
+            if (projectsGrid.classList.contains('projects-grid--stack')) {
+                projectsGrid.style.setProperty('--projects-hscroll', '0');
+                return;
+            }
             var max = projectsGrid.scrollWidth - projectsGrid.clientWidth;
             var t = max > 0 ? projectsGrid.scrollLeft / max : 0;
             projectsGrid.style.setProperty('--projects-hscroll', String(t));
         }
-        projectsGrid.addEventListener('scroll', syncProjectsHScroll, { passive: true });
-        window.addEventListener('resize', syncProjectsHScroll, { passive: true });
-        syncProjectsHScroll();
+
+        function getStoredLayout() {
+            try {
+                var v = localStorage.getItem(STORAGE_KEY);
+                if (v === 'stack' || v === 'scroll') return v;
+            } catch (e) {
+                /* ignore */
+            }
+            return 'scroll';
+        }
+
+        function applyLayout(layout) {
+            var isStack = layout === 'stack';
+            projectsGrid.classList.toggle('projects-grid--stack', isStack);
+            if (isStack) {
+                projectsGrid.removeAttribute('data-lenis-prevent-wheel');
+                projectsGrid.scrollLeft = 0;
+            } else {
+                projectsGrid.setAttribute('data-lenis-prevent-wheel', '');
+            }
+            if (layoutScroll && layoutStack) {
+                layoutScroll.classList.toggle('is-active', !isStack);
+                layoutStack.classList.toggle('is-active', isStack);
+                layoutScroll.setAttribute('aria-pressed', isStack ? 'false' : 'true');
+                layoutStack.setAttribute('aria-pressed', isStack ? 'true' : 'false');
+            }
+            try {
+                localStorage.setItem(STORAGE_KEY, layout);
+            } catch (e) {
+                /* ignore */
+            }
+            syncProjectsHScroll();
+        }
+
+        if (!prefersReducedMotion) {
+            projectsGrid.addEventListener('scroll', syncProjectsHScroll, { passive: true });
+            window.addEventListener('resize', syncProjectsHScroll, { passive: true });
+        }
+
+        applyLayout(getStoredLayout());
+
+        if (layoutScroll) {
+            layoutScroll.addEventListener('click', function () {
+                applyLayout('scroll');
+            });
+        }
+        if (layoutStack) {
+            layoutStack.addEventListener('click', function () {
+                applyLayout('stack');
+            });
+        }
+
+        if (prefersReducedMotion) {
+            syncProjectsHScroll();
+        }
     })();
 
     (function () {

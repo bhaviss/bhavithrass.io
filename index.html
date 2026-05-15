@@ -17,7 +17,7 @@
     <meta name="twitter:image" content="https://www.bhaviss.com/images/my-photo.png">
     <title>Bhavithra Suruliyandi Selvakumar - Portfolio</title>
     <link rel="stylesheet" href="style.css?v=10">
-    <link rel="stylesheet" href="theme-refresh.css?v=16">
+    <link rel="stylesheet" href="theme-refresh.css?v=20">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css">
     <!-- Devicon (tech logos for skills) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
@@ -37,6 +37,12 @@
 
     <div id="siteGate" class="site-gate" role="dialog" aria-modal="true" aria-labelledby="siteGateTitle">
         <div class="site-gate__inner">
+            <p class="site-gate__reel" aria-hidden="true">
+                <span class="site-gate__reel-track">
+                    <span class="site-gate__reel-chunk">spacevisionai · geo qr · snowsense · chatbot · pipelines · cloud · </span>
+                    <span class="site-gate__reel-chunk" aria-hidden="true">spacevisionai · geo qr · snowsense · chatbot · pipelines · cloud · </span>
+                </span>
+            </p>
             <p class="site-gate__marquee" aria-hidden="true">
                 <span class="site-gate__marquee-track">
                     <span class="site-gate__marquee-chunk">portfolio · research · ml · 2026 · </span>
@@ -47,8 +53,8 @@
             <h1 class="site-gate__title" id="siteGateTitle">Bhavithra SS</h1>
             <p class="site-gate__tagline">research &amp; machine learning <em>based in edmonton.</em></p>
             <div class="site-gate__actions">
-                <button type="button" class="site-gate__btn site-gate__btn--primary" id="siteGateEnter">Enter</button>
-                <button type="button" class="site-gate__btn site-gate__btn--ghost" id="siteGateSkip">Skip intro</button>
+                <button type="button" class="site-gate__btn site-gate__btn--primary" id="siteGateEnter">Enter with motion</button>
+                <button type="button" class="site-gate__btn site-gate__btn--ghost" id="siteGateSkip">Enter without motion</button>
             </div>
         </div>
     </div>
@@ -62,6 +68,15 @@
         <div class="container">
             <div class="header-content">
                 <a href="#hero" class="logo">Bhavithra SS</a>
+                <div class="view-switch" id="projectsViewSwitch" role="toolbar" aria-label="Work section layout">
+                    <button type="button" class="view-switch__btn is-active" data-layout="scroll" id="layoutScroll" aria-pressed="true">
+                        <span class="view-switch__text">scroll</span><span class="view-switch__text" aria-hidden="true">scroll</span>
+                    </button>
+                    <span class="view-switch__dot" aria-hidden="true"></span>
+                    <button type="button" class="view-switch__btn" data-layout="stack" id="layoutStack" aria-pressed="false">
+                        <span class="view-switch__text">stack</span><span class="view-switch__text" aria-hidden="true">stack</span>
+                    </button>
+                </div>
                 <button type="button" class="site-menu-toggle" id="siteMenuToggle" aria-expanded="false" aria-controls="siteMenuOverlay" aria-label="Open menu">
                     <span class="site-menu-toggle__label" data-open="menu" data-close="close">menu</span>
                 </button>
@@ -646,6 +661,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
-    <script src="script.js?v=25"></script>
+    <script src="script.js?v=28"></script>
 </body>
 </html>
