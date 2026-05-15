@@ -17,7 +17,7 @@
     <meta name="twitter:image" content="https://www.bhaviss.com/images/my-photo.png">
     <title>Bhavithra Suruliyandi Selvakumar - Portfolio</title>
     <link rel="stylesheet" href="style.css?v=10">
-    <link rel="stylesheet" href="theme-refresh.css?v=21">
+    <link rel="stylesheet" href="theme-refresh.css?v=22">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css">
     <!-- Devicon (tech logos for skills) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
@@ -68,15 +68,6 @@
         <div class="container">
             <div class="header-content">
                 <a href="#hero" class="logo">Bhavithra SS</a>
-                <div class="view-switch" id="projectsViewSwitch" role="toolbar" aria-label="Work section layout">
-                    <button type="button" class="view-switch__btn is-active" data-layout="scroll" id="layoutScroll" aria-pressed="true">
-                        <span class="view-switch__text">scroll</span><span class="view-switch__text" aria-hidden="true">scroll</span>
-                    </button>
-                    <span class="view-switch__dot" aria-hidden="true"></span>
-                    <button type="button" class="view-switch__btn" data-layout="stack" id="layoutStack" aria-pressed="false">
-                        <span class="view-switch__text">stack</span><span class="view-switch__text" aria-hidden="true">stack</span>
-                    </button>
-                </div>
                 <button type="button" class="site-menu-toggle" id="siteMenuToggle" aria-expanded="false" aria-controls="siteMenuOverlay" aria-label="Open menu">
                     <span class="site-menu-toggle__label" data-open="menu" data-close="close">menu</span>
                 </button>
@@ -283,36 +274,25 @@
             <h2 class="section-title section-title--editorial">Selected work <em>built scroll by scroll.</em></h2>
             <p class="section-sub">AI/ML, full stack, and data work.</p>
 
-            <div class="case-study" id="caseStudy">
-                <header class="case-study__header">
-                    <p class="case-study__kicker">Case study · Master&apos;s thesis</p>
-                    <h3 class="case-study__title">SpaceVisionAI — debris you can actually see coming</h3>
-                    <p class="case-study__lead">Scroll horizontally for the short version: problem, approach, metrics, and where the code lives.</p>
-                </header>
-                <div class="case-study__scroller" id="caseStudyScroller" data-lenis-prevent-wheel tabindex="0" role="region" aria-roledescription="carousel" aria-label="SpaceVisionAI case study slides">
-                    <article class="case-study__slide case-study__slide--media">
-                        <video controls playsinline preload="metadata" poster="images/projects/space-debris-thumb.jpg" data-caption="Space Debris Detection">
+            <div class="projects-grid" id="projectsContainer" data-lenis-prevent-wheel>
+                <!-- SpaceVisionAI (thesis) — same row as other projects -->
+                <article class="project-card">
+                    <div class="project-media">
+                        <video controls playsinline preload="metadata" poster="images/projects/space-debris-thumb.jpg" data-caption="Space debris detection">
                             <source src="images/projects/space-debris-tracking.mp4" type="video/mp4">
                         </video>
-                    </article>
-                    <article class="case-study__slide">
-                        <span class="case-study__step">01 — Problem</span>
-                        <p class="case-study__text">Low Earth orbit is crowded; operators need reliable cues from sensor data—not a single model score in isolation.</p>
-                    </article>
-                    <article class="case-study__slide">
-                        <span class="case-study__step">02 — Approach</span>
-                        <p class="case-study__text">Multimodal deep learning for real-time detection and tracking, iterating against a strong baseline with clear validation.</p>
-                    </article>
-                    <article class="case-study__slide">
-                        <span class="case-study__step">03 — Outcome</span>
-                        <p class="case-study__text"><strong>62.4%</strong> accuracy with a <strong>+12%</strong> lift over baseline on the thesis benchmark—Python, TensorFlow, and PyTorch end-to-end.</p>
-                        <a href="https://github.com/bhaviss/Space-debris" target="_blank" rel="noopener" class="case-study__cta">Repository <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
-                    </article>
-                </div>
-                <div class="case-study__dots" id="caseStudyDots"></div>
-            </div>
+                    </div>
+                    <div class="project-card-content">
+                        <span class="project-badge">Master&apos;s thesis · CV</span>
+                        <h3>SpaceVisionAI</h3>
+                        <p class="project-desc">Multimodal deep learning for debris detection and tracking—validated against a strong baseline (thesis benchmark).</p>
+                        <div class="project-tech-pills">
+                            <span>Python</span><span>TensorFlow</span><span>PyTorch</span>
+                        </div>
+                        <a href="https://github.com/bhaviss/Space-debris" target="_blank" rel="noopener" class="project-link">View Code <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </article>
 
-            <div class="projects-grid" id="projectsContainer" data-lenis-prevent-wheel>
                 <!-- Geo QR Attendance -->
                 <article class="project-card">
                     <div class="project-media gallery">
@@ -661,6 +641,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
-    <script src="script.js?v=29"></script>
+    <script src="script.js?v=30"></script>
 </body>
 </html>

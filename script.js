@@ -218,122 +218,15 @@
 
     (function () {
         var projectsGrid = document.getElementById('projectsContainer');
-        var layoutScroll = document.getElementById('layoutScroll');
-        var layoutStack = document.getElementById('layoutStack');
-        var STORAGE_KEY = 'bhaviProjLayout';
-
-        if (!projectsGrid) return;
-
+        if (!projectsGrid || prefersReducedMotion) return;
         function syncProjectsHScroll() {
-            if (projectsGrid.classList.contains('projects-grid--stack')) {
-                projectsGrid.style.setProperty('--projects-hscroll', '0');
-                return;
-            }
             var max = projectsGrid.scrollWidth - projectsGrid.clientWidth;
             var t = max > 0 ? projectsGrid.scrollLeft / max : 0;
             projectsGrid.style.setProperty('--projects-hscroll', String(t));
         }
-
-        function getStoredLayout() {
-            try {
-                var v = localStorage.getItem(STORAGE_KEY);
-                if (v === 'stack' || v === 'scroll') return v;
-            } catch (e) {
-                /* ignore */
-            }
-            return 'scroll';
-        }
-
-        function applyLayout(layout) {
-            var isStack = layout === 'stack';
-            projectsGrid.classList.toggle('projects-grid--stack', isStack);
-            if (isStack) {
-                projectsGrid.removeAttribute('data-lenis-prevent-wheel');
-                projectsGrid.scrollLeft = 0;
-            } else {
-                projectsGrid.setAttribute('data-lenis-prevent-wheel', '');
-            }
-            if (layoutScroll && layoutStack) {
-                layoutScroll.classList.toggle('is-active', !isStack);
-                layoutStack.classList.toggle('is-active', isStack);
-                layoutScroll.setAttribute('aria-pressed', isStack ? 'false' : 'true');
-                layoutStack.setAttribute('aria-pressed', isStack ? 'true' : 'false');
-            }
-            try {
-                localStorage.setItem(STORAGE_KEY, layout);
-            } catch (e) {
-                /* ignore */
-            }
-            syncProjectsHScroll();
-        }
-
-        if (!prefersReducedMotion) {
-            projectsGrid.addEventListener('scroll', syncProjectsHScroll, { passive: true });
-            window.addEventListener('resize', syncProjectsHScroll, { passive: true });
-        }
-
-        applyLayout(getStoredLayout());
-
-        if (layoutScroll) {
-            layoutScroll.addEventListener('click', function () {
-                applyLayout('scroll');
-            });
-        }
-        if (layoutStack) {
-            layoutStack.addEventListener('click', function () {
-                applyLayout('stack');
-            });
-        }
-
-        if (prefersReducedMotion) {
-            syncProjectsHScroll();
-        }
-    })();
-
-    (function () {
-        var sc = document.getElementById('caseStudyScroller');
-        var dotsWrap = document.getElementById('caseStudyDots');
-        if (!sc || !dotsWrap) return;
-        if (prefersReducedMotion) {
-            dotsWrap.setAttribute('hidden', '');
-            return;
-        }
-        var slides = sc.querySelectorAll('.case-study__slide');
-        if (!slides.length) return;
-        slides.forEach(function (_, i) {
-            var b = document.createElement('button');
-            b.type = 'button';
-            b.className = 'case-study__dot-btn';
-            b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-            b.addEventListener('click', function () {
-                slides[i].scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
-            });
-            dotsWrap.appendChild(b);
-        });
-        var dotBtns = dotsWrap.querySelectorAll('.case-study__dot-btn');
-
-        function syncCaseStudyDots() {
-            var scRect = sc.getBoundingClientRect();
-            var center = scRect.left + scRect.width * 0.35;
-            var bestIdx = 0;
-            var bestDist = Infinity;
-            slides.forEach(function (sl, i) {
-                var r = sl.getBoundingClientRect();
-                var mid = r.left + r.width * 0.5;
-                var d = Math.abs(mid - center);
-                if (d < bestDist) {
-                    bestDist = d;
-                    bestIdx = i;
-                }
-            });
-            dotBtns.forEach(function (d, i) {
-                d.classList.toggle('is-active', i === bestIdx);
-            });
-        }
-
-        sc.addEventListener('scroll', syncCaseStudyDots, { passive: true });
-        window.addEventListener('resize', syncCaseStudyDots, { passive: true });
-        syncCaseStudyDots();
+        projectsGrid.addEventListener('scroll', syncProjectsHScroll, { passive: true });
+        window.addEventListener('resize', syncProjectsHScroll, { passive: true });
+        syncProjectsHScroll();
     })();
 
     /* Section reveal — stagger children; unobserve after first trigger */
