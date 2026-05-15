@@ -2,7 +2,6 @@
     'use strict';
 
     document.documentElement.style.opacity = '1';
-    document.body.style.opacity = '1';
 
     var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var lenis = null;
@@ -121,9 +120,9 @@
             return;
         }
         lenis = new window.Lenis({
-            lerp: 0.048,
-            wheelMultiplier: 0.62,
-            touchMultiplier: 1.2,
+            lerp: 0.035,
+            wheelMultiplier: 0.55,
+            touchMultiplier: 1.15,
             smoothWheel: true,
             syncTouch: false,
             autoRaf: true
@@ -237,7 +236,7 @@
         revealObserver.observe(section);
     });
 
-    /* In-page navigation */
+    /* In-page navigation — smooth scroll + optional View Transition (studio-style polish) */
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
             var targetId = anchor.getAttribute('href');
@@ -245,21 +244,30 @@
             var target = document.querySelector(targetId);
             if (!target) return;
             e.preventDefault();
-            if (nav && siteMenu) {
-                setSiteMenuOpen(false);
-            }
             var headerOffset = 80;
-            if (lenis) {
-                lenis.scrollTo(target, {
-                    offset: -headerOffset,
-                    duration: 1.25,
-                    easing: function (t) {
-                        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-                    }
-                });
+
+            function runScroll() {
+                if (nav && siteMenu) {
+                    setSiteMenuOpen(false);
+                }
+                if (lenis) {
+                    lenis.scrollTo(target, {
+                        offset: -headerOffset,
+                        duration: 1.55,
+                        easing: function (t) {
+                            return 1 - Math.pow(1 - t, 3);
+                        }
+                    });
+                } else {
+                    var top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+                }
+            }
+
+            if (!prefersReducedMotion && typeof document.startViewTransition === 'function') {
+                document.startViewTransition(runScroll);
             } else {
-                var top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-                window.scrollTo({ top: top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+                runScroll();
             }
         });
     });
